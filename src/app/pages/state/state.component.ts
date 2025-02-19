@@ -2,11 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { StateService } from '../../core/services/state.service';
 import { RootModel } from '../../core/models/root.model';
 import { StateModel } from '../../core/models/state.model';
-import { empty } from 'rxjs';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { InputIconModule } from 'primeng/inputicon';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-state',
-  imports: [],
+  imports: [
+    TableModule,
+    ButtonModule,
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule,
+  ],
   templateUrl: './state.component.html',
   styleUrl: './state.component.scss',
 })
@@ -23,7 +33,6 @@ export class StateComponent implements OnInit {
     this.stateService.get().subscribe((res) => {
       let result = res.data;
       this.states = result.states as StateModel[];
-      console.log(result);
     });
   }
 }
