@@ -1,35 +1,41 @@
-<div class="card">
+<div class="card p-4 shadow-md rounded-xl bg-white">
   <p-table
     #dt1
     [value]="states"
     [globalFilterFields]="['stateId', 'stateName', 'stateNameMm']"
-    [tableStyle]="{ 'min-width': '75rem' }"
+    [tableStyle]="{ 'min-width': '100%' }"
     [paginator]="true"
     dataKey="stateId"
     [rows]="8"
-    [rowsPerPageOptions]="[8, 25, 50]"
+    [rowsPerPageOptions]="[8, 15, 30]"
+    class="p-datatable-striped p-datatable-gridlines"
+    responsiveLayout="scroll"
   >
     <ng-template #caption>
-      <div class="flex">
-        <p-button label="Create"></p-button>
-        <p-iconfield iconPosition="left" class="ml-auto">
+      <div class="flex items-center justify-between mb-3">
+        <p-button label="Create" class="p-button-primary">
+          <i class="pi pi-plus"></i>
+        </p-button>
+        <p-iconfield iconPosition="left" class="w-80 mt-2 sm:mt-0">
           <p-inputicon>
-            <i class="pi pi-search"></i>
+            <i class="pi pi-search text-gray-400"></i>
           </p-inputicon>
           <input
             pInputText
             type="text"
             (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
-            placeholder="Search keyword"
+            placeholder="       Search keyword"
+            class="p-inputtext w-full border rounded-lg px-3 py-2"
           />
         </p-iconfield>
       </div>
     </ng-template>
+
     <ng-template #header>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Name Mm</th>
+      <tr class="bg-gray-100">
+        <th class="p-3 text-left">ID</th>
+        <th class="p-3 text-left">Name</th>
+        <th class="p-3 text-left">Name Mm</th>
       </tr>
       <tr>
         <th>
@@ -38,6 +44,7 @@
             field="stateId"
             placeholder="Search by ID"
             ariaLabel="Filter ID"
+            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -46,28 +53,34 @@
             field="stateName"
             placeholder="Search by name"
             ariaLabel="Filter Name"
+            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
           <p-columnFilter
             type="text"
             field="stateNameMm"
-            placeholder="Search by stateNameMm"
-            ariaLabel="Filter stateNameMm"
+            placeholder="Search by Name Mm"
+            ariaLabel="Filter NameMm"
+            class="w-full"
           ></p-columnFilter>
         </th>
       </tr>
     </ng-template>
+
     <ng-template #body let-state>
-      <tr>
-        <td>{{ state.stateId }}</td>
-        <td>{{ state.stateName }}</td>
-        <td>{{ state.stateNameMm }}</td>
+      <tr class="hover:bg-gray-50 transition odd:bg-white even:bg-slate-50">
+        <td class="p-3 border-b">{{ state.stateId }}</td>
+        <td class="p-3 border-b">{{ state.stateName }}</td>
+        <td class="p-3 border-b">{{ state.stateNameMm }}</td>
       </tr>
     </ng-template>
+
     <ng-template #emptymessage>
       <tr>
-        <td colspan="5">No states found.</td>
+        <td colspan="3" class="text-center p-4 text-gray-500">
+          No states found.
+        </td>
       </tr>
     </ng-template>
   </p-table>
