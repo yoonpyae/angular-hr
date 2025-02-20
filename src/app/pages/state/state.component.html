@@ -1,5 +1,14 @@
 <div class="card">
-  <p-table #dt1 [value]="states" [tableStyle]="{ 'min-width': '50rem' }">
+  <p-table
+    #dt1
+    [value]="states"
+    [globalFilterFields]="['stateId', 'stateName', 'stateNameMm']"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [paginator]="true"
+    dataKey="stateId"
+    [rows]="8"
+    [rowsPerPageOptions]="[8, 25, 50]"
+  >
     <ng-template #caption>
       <div class="flex">
         <p-button label="Create"></p-button>
@@ -10,7 +19,7 @@
           <input
             pInputText
             type="text"
-            (input)="dt1.filterGlobal($event.target, 'contains')"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
             placeholder="Search keyword"
           />
         </p-iconfield>
@@ -22,12 +31,43 @@
         <th>Name</th>
         <th>Name Mm</th>
       </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="stateId"
+            placeholder="Search by ID"
+            ariaLabel="Filter ID"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="stateName"
+            placeholder="Search by name"
+            ariaLabel="Filter Name"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="stateNameMm"
+            placeholder="Search by stateNameMm"
+            ariaLabel="Filter stateNameMm"
+          ></p-columnFilter>
+        </th>
+      </tr>
     </ng-template>
     <ng-template #body let-state>
       <tr>
         <td>{{ state.stateId }}</td>
         <td>{{ state.stateName }}</td>
         <td>{{ state.stateNameMm }}</td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5">No states found.</td>
       </tr>
     </ng-template>
   </p-table>
