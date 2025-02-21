@@ -25,5 +25,21 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'policy', component: PolicyComponent },
+  {
+    path: 'policy',
+    children: [
+      {
+        path: '',
+        component: PolicyComponent,
+      },
+      {
+        path: 'entry/:id',
+        component: EntryComponent,
+      },
+      {
+        path: 'entry',
+        component: EntryComponent,
+      },
+    ],
+  },
 ];

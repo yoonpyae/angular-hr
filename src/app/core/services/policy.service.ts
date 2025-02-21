@@ -16,6 +16,11 @@ export class PolicyService {
     return this.http.get<RootModel>(url);
   }
 
+  getByID(id: number): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Policies/${id}`;
+    return this.http.get<RootModel>(url);
+  }
+
   create(model: PolicyModel): Observable<RootModel> {
     let url: string = `${enviornment.apiUrl}/api/Policies`;
     return this.http.post<RootModel>(url, JSON.stringify(model), {

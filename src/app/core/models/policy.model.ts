@@ -6,9 +6,9 @@ export interface PolicyModel {
   companyId: string;
   createdOn: string;
   createdBy: string;
-  updatedOn: null;
-  updatedBy: null;
-  deletedOn: null;
-  deletedBy: null;
-  remark: null;
+  updatedOn: string | null;
+  updatedBy: string | null;
+  deletedOn: string | null;
+  deletedBy: string | null;
+  remark: string | null;
 }

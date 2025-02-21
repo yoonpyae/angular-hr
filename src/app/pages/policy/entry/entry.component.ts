@@ -33,7 +33,7 @@ export class EntryComponent implements OnInit {
     id: [0],
     title: [''],
     description: [''],
-    policyType: [''],
+    policyType: [0],
     companyId: [''],
     createdOn: [''],
     createdBy: [''],
@@ -54,10 +54,19 @@ export class EntryComponent implements OnInit {
         console.log(this.model);
 
         this.policyForm.controls.id.setValue(this.model.id);
-
         this.policyForm.controls.id.disable();
         this.policyForm.controls.title.setValue(this.model.title);
         this.policyForm.controls.description.setValue(this.model.description);
+        this.policyForm.controls.policyType.setValue(this.model.policyType);
+        this.policyForm.controls.policyType.disable();
+        this.policyForm.controls.companyId.setValue(this.model.companyId);
+        this.policyForm.controls.createdOn.setValue(this.model.createdOn);
+        this.policyForm.controls.createdBy.setValue(this.model.createdBy);
+        this.policyForm.controls.updatedOn.setValue(this.model.updatedOn);
+        this.policyForm.controls.updatedBy.setValue(this.model.updatedBy);
+        this.policyForm.controls.deletedOn.setValue(this.model.deletedOn);
+        this.policyForm.controls.deletedBy.setValue(this.model.deletedBy);
+        this.policyForm.controls.remark.setValue(this.model.remark);
       });
     }
   }
@@ -67,12 +76,19 @@ export class EntryComponent implements OnInit {
       id: this.policyForm.controls.id.value ?? 0,
       title: this.policyForm.controls.title.value ?? '',
       description: this.policyForm.controls.description.value ?? '',
+      policyType: this.policyForm.controls.policyType.value ?? 0,
+      companyId: this.policyForm.controls.companyId.value ?? '',
+      createdOn: this.policyForm.controls.createdOn.value ?? '',
+      createdBy: this.policyForm.controls.createdBy.value ?? '',
+      updatedOn: this.policyForm.controls.updatedOn.value ?? '',
+      updatedBy: this.policyForm.controls.updatedBy.value ?? '',
+      deletedOn: this.policyForm.controls.deletedOn.value ?? '',
+      deletedBy: this.policyForm.controls.deletedBy.value ?? '',
+      remark: this.policyForm.controls.remark.value ?? '',
     };
 
-    if (this.policyID > 0) {
-      this.policyService.create(model).subscribe((res) => {
-        console.log(res);
-      });
-    }
+    this.policyService.create(model).subscribe((res) => {
+      console.log(res);
+    });
   }
 }
