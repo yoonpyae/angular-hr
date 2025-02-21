@@ -12,10 +12,12 @@ import { TagModule } from 'primeng/tag';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-state',
   imports: [
+    RouterModule,
     TableModule,
     ButtonModule,
     IconFieldModule,
@@ -30,11 +32,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './state.component.scss',
 })
 export class StateComponent implements OnInit {
+  selectedState!: StateModel;
   states: StateModel[] = [];
   loading: boolean = true;
 
   activityValues: number[] = [0, 100];
-  constructor(private stateService: StateService) {}
+  constructor(private stateService: StateService, private rout: Router) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -45,6 +48,20 @@ export class StateComponent implements OnInit {
       let result = res.data;
       this.states = result.states as StateModel[];
     });
+  }
+
+  update(state: StateModel): void {
+    this.selectedState = state;
+    this.rout.navigate(['/state/entry', this.selectedState.stateId]);
+  }
+
+  delete(state: StateModel): void {
+    this.selectedState = state;
+    if (this.selectedState !== null) {
+      this.stateService.delete(this.selectedState.stateId).subscribe((res) => {
+        this.loadData();
+      });
+    }
   }
 
   clear(table: Table) {

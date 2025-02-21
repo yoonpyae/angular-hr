@@ -13,9 +13,10 @@
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">
-        <p-button label="Create" class="p-button-primary">
+        <p-button label="Create" routerLink="entry" class="p-button-primary">
           <i class="pi pi-plus"></i>
         </p-button>
+
         <p-iconfield iconPosition="left" class="w-80 mt-2 sm:mt-0">
           <p-inputicon>
             <i class="pi pi-search text-gray-400"></i>
@@ -36,6 +37,7 @@
         <th class="p-3 text-left">ID</th>
         <th class="p-3 text-left">Name</th>
         <th class="p-3 text-left">Name Mm</th>
+        <th>Action</th>
       </tr>
       <tr>
         <th>
@@ -73,6 +75,11 @@
         <td class="p-3 border-b">{{ state.stateId }}</td>
         <td class="p-3 border-b">{{ state.stateName }}</td>
         <td class="p-3 border-b">{{ state.stateNameMm }}</td>
+
+        <td>
+          <p-button (onClick)="update(state)">Edit</p-button>
+          <p-button (onClick)="delete(state)">Delete</p-button>
+        </td>
       </tr>
     </ng-template>
 

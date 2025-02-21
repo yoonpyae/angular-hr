@@ -16,14 +16,27 @@ export class StateService {
     return this.http.get<RootModel>(url);
   }
 
+  getByID(id: number): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/States/${id}`;
+    return this.http.get<RootModel>(url);
+  }
+
   create(model: StateModel): Observable<RootModel> {
     let url: string = `${enviornment.apiUrl}/api/States`;
-    return this.http.post<RootModel>(url, JSON.stringify(model));
+    return this.http.post<RootModel>(url, JSON.stringify(model), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   update(id: number, model: StateModel): Observable<RootModel> {
     let url: string = `${enviornment.apiUrl}/api/States/${id}`;
-    return this.http.put<RootModel>(url, JSON.stringify(model));
+    return this.http.put<RootModel>(url, JSON.stringify(model), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
   delete(id: number): Observable<RootModel> {

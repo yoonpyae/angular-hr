@@ -15,6 +15,10 @@ export const routes: Routes = [
         component: StateComponent,
       },
       {
+        path: 'entry/:id',
+        component: EntryComponent,
+      },
+      {
         path: 'entry',
         component: EntryComponent,
       },
