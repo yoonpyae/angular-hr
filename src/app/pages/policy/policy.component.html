@@ -1,4 +1,4 @@
-<div class="card p-4 shadow-md rounded-xl bg-white">
+<div class="card p-4 shadow-md rounded-xl bg-white h-screen">
   <p-table
     #dt1
     [value]="policies"
@@ -16,24 +16,27 @@
       'deletedBy',
       'remark'
     ]"
-    [tableStyle]="{ 'min-width': '100%' }"
     [paginator]="true"
     dataKey="id"
     [rows]="8"
     [rowsPerPageOptions]="[8, 15, 30]"
-    class="p-datatable-striped p-datatable-gridlines"
-    responsiveLayout="scroll"
+    class="p-datatable-striped p-datatable-gridlines w-full"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">
-        <p-button label="Create" routerLink="entry" class="p-button-primary">
-          <i class="pi pi-plus"></i>
+        <p-button
+          icon="pi pi-plus"
+          label="Create"
+          routerLink="entry"
+          class="p-button-primary"
+        >
         </p-button>
 
-        <p-iconfield iconPosition="left" class="w-80 mt-2 sm:mt-0">
-          <p-inputicon>
-            <i class="pi pi-search text-gray-400"></i>
-          </p-inputicon>
+        <p-iconfield
+          icon="pi pi-check"
+          iconPosition="left"
+          class="w-80 mt-2 sm:mt-0"
+        >
           <input
             pInputText
             type="text"
@@ -47,18 +50,18 @@
 
     <ng-template #header>
       <tr class="bg-gray-100">
-        <th class="p-3 text-left">ID</th>
-        <th class="p-3 text-left">Title</th>
-        <th class="p-3 text-left">description</th>
-        <th class="p-3 text-left">Policy Type</th>
-        <th class="p-3 text-left">Company ID</th>
-        <th class="p-3 text-left">Created On</th>
-        <th class="p-3 text-left">Created By</th>
-        <th class="p-3 text-left">Updated On</th>
-        <th class="p-3 text-left">Updated By</th>
-        <th class="p-3 text-left">Deleted On</th>
-        <th class="p-3 text-left">Deleted By</th>
-        <th class="p-3 text-left">Remark</th>
+        <th>ID</th>
+        <th>Title</th>
+        <th>description</th>
+        <th>Policy Type</th>
+        <th>Company ID</th>
+        <th>Created On</th>
+        <th>Created By</th>
+        <th>Updated On</th>
+        <th>Updated By</th>
+        <th>Deleted On</th>
+        <th>Deleted By</th>
+        <th>Remark</th>
         <th>Action</th>
       </tr>
       <tr>
@@ -68,7 +71,6 @@
             field="id"
             placeholder="Search by ID"
             ariaLabel="Filter ID"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -77,7 +79,6 @@
             field="title"
             placeholder="Search by title"
             ariaLabel="Filter title"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -86,7 +87,6 @@
             field="description"
             placeholder="Search by description"
             ariaLabel="Filter description"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -95,7 +95,6 @@
             field="policyType"
             placeholder="Search by policyType"
             ariaLabel="Filter policyType"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -104,7 +103,6 @@
             field="companyId"
             placeholder="Search by companyId"
             ariaLabel="Filter companyId"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -113,7 +111,6 @@
             field="createdOn"
             placeholder="Search by createdOn"
             ariaLabel="Filter createdOn"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -122,7 +119,6 @@
             field="createdBy"
             placeholder="Search by createdBy"
             ariaLabel="Filter createdBy"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -131,7 +127,6 @@
             field="updatedOn"
             placeholder="Search by updatedOn"
             ariaLabel="Filter updatedOn"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -140,7 +135,6 @@
             field="updatedBy"
             placeholder="Search by updatedBy"
             ariaLabel="Filter updatedBy"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -149,7 +143,6 @@
             field="deletedOn"
             placeholder="Search by deletedOn"
             ariaLabel="Filter deletedOn"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -158,7 +151,6 @@
             field="deletedBy"
             placeholder="Search by deletedBy"
             ariaLabel="Filter deletedBy"
-            class="w-full"
           ></p-columnFilter>
         </th>
         <th>
@@ -167,7 +159,6 @@
             field="remark"
             placeholder="Search by remark"
             ariaLabel="Filter remark"
-            class="w-full"
           ></p-columnFilter>
         </th>
       </tr>
@@ -175,21 +166,27 @@
 
     <ng-template #body let-policy>
       <tr class="hover:bg-gray-50 transition odd:bg-white even:bg-slate-50">
-        <td class="p-3 border-b">{{ policy.id }}</td>
-        <td class="p-3 border-b">{{ policy.title }}</td>
-        <td class="p-3 border-b">{{ policy.policyNameMm }}</td>
-        <td class="p-3 border-b">{{ policy.policyType }}</td>
-        <td class="p-3 border-b">{{ policy.companyId }}</td>
-        <td class="p-3 border-b">{{ policy.createdOn }}</td>
-        <td class="p-3 border-b">{{ policy.createdBy }}</td>
-        <td class="p-3 border-b">{{ policy.updatedOn }}</td>
-        <td class="p-3 border-b">{{ policy.updatedBy }}</td>
-        <td class="p-3 border-b">{{ policy.deletedOn }}</td>
-        <td class="p-3 border-b">{{ policy.deletedBy }}</td>
-        <td class="p-3 border-b">{{ policy.remark }}</td>
+        <td>{{ policy.id }}</td>
+        <td>{{ policy.title }}</td>
+        <td>{{ policy.description }}</td>
+        <td>{{ policy.policyType }}</td>
+        <td>{{ policy.companyId }}</td>
+        <td>{{ policy.createdOn }}</td>
+        <td>{{ policy.createdBy }}</td>
+        <td>{{ policy.updatedOn }}</td>
+        <td>{{ policy.updatedBy }}</td>
+        <td>{{ policy.deletedOn }}</td>
+        <td>{{ policy.deletedBy }}</td>
+        <td>{{ policy.remark }}</td>
         <td>
-          <p-button (onClick)="update(policy)">Edit</p-button>
-          <p-button (onClick)="delete(policy)">Delete</p-button>
+          <p-button variant="text" (onClick)="update(policy)">Edit</p-button>
+          <p-button
+            variant="text"
+            [rounded]="true"
+            severity="danger"
+            (onClick)="delete(policy)"
+            >Delete</p-button
+          >
         </td>
       </tr>
     </ng-template>
