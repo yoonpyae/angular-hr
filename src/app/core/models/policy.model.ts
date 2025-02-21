@@ -4,8 +4,8 @@ export interface PolicyModel {
   description: string;
   policyType: number;
   companyId: string;
-  createdOn: string;
-  createdBy: string;
+  createdOn: string | null;
+  createdBy: string | null;
   updatedOn: string | null;
   updatedBy: string | null;
   deletedOn: string | null;

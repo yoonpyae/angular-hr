@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { StateComponent } from './pages/state/state.component';
 import { EntryComponent } from './pages/state/entry/entry.component';
 import { PolicyComponent } from './pages/policy/policy.component';
+import { PolicyEntryComponent } from './pages/policy/policyentry/policyentry.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -34,11 +35,11 @@ export const routes: Routes = [
       },
       {
         path: 'entry/:id',
-        component: EntryComponent,
+        component: PolicyEntryComponent,
       },
       {
         path: 'entry',
-        component: EntryComponent,
+        component: PolicyEntryComponent,
       },
     ],
   },

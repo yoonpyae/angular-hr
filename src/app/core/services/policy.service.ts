@@ -29,4 +29,18 @@ export class PolicyService {
       },
     });
   }
+
+  update(id: number, model: PolicyModel): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Policies/${id}`;
+    return this.http.put<RootModel>(url, JSON.stringify(model), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  delete(id: number): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Policies/${id}`;
+    return this.http.delete<RootModel>(url);
+  }
 }

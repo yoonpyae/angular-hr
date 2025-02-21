@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -16,16 +16,18 @@ import { ActivatedRoute } from '@angular/router';
     InputTextModule,
     ButtonModule,
   ],
-  templateUrl: './entry.component.html',
-  styleUrl: './entry.component.scss',
+  templateUrl: './policyentry.component.html',
+  styleUrl: './policyentry.component.scss',
+  providers: [DatePipe],
 })
-export class EntryComponent implements OnInit {
+export class PolicyEntryComponent implements OnInit {
   policyID: number = 0;
   model!: PolicyModel;
 
   constructor(
     private policyService: PolicyService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private datepipe: DatePipe
   ) {}
 
   private formBuilder = inject(FormBuilder);
@@ -72,23 +74,44 @@ export class EntryComponent implements OnInit {
   }
 
   submit(): void {
+    let createdOn = this.datepipe.transform(
+      this.policyForm.controls.createdOn.value,
+      'yyyy-MM-dd'
+    );
+
+    let updatedOn = this.datepipe.transform(
+      this.policyForm.controls.updatedOn.value,
+      'yyyy-MM-dd'
+    );
+
+    let deletedOn = this.datepipe.transform(
+      this.policyForm.controls.deletedOn.value,
+      'yyyy-MM-dd'
+    );
+
     var model: PolicyModel = {
       id: this.policyForm.controls.id.value ?? 0,
       title: this.policyForm.controls.title.value ?? '',
       description: this.policyForm.controls.description.value ?? '',
       policyType: this.policyForm.controls.policyType.value ?? 0,
       companyId: this.policyForm.controls.companyId.value ?? '',
-      createdOn: this.policyForm.controls.createdOn.value ?? '',
+      createdOn: createdOn,
       createdBy: this.policyForm.controls.createdBy.value ?? '',
-      updatedOn: this.policyForm.controls.updatedOn.value ?? '',
+      updatedOn: updatedOn,
       updatedBy: this.policyForm.controls.updatedBy.value ?? '',
-      deletedOn: this.policyForm.controls.deletedOn.value ?? '',
+      deletedOn: deletedOn,
       deletedBy: this.policyForm.controls.deletedBy.value ?? '',
       remark: this.policyForm.controls.remark.value ?? '',
     };
 
-    this.policyService.create(model).subscribe((res) => {
-      console.log(res);
-    });
+    if (this.policyID > 0) {
+      this.policyService.update(this.policyID, model).subscribe((res) => {
+        console.log(res);
+      });
+    } else {
+      this.policyService.create(model).subscribe((res) => {
+        console.log(res);
+      });
+    }
   }
 }

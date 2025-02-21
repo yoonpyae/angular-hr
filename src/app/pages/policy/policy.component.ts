@@ -47,19 +47,19 @@ export class PolicyComponent implements OnInit {
     });
   }
 
-  // update(state: PolicyModel): void {
-  //   this.selectedPolicy = state;
-  //   this.rout.navigate(['/state/entry', this.selectedPolicy.id]);
-  // }
+  update(policy: PolicyModel): void {
+    this.selectedPolicy = policy;
+    this.rout.navigate(['/policy/entry', this.selectedPolicy.id]);
+  }
 
-  // delete(state: PolicyModel): void {
-  //   this.selectedPolicy = state;
-  //   if (this.selectedPolicy !== null) {
-  //     this.policyService.delete(this.selectedPolicy.id).subscribe((res) => {
-  //       this.loadData();
-  //     });
-  //   }
-  // }
+  delete(policy: PolicyModel): void {
+    this.selectedPolicy = policy;
+    if (this.selectedPolicy !== null) {
+      this.policyService.delete(this.selectedPolicy.id).subscribe((res) => {
+        this.loadData();
+      });
+    }
+  }
 
   clear(table: Table) {
     table.clear();
