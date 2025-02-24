@@ -10,6 +10,7 @@ import { SelectModule } from 'primeng/select';
 import { Table, TableModule } from 'primeng/table';
 import { AllowanceModel } from '../../core/models/allowance.model';
 import { AllowanceService } from '../../core/services/allowance.service';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-allowance',
@@ -23,7 +24,7 @@ import { AllowanceService } from '../../core/services/allowance.service';
     CommonModule,
     SelectModule,
     MultiSelectModule,
-    TableModule,
+    TagModule,
   ],
   templateUrl: './allowance.component.html',
   styleUrl: './allowance.component.scss',
@@ -71,5 +72,14 @@ export class AllowanceComponent implements OnInit {
 
   clear(table: Table) {
     table.clear();
+  }
+
+  getSeverity(status: boolean) {
+    switch (status) {
+      case true:
+        return 'success';
+      case false:
+        return 'danger';
+    }
   }
 }
