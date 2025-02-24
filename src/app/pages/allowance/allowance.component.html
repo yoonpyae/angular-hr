@@ -1,1 +1,336 @@
-<p>allowance works!</p>
+<div class="card p-4 shadow-md rounded-xl bg-white h-screen">
+  <p-table
+    #dt1
+    [value]="allowances"
+    [globalFilterFields]="[
+      'allowanceId',
+      'allowanceName',
+      'companyId',
+      'companyName',
+      'branchId',
+      'deptId',
+      'deptName',
+      'positionId',
+      'positionName',
+      'description',
+      'status',
+      'createdOn',
+      'createdBy',
+      'updatedOn',
+      'updatedBy',
+      'deletedOn',
+      'deletedBy',
+      'remark'
+    ]"
+    [paginator]="true"
+    dataKey="allowanceId"
+    [rows]="8"
+    [rowsPerPageOptions]="[8, 15, 30]"
+    class="p-datatable-striped p-datatable-grallowanceIdlines w-full"
+  >
+    <ng-template #caption>
+      <div class="flex items-center justify-between mb-3">
+        <p-button
+          icon="pi pi-plus"
+          label="Create"
+          routerLink="entry"
+          class="p-button-primary"
+        >
+        </p-button>
+
+        <p-iconfield
+          icon="pi pi-check"
+          iconPosition="left"
+          class="w-80 mt-2 sm:mt-0"
+        >
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="       Search keyword"
+            class="p-inputtext w-full border rounded-lg px-3 py-2"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr class="bg-gray-100">
+        <th pSortableColumn="allowanceId">
+          Allowance ID
+          <p-sortIcon field="allowanceId" />
+        </th>
+        <th pSortableColumn="allowanceName">
+          Allowance Name
+          <p-sortIcon field="allowanceName" />
+        </th>
+        <th pSortableColumn="companyId">
+          Company ID
+          <p-sortIcon field="companyId" />
+        </th>
+        <th pSortableColumn="companyName">
+          Company Name
+          <p-sortIcon field="companyName" />
+        </th>
+        <th pSortableColumn="branchId">
+          Branch ID
+          <p-sortIcon field="branchId" />
+        </th>
+        <th pSortableColumn="branchName">
+          Branch Name
+          <p-sortIcon field="branchName" />
+        </th>
+        <th pSortableColumn="deptId">
+          Dept ID
+          <p-sortIcon field="deptId" />
+        </th>
+        <th pSortableColumn="deptName">
+          Dept Name
+          <p-sortIcon field="deptName" />
+        </th>
+        <th pSortableColumn="positionId">
+          Position ID
+          <p-sortIcon field="positionId" />
+        </th>
+        <th pSortableColumn="positionName">
+          Position Name
+          <p-sortIcon field="positionName" />
+        </th>
+        <th pSortableColumn="description">
+          Description
+          <p-sortIcon field="description" />
+        </th>
+        <th pSortableColumn="status">
+          Status
+          <p-sortIcon field="status" />
+        </th>
+        <th pSortableColumn="createdOn">
+          Created On
+          <p-sortIcon field="createdOn" />
+        </th>
+        <th pSortableColumn="createdBy">
+          Created By
+          <p-sortIcon field="createdBy" />
+        </th>
+        <th pSortableColumn="updatedOn">
+          Updated On
+          <p-sortIcon field="updatedOn" />
+        </th>
+        <th pSortableColumn="updatedBy">
+          Updated By
+          <p-sortIcon field="updatedBy" />
+        </th>
+        <th pSortableColumn="deletedOn">
+          Deleted On
+          <p-sortIcon field="deletedOn" />
+        </th>
+        <th pSortableColumn="deletedBy">
+          Deleted By
+          <p-sortIcon field="deletedBy" />
+        </th>
+        <th pSortableColumn="remark">
+          Remark
+          <p-sortIcon field="remark" />
+        </th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="allowanceId"
+            placeholder="Search by allowanceId"
+            ariaLabel="Filter allowanceId"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="allowanceName"
+            placeholder="Search by allowanceName"
+            ariaLabel="Filter allowanceName"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="companyId"
+            placeholder="Search by companyId"
+            ariaLabel="Filter companyId"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="companyName"
+            placeholder="Search by companyName"
+            ariaLabel="Filter companyName"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="branchId"
+            placeholder="Search by branchId"
+            ariaLabel="Filter branchId"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="branchName"
+            placeholder="Search by branchName"
+            ariaLabel="Filter branchName"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="deptId"
+            placeholder="Search by deptId"
+            ariaLabel="Filter deptId"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="deptName"
+            placeholder="Search by deptName"
+            ariaLabel="Filter deptName"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="positionId"
+            placeholder="Search by positionId"
+            ariaLabel="Filter positionId"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="positionName"
+            placeholder="Search by positionName"
+            ariaLabel="Filter positionName"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="description"
+            placeholder="Search by description"
+            ariaLabel="Filter description"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="status"
+            placeholder="Search by status"
+            ariaLabel="Filter status"
+          ></p-columnFilter>
+        </th>
+
+        <th>
+          <p-columnFilter
+            type="text"
+            field="createdOn"
+            placeholder="Search by createdOn"
+            ariaLabel="Filter createdOn"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="createdBy"
+            placeholder="Search by createdBy"
+            ariaLabel="Filter createdBy"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="updatedOn"
+            placeholder="Search by updatedOn"
+            ariaLabel="Filter updatedOn"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="updatedBy"
+            placeholder="Search by updatedBy"
+            ariaLabel="Filter updatedBy"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="deletedOn"
+            placeholder="Search by deletedOn"
+            ariaLabel="Filter deletedOn"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="deletedBy"
+            placeholder="Search by deletedBy"
+            ariaLabel="Filter deletedBy"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            field="remark"
+            placeholder="Search by remark"
+            ariaLabel="Filter remark"
+          ></p-columnFilter>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-policy>
+      <tr class="hover:bg-gray-50 transition odd:bg-white even:bg-slate-50">
+        <td>{{ policy.allowanceId }}</td>
+        <td>{{ policy.allowanceName }}</td>
+        <td>{{ policy.companyId }}</td>
+        <td>{{ policy.companyName }}</td>
+        <td>{{ policy.branchId }}</td>
+        <td>{{ policy.branchName }}</td>
+        <td>{{ policy.deptId }}</td>
+        <td>{{ policy.deptName }}</td>
+        <td>{{ policy.positionId }}</td>
+        <td>{{ policy.positionName }}</td>
+        <td>{{ policy.description }}</td>
+        <td>{{ policy.status }}</td>
+        <td>{{ policy.createdOn }}</td>
+        <td>{{ policy.createdBy }}</td>
+        <td>{{ policy.updatedOn }}</td>
+        <td>{{ policy.updatedBy }}</td>
+        <td>{{ policy.deletedOn }}</td>
+        <td>{{ policy.deletedBy }}</td>
+        <td>{{ policy.remark }}</td>
+        <!-- <td>
+          <p-button variant="text" (onClick)="update(policy)">Edit</p-button>
+          <p-button
+            variant="text"
+            [rounded]="true"
+            severity="danger"
+            (onClick)="delete(policy)"
+            >Delete</p-button
+          >
+        </td> -->
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="3" class="text-center p-4 text-gray-500">
+          No policys found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
