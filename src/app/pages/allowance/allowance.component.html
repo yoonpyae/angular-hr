@@ -26,7 +26,7 @@
     dataKey="allowanceId"
     [rows]="8"
     [rowsPerPageOptions]="[8, 15, 30]"
-    class="p-datatable-striped p-datatable-grallowanceIdlines w-full"
+    class="p-datatable-striped p-datatable-gridlines w-full"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">
@@ -291,34 +291,34 @@
       </tr>
     </ng-template>
 
-    <ng-template #body let-policy>
+    <ng-template #body let-allowance>
       <tr class="hover:bg-gray-50 transition odd:bg-white even:bg-slate-50">
-        <td>{{ policy.allowanceId }}</td>
-        <td>{{ policy.allowanceName }}</td>
-        <td>{{ policy.companyId }}</td>
-        <td>{{ policy.companyName }}</td>
-        <td>{{ policy.branchId }}</td>
-        <td>{{ policy.branchName }}</td>
-        <td>{{ policy.deptId }}</td>
-        <td>{{ policy.deptName }}</td>
-        <td>{{ policy.positionId }}</td>
-        <td>{{ policy.positionName }}</td>
-        <td>{{ policy.description }}</td>
-        <td>{{ policy.status }}</td>
-        <td>{{ policy.createdOn }}</td>
-        <td>{{ policy.createdBy }}</td>
-        <td>{{ policy.updatedOn }}</td>
-        <td>{{ policy.updatedBy }}</td>
-        <td>{{ policy.deletedOn }}</td>
-        <td>{{ policy.deletedBy }}</td>
-        <td>{{ policy.remark }}</td>
+        <td>{{ allowance.allowanceId }}</td>
+        <td>{{ allowance.allowanceName }}</td>
+        <td>{{ allowance.companyId }}</td>
+        <td>{{ allowance.companyName }}</td>
+        <td>{{ allowance.branchId }}</td>
+        <td>{{ allowance.branchName }}</td>
+        <td>{{ allowance.deptId }}</td>
+        <td>{{ allowance.deptName }}</td>
+        <td>{{ allowance.positionId }}</td>
+        <td>{{ allowance.positionName }}</td>
+        <td>{{ allowance.description }}</td>
+        <td>{{ allowance.status }}</td>
+        <td>{{ allowance.createdOn }}</td>
+        <td>{{ allowance.createdBy }}</td>
+        <td>{{ allowance.updatedOn }}</td>
+        <td>{{ allowance.updatedBy }}</td>
+        <td>{{ allowance.deletedOn }}</td>
+        <td>{{ allowance.deletedBy }}</td>
+        <td>{{ allowance.remark }}</td>
         <!-- <td>
-          <p-button variant="text" (onClick)="update(policy)">Edit</p-button>
+          <p-button variant="text" (onClick)="update(allowance)">Edit</p-button>
           <p-button
             variant="text"
             [rounded]="true"
             severity="danger"
-            (onClick)="delete(policy)"
+            (onClick)="delete(allowance)"
             >Delete</p-button
           >
         </td> -->
@@ -328,7 +328,7 @@
     <ng-template #emptymessage>
       <tr>
         <td colspan="3" class="text-center p-4 text-gray-500">
-          No policys found.
+          No allowances found.
         </td>
       </tr>
     </ng-template>

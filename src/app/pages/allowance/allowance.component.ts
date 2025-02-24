@@ -9,7 +9,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { AllowanceModel } from '../../core/models/allowance.model';
-import { PolicyService } from '../../core/services/policy.service';
+import { AllowanceService } from '../../core/services/allowance.service';
 
 @Component({
   selector: 'app-allowance',
@@ -34,14 +34,17 @@ export class AllowanceComponent implements OnInit {
   loading: boolean = true;
 
   activityValues: number[] = [0, 100];
-  constructor(private policyService: PolicyService, private rout: Router) {}
+  constructor(
+    private allowanceService: AllowanceService,
+    private rout: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
   }
 
   loadData(): void {
-    this.policyService.get().subscribe((res) => {
+    this.allowanceService.get().subscribe((res) => {
       let result = res.data;
       this.allowances = result.allowances as AllowanceModel[];
     });
