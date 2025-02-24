@@ -1,57 +1,137 @@
-<div class="p-8">
-  <form [formGroup]="policyForm" (submit)="submit()">
-    <div class="grid grid-cols-12 gap-2">
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">Id</label>
-        <input pInputText formControlName="id" type="number" />
+<div class="p-8 max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
+  <h2 class="text-2xl font-bold text-gray-700 mb-6">Policy Form</h2>
+
+  <form [formGroup]="policyForm" (submit)="submit()" class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Id</label>
+        <input
+          pInputText
+          formControlName="id"
+          type="number"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">Title</label>
-        <input pInputText formControlName="title" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Title</label>
+        <input
+          pInputText
+          formControlName="title"
+          type="text"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">Description</label>
-        <input pInputText formControlName="description" type="text" />
+
+      <div class="md:col-span-2 flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Description</label>
+        <textarea
+          pInputTextarea
+          formControlName="description"
+          rows="3"
+          class="p-2 border rounded-md"
+        ></textarea>
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">Policy Type</label>
-        <input pInputText formControlName="policyType" type="number" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Policy Type</label>
+        <input
+          pInputText
+          formControlName="policyType"
+          type="number"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">Company Id</label>
-        <input pInputText formControlName="companyId" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Company Id</label>
+        <input
+          pInputText
+          formControlName="companyId"
+          type="text"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">CreatedOn</label>
-        <input pInputText formControlName="createdOn" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Created On</label>
+        <input
+          pInputText
+          formControlName="createdOn"
+          type="date"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">CreatedBy</label>
-        <input pInputText formControlName="createdBy" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Created By</label>
+        <input
+          pInputText
+          formControlName="createdBy"
+          type="text"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">UpdatedOn</label>
-        <input pInputText formControlName="updatedOn" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Updated On</label>
+        <input
+          pInputText
+          formControlName="updatedOn"
+          type="date"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">UpdatedBy</label>
-        <input pInputText formControlName="updatedBy" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Updated By</label>
+        <input
+          pInputText
+          formControlName="updatedBy"
+          type="text"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">DeletedOn</label>
-        <input pInputText formControlName="deletedOn" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Deleted On</label>
+        <input
+          pInputText
+          formControlName="deletedOn"
+          type="date"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">DeletedBy</label>
-        <input pInputText formControlName="deletedBy" type="text" />
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Deleted By</label>
+        <input
+          pInputText
+          formControlName="deletedBy"
+          type="text"
+          class="p-2 border rounded-md"
+        />
       </div>
-      <div class="col-span-12 flex flex-col gap-2">
-        <label for="">Remark</label>
-        <input pInputText formControlName="remark" type="text" />
+
+      <div class="md:col-span-2 flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Remark</label>
+        <textarea
+          pInputTextarea
+          formControlName="remark"
+          rows="3"
+          class="p-2 border rounded-md"
+        ></textarea>
       </div>
-      <div class="col-span-12">
-        <button pButton type="submit">Submit</button>
-      </div>
+    </div>
+
+    <div class="text-center mt-6">
+      <button
+        pButton
+        type="submit"
+        class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all"
+      >
+        Submit
+      </button>
     </div>
   </form>
 </div>

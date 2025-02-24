@@ -6,6 +6,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PolicyModel } from '../../../core/models/policy.model';
 import { PolicyService } from '../../../core/services/policy.service';
 import { ActivatedRoute } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-entry',
@@ -18,7 +19,7 @@ import { ActivatedRoute } from '@angular/router';
   ],
   templateUrl: './policyentry.component.html',
   styleUrl: './policyentry.component.scss',
-  providers: [DatePipe],
+  providers: [DatePipe, MessageService],
 })
 export class PolicyEntryComponent implements OnInit {
   policyID: number = 0;
@@ -27,7 +28,8 @@ export class PolicyEntryComponent implements OnInit {
   constructor(
     private policyService: PolicyService,
     private route: ActivatedRoute,
-    private datepipe: DatePipe
+    private datepipe: DatePipe,
+    private messageService: MessageService
   ) {}
 
   private formBuilder = inject(FormBuilder);
@@ -110,8 +112,16 @@ export class PolicyEntryComponent implements OnInit {
       });
     } else {
       this.policyService.create(model).subscribe((res) => {
-        console.log(res);
+        console.log('Form Submitted:', this.policyForm.value, res);
       });
     }
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Policy saved successfully!',
+    });
+
+    this.policyForm.reset();
   }
 }
