@@ -7,6 +7,7 @@ import { PolicyModel } from '../../../core/models/policy.model';
 import { PolicyService } from '../../../core/services/policy.service';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-entry',
@@ -16,6 +17,7 @@ import { MessageService } from 'primeng/api';
     ReactiveFormsModule,
     InputTextModule,
     ButtonModule,
+    ToastModule,
   ],
   templateUrl: './policyentry.component.html',
   styleUrl: './policyentry.component.scss',
@@ -107,21 +109,46 @@ export class PolicyEntryComponent implements OnInit {
     };
 
     if (this.policyID > 0) {
-      this.policyService.update(this.policyID, model).subscribe((res) => {
-        console.log(res);
-      });
+      this.policyService.update(this.policyID, model).subscribe(
+        (res) => {
+          console.log(res);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Policy updated successfully!',
+          });
+        },
+        (err) => {
+          console.error('Error updating policy:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to update policy!',
+          });
+        }
+      );
     } else {
-      this.policyService.create(model).subscribe((res) => {
-        console.log('Form Submitted:', this.policyForm.value, res);
-      });
+      this.policyService.create(model).subscribe(
+        (res) => {
+          console.log('Form Submitted:', this.policyForm.value, res);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Policy created successfully!',
+          });
+        },
+        (err) => {
+          console.error('Error creating policy:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to create policy!',
+          });
+        }
+      );
     }
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Success',
-      detail: 'Policy saved successfully!',
-    });
-
+    // Optionally reset the form after success
     this.policyForm.reset();
   }
 }
