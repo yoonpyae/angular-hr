@@ -7,7 +7,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { AllowanceModel } from '../../core/models/allowance.model';
 import { AllowanceService } from '../../core/services/allowance.service';
 
@@ -41,12 +41,35 @@ export class AllowanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    console.log('Allowances:', this.allowances); // Check if data is present
   }
 
   loadData(): void {
     this.allowanceService.get().subscribe((res) => {
-      let result = res.data;
-      this.allowances = result.allowances as AllowanceModel[];
+      this.allowances = res.data as AllowanceModel[];
     });
+  }
+
+  update(allowance: AllowanceModel): void {
+    this.selectedAllowance = allowance;
+    this.rout.navigate([
+      '/allowance/entry',
+      this.selectedAllowance.allowanceId,
+    ]);
+  }
+
+  delete(allowance: AllowanceModel): void {
+    this.selectedAllowance = allowance;
+    if (this.selectedAllowance !== null) {
+      this.allowanceService
+        .delete(this.selectedAllowance.allowanceId)
+        .subscribe((res) => {
+          this.loadData();
+        });
+    }
+  }
+
+  clear(table: Table) {
+    table.clear();
   }
 }
