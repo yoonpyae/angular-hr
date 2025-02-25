@@ -1,4 +1,4 @@
-<p-toast></p-toast>
+<p-toast key="globalMessage"></p-toast>
 <!-- Add this at the top to show notifications -->
 
 <div class="p-8 max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
@@ -6,7 +6,7 @@
 
   <form [formGroup]="allowanceForm" (ngSubmit)="submit()" class="space-y-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <div class="flex flex-col gap-1">
+      <!-- <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Allowance ID</label>
         <input
           pInputText
@@ -14,7 +14,7 @@
           type="number"
           class="p-2 border rounded-md"
         />
-      </div>
+      </div> -->
 
       <div class="md:col-span-2 flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Company Id</label>
@@ -34,6 +34,15 @@
           type="number"
           class="p-2 border rounded-md"
         />
+        <small
+          *ngIf="
+            allowanceForm.controls['branchId'].invalid &&
+            allowanceForm.get('branchId')?.dirty
+          "
+          class="p-text"
+        >
+          branch Is Required.
+        </small>
       </div>
 
       <div class="flex flex-col gap-1">
@@ -44,6 +53,15 @@
           type="number"
           class="p-2 border rounded-md"
         />
+        <small
+          *ngIf="
+            allowanceForm.controls['deptId'].invalid &&
+            allowanceForm.get('deptId')?.dirty
+          "
+          class="p-text"
+        >
+          Department Is Required.
+        </small>
       </div>
 
       <div class="flex flex-col gap-1">
@@ -54,6 +72,15 @@
           type="text"
           class="p-2 border rounded-md"
         />
+        <small
+          *ngIf="
+            allowanceForm.controls['positionId'].invalid &&
+            allowanceForm.get('positionId')?.dirty
+          "
+          class="p-text"
+        >
+          Position Is Required.
+        </small>
       </div>
 
       <div class="flex flex-col gap-1">
@@ -64,6 +91,15 @@
           type="text"
           class="p-2 border rounded-md"
         />
+        <small
+          *ngIf="
+            allowanceForm.controls['allowanceName'].invalid &&
+            allowanceForm.get('allowanceName')?.dirty
+          "
+          class="p-text"
+        >
+          Allowance Name Is Required
+        </small>
       </div>
 
       <div class="md:col-span-2 flex flex-col gap-1">
@@ -78,15 +114,10 @@
 
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Status</label>
-        <input
-          pInputText
-          formControlName="status"
-          type="text"
-          class="p-2 border rounded-md"
-        />
+        <p-toggleswitch formControlName="status" />
       </div>
 
-      <div class="flex flex-col gap-1">
+      <!-- <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Created On</label>
         <input
           pInputText
@@ -144,7 +175,7 @@
           type="text"
           class="p-2 border rounded-md"
         />
-      </div>
+      </div> -->
 
       <div class="md:col-span-2 flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Remark</label>
