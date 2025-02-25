@@ -1,21 +1,17 @@
 export interface AllowanceModel {
   allowanceId: number;
-  allowanceName: string;
   companyId: string;
-  companyName: string;
   branchId: number;
-  branchName: string;
   deptId: number;
-  deptName: string;
   positionId: number;
-  positionName: string;
-  description: string;
+  allowanceName: string;
+  description: null | string;
   status: boolean;
-  createdOn: string;
-  createdBy: string;
-  updatedOn: null;
-  updatedBy: null;
-  deletedOn: null;
-  deletedBy: null;
-  remark: null;
+  createdOn: null | string;
+  createdBy: null | string;
+  updatedOn: null | string;
+  updatedBy: null | string;
+  deletedOn: string | null;
+  deletedBy: null | string;
+  remark: null | string;
 }

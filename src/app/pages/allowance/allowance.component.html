@@ -4,14 +4,11 @@
     [value]="allowances"
     [globalFilterFields]="[
       'allowanceId',
-      'allowanceName',
       'companyId',
-      'companyName',
       'branchId',
       'deptId',
-      'deptName',
       'positionId',
-      'positionName',
+      'allowanceName',
       'description',
       'status',
       'createdOn',
@@ -60,41 +57,25 @@
           Allowance ID
           <p-sortIcon field="allowanceId" />
         </th>
-        <th pSortableColumn="allowanceName">
-          Allowance Name
-          <p-sortIcon field="allowanceName" />
-        </th>
         <th pSortableColumn="companyId">
           Company ID
           <p-sortIcon field="companyId" />
-        </th>
-        <th pSortableColumn="companyName">
-          Company Name
-          <p-sortIcon field="companyName" />
         </th>
         <th pSortableColumn="branchId">
           Branch ID
           <p-sortIcon field="branchId" />
         </th>
-        <th pSortableColumn="branchName">
-          Branch Name
-          <p-sortIcon field="branchName" />
-        </th>
         <th pSortableColumn="deptId">
           Dept ID
           <p-sortIcon field="deptId" />
-        </th>
-        <th pSortableColumn="deptName">
-          Dept Name
-          <p-sortIcon field="deptName" />
         </th>
         <th pSortableColumn="positionId">
           Position ID
           <p-sortIcon field="positionId" />
         </th>
-        <th pSortableColumn="positionName">
-          Position Name
-          <p-sortIcon field="positionName" />
+        <th pSortableColumn="allowanceName">
+          Allowance Name
+          <p-sortIcon field="allowanceName" />
         </th>
         <th pSortableColumn="description">
           Description
@@ -146,25 +127,9 @@
         <th>
           <p-columnFilter
             type="text"
-            field="allowanceName"
-            placeholder="Search by allowanceName"
-            ariaLabel="Filter allowanceName"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
             field="companyId"
             placeholder="Search by companyId"
             ariaLabel="Filter companyId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="companyName"
-            placeholder="Search by companyName"
-            ariaLabel="Filter companyName"
           ></p-columnFilter>
         </th>
         <th>
@@ -178,25 +143,9 @@
         <th>
           <p-columnFilter
             type="text"
-            field="branchName"
-            placeholder="Search by branchName"
-            ariaLabel="Filter branchName"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
             field="deptId"
             placeholder="Search by deptId"
             ariaLabel="Filter deptId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="deptName"
-            placeholder="Search by deptName"
-            ariaLabel="Filter deptName"
           ></p-columnFilter>
         </th>
         <th>
@@ -210,9 +159,9 @@
         <th>
           <p-columnFilter
             type="text"
-            field="positionName"
-            placeholder="Search by positionName"
-            ariaLabel="Filter positionName"
+            field="allowanceName"
+            placeholder="Search by allowanceName"
+            ariaLabel="Filter allowanceName"
           ></p-columnFilter>
         </th>
         <th>
@@ -294,15 +243,11 @@
     <ng-template #body let-allowance>
       <tr class="hover:bg-gray-50 transition odd:bg-white even:bg-slate-50">
         <td>{{ allowance.allowanceId }}</td>
-        <td>{{ allowance.allowanceName }}</td>
         <td>{{ allowance.companyId }}</td>
-        <td>{{ allowance.companyName }}</td>
         <td>{{ allowance.branchId }}</td>
-        <td>{{ allowance.branchName }}</td>
         <td>{{ allowance.deptId }}</td>
-        <td>{{ allowance.deptName }}</td>
         <td>{{ allowance.positionId }}</td>
-        <td>{{ allowance.positionName }}</td>
+        <td>{{ allowance.allowanceName }}</td>
         <td>{{ allowance.description }}</td>
         <td>
           <p-tag

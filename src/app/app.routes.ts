@@ -6,6 +6,7 @@ import { PolicyComponent } from './pages/policy/policy.component';
 import { PolicyEntryComponent } from './pages/policy/policyentry/policyentry.component';
 import { Component } from '@angular/core';
 import { AllowanceComponent } from './pages/allowance/allowance.component';
+import { AllowanceEntryComponent } from './pages/allowance/allowance-entry/allowance-entry.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -47,6 +48,16 @@ export const routes: Routes = [
   },
   {
     path: 'allowance',
-    component: AllowanceComponent,
+    children: [
+      {
+        path: '',
+        component: AllowanceComponent,
+      },
+      { path: 'entry/:id', component: AllowanceEntryComponent },
+      {
+        path: 'entry',
+        component: AllowanceEntryComponent,
+      },
+    ],
   },
 ];
