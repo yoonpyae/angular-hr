@@ -11,6 +11,8 @@ import { Table, TableModule } from 'primeng/table';
 import { AllowanceModel } from '../../core/models/allowance.model';
 import { AllowanceService } from '../../core/services/allowance.service';
 import { TagModule } from 'primeng/tag';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-allowance',
@@ -25,9 +27,11 @@ import { TagModule } from 'primeng/tag';
     SelectModule,
     MultiSelectModule,
     TagModule,
+    ToastModule,
   ],
   templateUrl: './allowance.component.html',
   styleUrl: './allowance.component.scss',
+  providers: [MessageService],
 })
 export class AllowanceComponent implements OnInit {
   selectedAllowance!: AllowanceModel;
@@ -37,7 +41,8 @@ export class AllowanceComponent implements OnInit {
   activityValues: number[] = [0, 100];
   constructor(
     private allowanceService: AllowanceService,
-    private rout: Router
+    private rout: Router,
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -61,12 +66,29 @@ export class AllowanceComponent implements OnInit {
 
   delete(allowance: AllowanceModel): void {
     this.selectedAllowance = allowance;
-    if (this.selectedAllowance !== null) {
+
+    if (
+      confirm(`Are you sure you want to delete ${allowance.allowanceName}?`)
+    ) {
       this.allowanceService
         .delete(this.selectedAllowance.allowanceId)
-        .subscribe((res) => {
-          this.loadData();
-        });
+        .subscribe(
+          (res) => {
+            this.loadData();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Deleted',
+              detail: `Allowance ${allowance.allowanceName} has been deleted.`,
+            });
+          },
+          (error) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: `Failed to delete ${allowance.allowanceName}.`,
+            });
+          }
+        );
     }
   }
 
