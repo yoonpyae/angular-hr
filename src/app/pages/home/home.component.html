@@ -1,5 +1,33 @@
-<h1 class="capitalize">home</h1>
-
-<p-button label="Small" icon="pi pi-check" size="small" />
-<p-button label="Normal" icon="pi pi-check" />
-<p-button label="Large" icon="pi pi-check" size="large" />
+<section id="portfolio" class="portfolio-section py-16 px-4">
+  <div class="container mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">HOME</h1>
+      <p class="text-lg text-indigo-500 font-semibold">
+        Discover our latest projects and success stories
+      </p>
+    </div>
+    <div class="flex flex-col md:flex-row items-center mb-8">
+      <p-button
+        routerLink="state"
+        severity="info"
+        label="state"
+        icon="pi pi-check-circle"
+        class="filter-button px-4 py-2 mr-2 mb-2 rounded"
+      />
+      <p-button
+        routerLink="policy"
+        severity="info"
+        label="policy"
+        icon="pi pi-file "
+        class="filter-button px-4 py-2 mr-2 mb-2 rounded"
+      />
+      <p-button
+        routerLink="allowance"
+        severity="info"
+        label="allowance"
+        icon="pi pi-dollar "
+        class="filter-button px-4 py-2 mr-2 mb-2 rounded"
+      />
+    </div>
+  </div>
+</section>

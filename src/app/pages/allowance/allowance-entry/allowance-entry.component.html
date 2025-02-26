@@ -188,6 +188,76 @@
       </div>
     </div>
 
+    <!-- <div class="md:col-span-2 flex flex-col gap-1">
+      <label class="text-gray-600 font-medium">Email</label>
+      <input
+        pInputText
+        formControlName="email"
+        type="text"
+        class="p-2 border rounded-md"
+      />
+      <small
+        *ngIf="
+          allowanceForm.controls['email'].invalid &&
+          allowanceForm.get('email')?.dirty &&
+          allowanceForm.get('email')?.touched
+        "
+        class="p-text"
+      >
+        Email format is invalid.
+      </small>
+    </div>
+
+    <div class="md:col-span-2 flex flex-col gap-1">
+      <label class="text-gray-600 font-medium">Phone</label>
+      <input
+        pInputText
+        formControlName="phoneNumber"
+        type="text"
+        class="p-2 border rounded-md"
+      />
+      <small
+        *ngIf="
+          allowanceForm.controls['phoneNumber'].invalid &&
+          allowanceForm.get('phoneNumber')?.dirty &&
+          allowanceForm.get('phoneNumber')?.touched
+        "
+        class="p-text"
+      >
+        Phone format is invalid.
+      </small>
+    </div>
+
+    <div class="md:col-span-2 flex flex-col gap-1">
+      <label class="text-gray-600 font-medium">Password</label>
+      <input
+        pInputTextarea
+        formControlName="password"
+        type="text"
+        class="p-2 border rounded-md"
+      />
+      <small
+        *ngIf="
+          allowanceForm.controls['password'].invalid &&
+          allowanceForm.get('password')?.dirty &&
+          allowanceForm.get('password')?.untouched
+        "
+        class="p-text"
+      >
+        Password is require.
+      </small>
+      <small
+        *ngIf="
+          allowanceForm.controls['password'].invalid &&
+          allowanceForm.get('password')?.dirty &&
+          allowanceForm.get('password')?.touched
+        "
+        class="p-text"
+      >
+        Password format is invalid.
+      </small>
+    </div> -->
+
     <div class="text-center mt-6">
       <button
         pButton

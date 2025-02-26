@@ -61,6 +61,21 @@ export class AllowanceEntryComponent implements OnInit {
     deletedOn: [''],
     deletedBy: [''],
     remark: [''],
+    // email: [
+    //   '',
+    //   [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
+    // ],
+    // phoneNumber: [
+    //   '',
+    //   [Validators.required, Validators.pattern('^((\\+95-?)|0)?[0-9]{8,10}$')],
+    // ],
+    // password: [
+    //   '',
+    //   [
+    //     Validators.required,
+    //     Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}'),
+    //   ],
+    // ],
   });
 
   ngOnInit(): void {
@@ -113,6 +128,12 @@ export class AllowanceEntryComponent implements OnInit {
         this.allowanceForm.controls.deletedBy.setValue(this.model.deletedBy);
         this.allowanceForm.controls.remark.setValue(this.model.remark);
       });
+
+      // this.allowanceForm.patchValue({
+      //   email: this.model.email || '',
+      //   phoneNumber: this.model.phoneNumber || '',
+      //   password: this.model.password || '',
+      // });
     }
   }
 
@@ -150,6 +171,9 @@ export class AllowanceEntryComponent implements OnInit {
         deletedOn: deletedOn,
         deletedBy: this.allowanceForm.controls.deletedBy.value ?? '',
         remark: this.allowanceForm.controls.remark.value ?? '',
+        // email: this.allowanceForm.controls.email.value ?? '',
+        // phoneNumber: this.allowanceForm.controls.phoneNumber.value ?? '',
+        // password: this.allowanceForm.controls.password.value ?? '',
       };
       if (!this.isEdit) {
         model.allowanceId = 0;

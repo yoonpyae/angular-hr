@@ -14,4 +14,7 @@ export interface AllowanceModel {
   deletedOn: string | null;
   deletedBy: null | string;
   remark: null | string;
+  // phoneNumber: string;
+  // email: string;
+  // password: string;
 }
