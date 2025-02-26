@@ -8,6 +8,7 @@ import { PolicyService } from '../../../core/services/policy.service';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { Editor } from 'primeng/editor';
 
 @Component({
   selector: 'app-entry',
@@ -18,6 +19,7 @@ import { ToastModule } from 'primeng/toast';
     InputTextModule,
     ButtonModule,
     ToastModule,
+    Editor,
   ],
   templateUrl: './policyentry.component.html',
   styleUrl: './policyentry.component.scss',
