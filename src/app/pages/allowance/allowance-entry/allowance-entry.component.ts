@@ -2,6 +2,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
+  FormControl,
+  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -12,9 +14,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { AllowanceModel } from '../../../core/models/allowance.model';
 import { AllowanceService } from '../../../core/services/allowance.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { Editor } from 'primeng/editor';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -27,7 +30,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ToastModule,
     ToggleSwitch,
     ProgressSpinnerModule,
+    Editor,
   ],
+  standalone: true,
   templateUrl: './allowance-entry.component.html',
   styleUrl: './allowance-entry.component.scss',
   providers: [DatePipe, MessageService],
@@ -39,11 +44,14 @@ export class AllowanceEntryComponent implements OnInit {
   isSubmitting: boolean = false;
   modalVisible: boolean = false;
   checked: boolean = false;
+  loading: boolean = false;
+
   constructor(
     private allowanceService: AllowanceService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router: Router
   ) {}
 
   private formBuilder = inject(FormBuilder);
@@ -200,6 +208,7 @@ export class AllowanceEntryComponent implements OnInit {
               });
 
               this.isSubmitting = false;
+              this.router.navigate(['/allowance']); // Navigate to allowance page
             }
           },
           error: (err) => {
@@ -225,6 +234,9 @@ export class AllowanceEntryComponent implements OnInit {
                 summary: 'Success',
                 detail: res.message.toString(),
               });
+
+              this.isSubmitting = false;
+              this.router.navigate(['/allowance']); // Navigate to allowance page
             }
           },
           error: (err) => {

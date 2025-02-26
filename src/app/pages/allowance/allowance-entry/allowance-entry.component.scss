@@ -1,5 +1,8 @@
-.custom-spinner {
-  width: 5px !important;
-  height: 5px !important;
-  margin: 0 auto;
+::ng-deep .p-editor-container {
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+::ng-deep .p-editor-content {
+  min-height: 150px;
 }
