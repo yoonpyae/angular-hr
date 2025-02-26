@@ -261,10 +261,15 @@
     <div class="text-center mt-6">
       <button
         pButton
+        label="Submit"
+        [disabled]="isSubmitting"
         type="submit"
         class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all"
       >
-        Submit
+        <p-progressSpinner
+          *ngIf="isSubmitting"
+          styleClass="custom-spinner"
+        ></p-progressSpinner>
       </button>
     </div>
   </form>

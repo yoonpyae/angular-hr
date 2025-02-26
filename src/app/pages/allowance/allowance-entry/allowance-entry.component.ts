@@ -14,6 +14,7 @@ import { AllowanceModel } from '../../../core/models/allowance.model';
 import { AllowanceService } from '../../../core/services/allowance.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -25,6 +26,7 @@ import { ToggleSwitch } from 'primeng/toggleswitch';
     ButtonModule,
     ToastModule,
     ToggleSwitch,
+    ProgressSpinnerModule,
   ],
   templateUrl: './allowance-entry.component.html',
   styleUrl: './allowance-entry.component.scss',
