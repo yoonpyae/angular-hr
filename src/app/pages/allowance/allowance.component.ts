@@ -37,6 +37,7 @@ export class AllowanceComponent implements OnInit {
   selectedAllowance!: AllowanceModel;
   allowances: AllowanceModel[] = [];
   loading: boolean = true;
+  totalAllowances: number = 0;
 
   activityValues: number[] = [0, 100];
   constructor(
@@ -53,6 +54,7 @@ export class AllowanceComponent implements OnInit {
   loadData(): void {
     this.allowanceService.get().subscribe((res) => {
       this.allowances = res.data as AllowanceModel[];
+      this.totalAllowances = this.allowances.length; // Count total allowances
     });
   }
 
