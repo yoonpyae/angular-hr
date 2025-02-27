@@ -44,4 +44,43 @@ export class DepartmentComponent implements OnInit {
       this.departments = res.data as DepartmentModel[];
     });
   }
+
+  update(department: DepartmentModel): void {
+    this.selectedDepartment = department;
+    this.rout.navigate(['/department/entry', this.selectedDepartment.deptId]);
+  }
+
+  delete(department: DepartmentModel): void {
+    this.selectedDepartment = department;
+
+    if (confirm('Are you sure you want to delete this record?')) {
+      this.departmentService.delete(this.selectedDepartment.deptId).subscribe(
+        (res) => {
+          this.loadData();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: `Department ${department.deptName} deleted successfully`,
+          });
+          this.loadData();
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Failed to delete ${department.deptName}`,
+          });
+        }
+      );
+    }
+  }
+
+  getSeverity(status: boolean) {
+    switch (status) {
+      case true:
+        return 'success';
+      case false:
+        return 'danger';
+    }
+  }
 }
