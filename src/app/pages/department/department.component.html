@@ -8,9 +8,11 @@
     [scrollable]="true"
     [globalFilterFields]="[
       'deptId',
-      'branchId',
       'deptName',
-      'leaveGroupId',
+      'branchId',
+      'branchName',
+      'companyId',
+      'companyName',
       'status',
       'createdOn',
       'createdBy',
@@ -18,10 +20,7 @@
       'updatedBy',
       'deletedOn',
       'deletedBy',
-      'remark',
-      'branch',
-      'hrPositions',
-      'leaveGroup'
+      'remark'
     ]"
     [paginator]="true"
     dataKey="deptId"
@@ -63,19 +62,29 @@
           <p-sortIcon field="deptId" />
         </th>
 
-        <th pSortableColumn="branchId">
-          Branch ID
-          <p-sortIcon field="branchId" />
-        </th>
-
         <th pSortableColumn="deptName">
           Department Name
           <p-sortIcon field="deptName" />
         </th>
 
-        <th pSortableColumn="leaveGroupId">
-          Leave Group ID
-          <p-sortIcon field="leaveGroupId" />
+        <th pSortableColumn="branchId">
+          Branch ID
+          <p-sortIcon field="branchId" />
+        </th>
+
+        <th pSortableColumn="branchName">
+          Branch Name
+          <p-sortIcon field="branchName" />
+        </th>
+
+        <th pSortableColumn="companyId">
+          companyId
+          <p-sortIcon field="companyId" />
+        </th>
+
+        <th pSortableColumn="companyName">
+          companyName
+          <p-sortIcon field="companyName" />
         </th>
 
         <th pSortableColumn="status">
@@ -112,20 +121,6 @@
           <p-sortIcon field="remark" />
         </th>
 
-        <th pSortableColumn="branch">
-          department Name
-          <p-sortIcon field="branch" />
-        </th>
-        <th pSortableColumn="hrPositions">
-          hrPositions
-          <p-sortIcon field="hrPositions" />
-        </th>
-
-        <th pSortableColumn="leaveGroup">
-          Leave Group
-          <p-sortIcon field="leaveGroup" />
-        </th>
-
         <th>Action</th>
       </tr>
     </ng-template>
@@ -133,9 +128,11 @@
     <ng-template #body let-department>
       <tr class="whitespace-nowrap">
         <td>{{ department.deptId }}</td>
-        <td>{{ department.branchId }}</td>
         <td>{{ department.deptName }}</td>
-        <td>{{ department.leaveGroupId }}</td>
+        <td>{{ department.branchId }}</td>
+        <td>{{ department.branchName }}</td>
+        <td>{{ department.companyId }}</td>
+        <td>{{ department.companyName }}</td>
         <td>
           <p-tag
             [value]="department.status"
@@ -149,9 +146,7 @@
         <td>{{ department.deletedOn }}</td>
         <td>{{ department.deletedBy }}</td>
         <td>{{ department.remark }}</td>
-        <td>{{ department.branch }}</td>
-        <td>{{ department.hrPositions }}</td>
-        <td>{{ department.leaveGroup }}</td>
+
         <td>
           <p-button variant="text" (onClick)="update(department)"
             >Edit</p-button
