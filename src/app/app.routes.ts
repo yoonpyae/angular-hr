@@ -7,6 +7,7 @@ import { PolicyEntryComponent } from './pages/policy/policyentry/policyentry.com
 import { Component } from '@angular/core';
 import { AllowanceComponent } from './pages/allowance/allowance.component';
 import { AllowanceEntryComponent } from './pages/allowance/allowance-entry/allowance-entry.component';
+import { DepartmentComponent } from './pages/department/department.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -60,4 +61,5 @@ export const routes: Routes = [
       },
     ],
   },
+  { path: 'department', component: DepartmentComponent },
 ];
