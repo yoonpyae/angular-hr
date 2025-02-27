@@ -8,6 +8,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { DepartmentModel } from '../../core/models/department.model';
 import { DepartmentService } from '../../core/services/department.service';
+import { ToastModule } from 'primeng/toast';
+import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-department',
@@ -18,6 +20,8 @@ import { DepartmentService } from '../../core/services/department.service';
     IconFieldModule,
     InputIconModule,
     InputTextModule,
+    ToastModule,
+    TagModule,
   ],
   templateUrl: './department.component.html',
   styleUrl: './department.component.scss',
