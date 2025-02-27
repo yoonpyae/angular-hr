@@ -39,6 +39,8 @@ export class AllowanceComponent implements OnInit {
   loading: boolean = true;
   totalAllowances: number = 0;
   mostCommonCompanyId: string = '';
+  trueStatusCount: number = 0;
+  falseStatusCount: number = 0;
 
   activityValues: number[] = [0, 100];
   constructor(
@@ -57,7 +59,8 @@ export class AllowanceComponent implements OnInit {
       this.allowances = res.data as AllowanceModel[];
       this.totalAllowances = this.allowances.length; // Count total allowances
       this.mostCommonCompanyId = this.findMostCommonCompanyId(); // Find most common companyId
-    });
+      this.trueStatusCount = this.countTrueStatus(); // Count true statuses
+      this.falseStatusCount = this.countFalseStatus();  });
   }
 
   findMostCommonCompanyId(): string {
@@ -81,6 +84,16 @@ export class AllowanceComponent implements OnInit {
 
     return mostCommonCompanyId;
   }
+
+
+  countTrueStatus(): number {
+    return this.allowances.filter(allowance => allowance.status === true).length;
+  }
+
+  countFalseStatus(): number {
+    return this.allowances.filter(allowance => allowance.status === false).length;
+  }
+
 
   update(allowance: AllowanceModel): void {
     this.selectedAllowance = allowance;

@@ -4,26 +4,28 @@
   <div class="grid grid-cols-4 gap-4 mb-6 text-center">
     <div class="bg-white p-6 rounded shadow">
       <h3 class="text-2xl font-semibold">{{ totalAllowances }}</h3>
-      <p class="text-gray-600">Total Allowances</p>
+      <span class="text-gray-600">Total Allowances</span>
     </div>
     <div class="bg-white p-6 rounded shadow">
       <h3 class="text-2xl font-semibold">{{ mostCommonCompanyId }}</h3>
-      <p class="text-gray-600">Most Common Company ID</p>
+      <span class="text-gray-600">Most Common Company ID</span>
     </div>
     <div class="bg-white p-6 rounded shadow">
-      <h3 class="text-2xl font-semibold">70 (72.2%)</h3>
-      <p class="text-gray-600">Medlemmer med 0 samtaler</p>
+      <h3 class="text-2xl font-semibold">{{ trueStatusCount }}</h3>
+      <span class="text-gray-600">Total True Status</span>
     </div>
     <div class="bg-white p-6 rounded shadow">
-      <h3 class="text-2xl font-semibold">6 (6.2%)</h3>
-      <p class="text-gray-600">Medlemmer med 2 samtaler</p>
+      <h3 class="text-2xl font-semibold">{{ falseStatusCount }}</h3>
+      <span class="text-gray-600">Total False Status</span>
     </div>
   </div>
 </div>
-<div class="card p-4 shadow-md rounded-xl bg-white">
+<div class="card">
   <p-table
     #dt1
     [value]="allowances"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [scrollable]="true"
     [globalFilterFields]="[
       'allowanceId',
       'companyId',
@@ -44,8 +46,8 @@
     [paginator]="true"
     dataKey="allowanceId"
     [rows]="8"
+    showGridlines
     [rowsPerPageOptions]="[8, 15, 30]"
-    class="p-datatable-striped p-datatable-gridlines w-full"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">
@@ -75,11 +77,11 @@
     </ng-template>
 
     <ng-template #header>
-      <tr class="bg-gray-100">
-        <th pSortableColumn="allowanceId">
+      <tr class="bg-gray-100 whitespace-nowrap">
+        <!-- <th pSortableColumn="allowanceId">
           Allowance ID
           <p-sortIcon field="allowanceId" />
-        </th>
+        </th> -->
         <th pSortableColumn="companyId">
           Company ID
           <p-sortIcon field="companyId" />
@@ -138,140 +140,17 @@
         </th>
         <th>Action</th>
       </tr>
-      <tr>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="allowanceId"
-            placeholder="Search by allowanceId"
-            ariaLabel="Filter allowanceId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="companyId"
-            placeholder="Search by companyId"
-            ariaLabel="Filter companyId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="branchId"
-            placeholder="Search by branchId"
-            ariaLabel="Filter branchId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="deptId"
-            placeholder="Search by deptId"
-            ariaLabel="Filter deptId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="positionId"
-            placeholder="Search by positionId"
-            ariaLabel="Filter positionId"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="allowanceName"
-            placeholder="Search by allowanceName"
-            ariaLabel="Filter allowanceName"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="description"
-            placeholder="Search by description"
-            ariaLabel="Filter description"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="status"
-            placeholder="Search by status"
-            ariaLabel="Filter status"
-          ></p-columnFilter>
-        </th>
-
-        <th>
-          <p-columnFilter
-            type="text"
-            field="createdOn"
-            placeholder="Search by createdOn"
-            ariaLabel="Filter createdOn"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="createdBy"
-            placeholder="Search by createdBy"
-            ariaLabel="Filter createdBy"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="updatedOn"
-            placeholder="Search by updatedOn"
-            ariaLabel="Filter updatedOn"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="updatedBy"
-            placeholder="Search by updatedBy"
-            ariaLabel="Filter updatedBy"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="deletedOn"
-            placeholder="Search by deletedOn"
-            ariaLabel="Filter deletedOn"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="deletedBy"
-            placeholder="Search by deletedBy"
-            ariaLabel="Filter deletedBy"
-          ></p-columnFilter>
-        </th>
-        <th>
-          <p-columnFilter
-            type="text"
-            field="remark"
-            placeholder="Search by remark"
-            ariaLabel="Filter remark"
-          ></p-columnFilter>
-        </th>
-      </tr>
     </ng-template>
 
     <ng-template #body let-allowance>
-      <tr class="hover:bg-gray-50 transition odd:bg-white even:bg-slate-50">
-        <td>{{ allowance.allowanceId }}</td>
+      <tr class="whitespace-nowrap">
+        <!-- <td>{{ allowance.allowanceId }}</td> -->
         <td>{{ allowance.companyId }}</td>
         <td>{{ allowance.branchId }}</td>
         <td>{{ allowance.deptId }}</td>
         <td>{{ allowance.positionId }}</td>
         <td>{{ allowance.allowanceName }}</td>
-        <td>{{ allowance.description }}</td>
+        <td><div [innerHTML]="allowance.description"></div></td>
         <td>
           <p-tag
             [value]="allowance.status"

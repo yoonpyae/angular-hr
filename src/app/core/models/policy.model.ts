@@ -1,7 +1,7 @@
 export interface PolicyModel {
   id: number;
   title: string;
-  description: string;
+  description: string | null;
   policyType: number;
   companyId: string;
   createdOn: string | null;
