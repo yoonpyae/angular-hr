@@ -21,8 +21,11 @@ export class DepartmentService {
     return this.http.get<RootModel>(url);
   }
 
-  getbyBranchIdbyCompanyId(id: number): Observable<RootModel> {
-    let url: string = `${enviornment.apiUrl}/api/Departments/by`;
+  getbyBranchIdbyCompanyId(
+    branchId: number,
+    companyId: number
+  ): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Departments/by?branchId=${branchId}&companyId=${companyId}`;
     return this.http.get<RootModel>(url);
   }
 

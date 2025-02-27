@@ -20,8 +20,12 @@ export class PositionService {
     return this.http.get<RootModel>(url);
   }
 
-  getbyBranchIdbyCompanyIdbyDeptId(id: number): Observable<RootModel> {
-    let url: string = `${enviornment.apiUrl}/api/Positions/by`;
+  getbyBranchIdbyCompanyIdbyDeptId(
+    companyid: string,
+    branchid: number,
+    deptId: number
+  ): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Positions/by?companyId=${companyid}&branchId=${branchid}&deptId=${deptId}`;
     return this.http.get<RootModel>(url);
   }
 }
