@@ -29,4 +29,18 @@ export class DepartmentService {
       },
     });
   }
+
+  update(id: number, model: DepartmentModel): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Departments/${id}`;
+    return this.http.put<RootModel>(url, JSON.stringify(model), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  delete(id: number): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/Departments/${id}`;
+    return this.http.delete<RootModel>(url);
+  }
 }
