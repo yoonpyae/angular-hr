@@ -2,7 +2,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -18,9 +17,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Editor } from 'primeng/editor';
-import { SelectModule } from 'primeng/select';
-import { ViCompanyModel } from '../../../core/models/company.model';
 import { CompanyService } from '../../../core/services/company.service';
+import { Select } from 'primeng/select';
+import { ViCompanyModel } from '../../../core/models/company.model';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -34,14 +33,17 @@ import { CompanyService } from '../../../core/services/company.service';
     ToggleSwitch,
     ProgressSpinnerModule,
     Editor,
-    SelectModule,
+    Select,
   ],
   standalone: true,
   templateUrl: './allowance-entry.component.html',
-  styleUrl: './allowance-entry.component.scss',
+  styleUrls: ['./allowance-entry.component.scss'],
   providers: [DatePipe, MessageService],
 })
 export class AllowanceEntryComponent implements OnInit {
+  companies: ViCompanyModel[] = [];
+  selectedCompany: any;
+
   allowanceID: number = 0;
   model!: AllowanceModel;
   isEdit: boolean = false;
@@ -50,12 +52,9 @@ export class AllowanceEntryComponent implements OnInit {
   checked: boolean = false;
   loading: boolean = false;
 
-  companies: ViCompanyModel[] = [];
-  selectedCompany!: ViCompanyModel;
-
   constructor(
-    private companyService: CompanyService,
     private allowanceService: AllowanceService,
+    private companyService: CompanyService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
     private messageService: MessageService,
@@ -79,21 +78,6 @@ export class AllowanceEntryComponent implements OnInit {
     deletedOn: [''],
     deletedBy: [''],
     remark: [''],
-    // email: [
-    //   '',
-    //   [Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')],
-    // ],
-    // phoneNumber: [
-    //   '',
-    //   [Validators.required, Validators.pattern('^((\\+95-?)|0)?[0-9]{8,10}$')],
-    // ],
-    // password: [
-    //   '',
-    //   [
-    //     Validators.required,
-    //     Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}'),
-    //   ],
-    // ],
   });
 
   ngOnInit(): void {
@@ -114,7 +98,6 @@ export class AllowanceEntryComponent implements OnInit {
         this.allowanceForm.controls.allowanceId.disable();
         this.allowanceForm.controls.companyId.setValue(this.model.companyId);
         this.allowanceForm.controls.branchId.setValue(this.model.branchId);
-        this.allowanceForm.controls.companyId.setValue(this.model.companyId);
         this.allowanceForm.controls.deptId.setValue(this.model.deptId);
         this.allowanceForm.controls.positionId.setValue(this.model.positionId);
         this.allowanceForm.controls.allowanceName.setValue(
@@ -145,23 +128,28 @@ export class AllowanceEntryComponent implements OnInit {
         );
         this.allowanceForm.controls.deletedBy.setValue(this.model.deletedBy);
         this.allowanceForm.controls.remark.setValue(this.model.remark);
+
+        // Fetch companies and set selected company
+        this.getCompanies();
       });
-
-      // this.allowanceForm.patchValue({
-      //   email: this.model.email || '',
-      //   phoneNumber: this.model.phoneNumber || '',
-      //   password: this.model.password || '',
-      // });
+    } else {
+      // Fetch companies if not editing
+      this.getCompanies();
     }
-
-    this.getCompanies();
   }
 
   getCompanies(): void {
     this.companyService.get().subscribe((res) => {
       this.companies = res.data.companies as ViCompanyModel[];
-
       console.log(this.companies.length);
+
+      // Set selected company if editing
+      if (this.isEdit) {
+        this.selectedCompany = this.companies.find(
+          (company) =>
+            company.companyId === this.allowanceForm.controls.companyId.value
+        );
+      }
     });
   }
 
@@ -207,9 +195,6 @@ export class AllowanceEntryComponent implements OnInit {
         deletedOn: deletedOn,
         deletedBy: this.allowanceForm.controls.deletedBy.value ?? '',
         remark: this.allowanceForm.controls.remark.value ?? '',
-        // email: this.allowanceForm.controls.email.value ?? '',
-        // phoneNumber: this.allowanceForm.controls.phoneNumber.value ?? '',
-        // password: this.allowanceForm.controls.password.value ?? '',
       };
       if (!this.isEdit) {
         model.allowanceId = 0;
