@@ -6,13 +6,15 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
-import { SelectModule } from 'primeng/select';
+import { Select, SelectModule } from 'primeng/select';
 import { Table, TableModule } from 'primeng/table';
 import { AllowanceModel } from '../../core/models/allowance.model';
 import { AllowanceService } from '../../core/services/allowance.service';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-allowance',
@@ -28,6 +30,8 @@ import { MessageService } from 'primeng/api';
     MultiSelectModule,
     TagModule,
     ToastModule,
+    DropdownModule,
+    FormsModule,
   ],
   templateUrl: './allowance.component.html',
   styleUrl: './allowance.component.scss',
@@ -60,7 +64,8 @@ export class AllowanceComponent implements OnInit {
       this.totalAllowances = this.allowances.length; // Count total allowances
       this.mostCommonCompanyId = this.findMostCommonCompanyId(); // Find most common companyId
       this.trueStatusCount = this.countTrueStatus(); // Count true statuses
-      this.falseStatusCount = this.countFalseStatus();  });
+      this.falseStatusCount = this.countFalseStatus();
+    });
   }
 
   findMostCommonCompanyId(): string {
@@ -85,15 +90,15 @@ export class AllowanceComponent implements OnInit {
     return mostCommonCompanyId;
   }
 
-
   countTrueStatus(): number {
-    return this.allowances.filter(allowance => allowance.status === true).length;
+    return this.allowances.filter((allowance) => allowance.status === true)
+      .length;
   }
 
   countFalseStatus(): number {
-    return this.allowances.filter(allowance => allowance.status === false).length;
+    return this.allowances.filter((allowance) => allowance.status === false)
+      .length;
   }
-
 
   update(allowance: AllowanceModel): void {
     this.selectedAllowance = allowance;

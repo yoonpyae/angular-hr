@@ -1,4 +1,4 @@
-export interface CompanyModel {
+export interface ViCompanyModel {
   companyId: string;
   companyName: string;
   joinDate: string;

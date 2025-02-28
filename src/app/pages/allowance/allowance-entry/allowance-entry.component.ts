@@ -18,6 +18,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Editor } from 'primeng/editor';
+import { SelectModule } from 'primeng/select';
+import { ViCompanyModel } from '../../../core/models/company.model';
+import { CompanyService } from '../../../core/services/company.service';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -31,6 +34,7 @@ import { Editor } from 'primeng/editor';
     ToggleSwitch,
     ProgressSpinnerModule,
     Editor,
+    SelectModule,
   ],
   standalone: true,
   templateUrl: './allowance-entry.component.html',
@@ -46,7 +50,11 @@ export class AllowanceEntryComponent implements OnInit {
   checked: boolean = false;
   loading: boolean = false;
 
+  companies: ViCompanyModel[] = [];
+  selectedCompany!: ViCompanyModel;
+
   constructor(
+    private companyService: CompanyService,
     private allowanceService: AllowanceService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
@@ -144,6 +152,24 @@ export class AllowanceEntryComponent implements OnInit {
       //   phoneNumber: this.model.phoneNumber || '',
       //   password: this.model.password || '',
       // });
+    }
+
+    this.getCompanies();
+  }
+
+  getCompanies(): void {
+    this.companyService.get().subscribe((res) => {
+      this.companies = res.data.companies as ViCompanyModel[];
+
+      console.log(this.companies.length);
+    });
+  }
+
+  onCompanyChange(): void {
+    if (this.selectedCompany !== undefined && this.selectedCompany !== null) {
+      this.allowanceForm.controls.companyId.setValue(
+        this.selectedCompany.companyId
+      );
     }
   }
 
