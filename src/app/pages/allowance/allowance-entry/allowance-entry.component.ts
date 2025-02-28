@@ -20,6 +20,8 @@ import { Editor } from 'primeng/editor';
 import { CompanyService } from '../../../core/services/company.service';
 import { Select } from 'primeng/select';
 import { ViCompanyModel } from '../../../core/models/company.model';
+import { BranchModel } from '../../../core/models/branch.model';
+import { BranchService } from '../../../core/services/branch.service';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -44,6 +46,10 @@ export class AllowanceEntryComponent implements OnInit {
   companies: ViCompanyModel[] = [];
   selectedCompany: any;
 
+  branches: BranchModel[] = [];
+  //filteredBranches: BranchModel[] = [];
+  selectedBranch: any;
+
   allowanceID: number = 0;
   model!: AllowanceModel;
   isEdit: boolean = false;
@@ -55,6 +61,7 @@ export class AllowanceEntryComponent implements OnInit {
   constructor(
     private allowanceService: AllowanceService,
     private companyService: CompanyService,
+    private branchService: BranchService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
     private messageService: MessageService,
@@ -139,17 +146,17 @@ export class AllowanceEntryComponent implements OnInit {
   }
 
   getCompanies(): void {
-    this.companyService.get().subscribe((res) => {
-      this.companies = res.data.companies as ViCompanyModel[];
-      console.log(this.companies.length);
-
-      // Set selected company if editing
-      if (this.isEdit) {
-        this.selectedCompany = this.companies.find(
-          (company) =>
-            company.companyId === this.allowanceForm.controls.companyId.value
-        );
-      }
+    this.companyService.get().subscribe({
+      next: (res) => {
+        this.companies = res.data.companies as ViCompanyModel[];
+        if (this.isEdit) {
+          this.selectedCompany = this.companies.filter(
+            (x) => x.companyId == this.model.companyId
+          )[0];
+          this.onCompanyChange();
+        }
+      },
+      error: () => {},
     });
   }
 
@@ -157,6 +164,30 @@ export class AllowanceEntryComponent implements OnInit {
     if (this.selectedCompany !== undefined && this.selectedCompany !== null) {
       this.allowanceForm.controls.companyId.setValue(
         this.selectedCompany.companyId
+      );
+      this.getBranches(this.selectedCompany.companyId);
+    }
+  }
+
+  getBranches(companyId: string): void {
+    this.branchService.getByCompanyID(companyId).subscribe({
+      next: (res) => {
+        this.branches = res.data as BranchModel[];
+        if (this.isEdit) {
+          this.selectedBranch = this.branches.filter(
+            (x) => x.branchId == this.model.branchId
+          )[0];
+          this.onBranchChange();
+        }
+      },
+      error: () => {},
+    });
+  }
+
+  onBranchChange(): void {
+    if (this.selectedBranch !== undefined && this.selectedBranch !== null) {
+      this.allowanceForm.controls.branchId.setValue(
+        this.selectedBranch.branchId
       );
     }
   }
