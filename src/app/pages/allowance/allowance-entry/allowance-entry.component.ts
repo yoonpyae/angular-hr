@@ -233,6 +233,7 @@ export class AllowanceEntryComponent implements OnInit {
       );
     }
   }
+
   getPositions(companyId: string, branchId: number, deptId: number) {
     this.positionService
       .getbyBranchIdbyCompanyIdbyDeptId(companyId, branchId, deptId)
@@ -248,6 +249,7 @@ export class AllowanceEntryComponent implements OnInit {
         },
       });
   }
+
   onPositionChange() {
     if (this.selectedPosition !== undefined && this.selectedPosition !== null) {
       this.allowanceForm.controls.positionId.setValue(
@@ -255,6 +257,7 @@ export class AllowanceEntryComponent implements OnInit {
       );
     }
   }
+
   submit(): void {
     console.log('Form Submitted:', this.allowanceForm.value);
     if (this.allowanceForm.valid) {
