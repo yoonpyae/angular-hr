@@ -18,3 +18,25 @@ export interface AllowanceModel {
   // email: string;
   // password: string;
 }
+
+export interface ViAllowanceModel {
+  allowanceId: number;
+  allowanceName: string;
+  companyId: string;
+  companyName: string;
+  branchId: number;
+  branchName: string;
+  deptId: number;
+  deptName: string;
+  positionId: number;
+  positionName: string;
+  description: string;
+  status: boolean;
+  createdOn: string;
+  createdBy: string;
+  updatedOn: null | string;
+  updatedBy: null | string;
+  deletedOn: null;
+  deletedBy: null | string;
+  remark: null | string;
+}
