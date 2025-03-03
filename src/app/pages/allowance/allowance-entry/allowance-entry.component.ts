@@ -219,7 +219,6 @@ export class AllowanceEntryComponent implements OnInit {
   onDeptChange() {
     if (this.selectedDept !== undefined && this.selectedDept !== null) {
       this.allowanceForm.controls.deptId.setValue(this.selectedDept.deptId);
-      this.selectedDept.branchId.companyId;
     }
   }
 
