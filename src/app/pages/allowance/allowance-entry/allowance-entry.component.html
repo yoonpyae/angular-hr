@@ -64,12 +64,24 @@
 
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Dept Id</label>
-        <input
+        <!-- <input
           pInputText
           formControlName="deptId"
           type="number"
           class="p-2 border rounded-md"
-        />
+        /> -->
+
+        <p-select
+          [options]="depts"
+          [(ngModel)]="selectedDept"
+          (onChange)="onDeptChange()"
+          optionLabel="deptName"
+          dataKey="deptId"
+          placeholder="Select a Department"
+          class="w-full md:w-56"
+          [ngModelOptions]="{ standalone: true }"
+        >
+        </p-select>
         <small
           *ngIf="
             allowanceForm.controls['deptId'].invalid &&

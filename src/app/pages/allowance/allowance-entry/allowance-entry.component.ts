@@ -2,7 +2,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormGroup,
   FormsModule,
   ReactiveFormsModule,
   Validators,
@@ -22,6 +21,8 @@ import { Select } from 'primeng/select';
 import { ViCompanyModel } from '../../../core/models/company.model';
 import { BranchModel } from '../../../core/models/branch.model';
 import { BranchService } from '../../../core/services/branch.service';
+import { DepartmentModel } from '../../../core/models/department.model';
+import { DepartmentService } from '../../../core/services/department.service';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -50,6 +51,9 @@ export class AllowanceEntryComponent implements OnInit {
   //filteredBranches: BranchModel[] = [];
   selectedBranch: any;
 
+  depts: DepartmentModel[] = [];
+  selectedDept: any;
+
   allowanceID: number = 0;
   model!: AllowanceModel;
   isEdit: boolean = false;
@@ -62,6 +66,7 @@ export class AllowanceEntryComponent implements OnInit {
     private allowanceService: AllowanceService,
     private companyService: CompanyService,
     private branchService: BranchService,
+    private deptService: DepartmentService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
     private messageService: MessageService,
@@ -189,6 +194,32 @@ export class AllowanceEntryComponent implements OnInit {
       this.allowanceForm.controls.branchId.setValue(
         this.selectedBranch.branchId
       );
+
+      this.getDepartments(
+        this.selectedBranch.branchId,
+        this.selectedCompany.companyId
+      );
+    }
+  }
+
+  getDepartments(branchId: number, companyId: number): void {
+    this.deptService.getbyBranchIdbyCompanyId(branchId, companyId).subscribe({
+      next: (res) => {
+        this.depts = res.data as DepartmentModel[];
+        if (this.isEdit) {
+          this.selectedDept = this.depts.filter(
+            (x) => x.deptId == this.model.deptId
+          )[0];
+          this.onDeptChange();
+        }
+      },
+    });
+  }
+
+  onDeptChange() {
+    if (this.selectedDept !== undefined && this.selectedDept !== null) {
+      this.allowanceForm.controls.deptId.setValue(this.selectedDept.deptId);
+      this.selectedDept.branchId.companyId;
     }
   }
 
