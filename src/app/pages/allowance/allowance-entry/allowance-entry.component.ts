@@ -23,6 +23,8 @@ import { BranchModel } from '../../../core/models/branch.model';
 import { BranchService } from '../../../core/services/branch.service';
 import { DepartmentModel } from '../../../core/models/department.model';
 import { DepartmentService } from '../../../core/services/department.service';
+import { PositionModel } from '../../../core/models/position.model';
+import { PositionService } from '../../../core/services/position.service';
 
 @Component({
   selector: 'app-allowance-entry',
@@ -54,6 +56,9 @@ export class AllowanceEntryComponent implements OnInit {
   depts: DepartmentModel[] = [];
   selectedDept: any;
 
+  positions: PositionModel[] = [];
+  selectedPosition: any;
+
   allowanceID: number = 0;
   model!: AllowanceModel;
   isEdit: boolean = false;
@@ -67,6 +72,7 @@ export class AllowanceEntryComponent implements OnInit {
     private companyService: CompanyService,
     private branchService: BranchService,
     private deptService: DepartmentService,
+    private positionService: PositionService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
     private messageService: MessageService,
@@ -219,9 +225,36 @@ export class AllowanceEntryComponent implements OnInit {
   onDeptChange() {
     if (this.selectedDept !== undefined && this.selectedDept !== null) {
       this.allowanceForm.controls.deptId.setValue(this.selectedDept.deptId);
+
+      this.getPositions(
+        this.selectedCompany.companyId,
+        this.selectedBranch.branchId,
+        this.selectedDept.deptId
+      );
     }
   }
-
+  getPositions(companyId: string, branchId: number, deptId: number) {
+    this.positionService
+      .getbyBranchIdbyCompanyIdbyDeptId(companyId, branchId, deptId)
+      .subscribe({
+        next: (res) => {
+          this.positions = res.data as PositionModel[];
+          if (this.isEdit) {
+            this.selectedPosition = this.positions.filter(
+              (x) => x.positionId == this.model.positionId
+            )[0];
+            this.onPositionChange();
+          }
+        },
+      });
+  }
+  onPositionChange() {
+    if (this.selectedPosition !== undefined && this.selectedPosition !== null) {
+      this.allowanceForm.controls.positionId.setValue(
+        this.selectedPosition.positionId
+      );
+    }
+  }
   submit(): void {
     console.log('Form Submitted:', this.allowanceForm.value);
     if (this.allowanceForm.valid) {
