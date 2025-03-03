@@ -16,7 +16,26 @@
         />
       </div> -->
 
-      <div class="md:col-span-2 flex flex-col gap-1">
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Allowance Name</label>
+        <input
+          pInputText
+          formControlName="allowanceName"
+          type="text"
+          class="p-2 border rounded-md"
+        />
+        <small
+          *ngIf="
+            allowanceForm.controls['allowanceName'].invalid &&
+            allowanceForm.get('allowanceName')?.dirty
+          "
+          class="p-text"
+        >
+          Allowance Name Is Required
+        </small>
+      </div>
+
+      <div class="flex flex-col gap">
         <label class="text-gray-600 font-medium">Company Id</label>
         <!-- <input
           pInputTextarea
@@ -36,6 +55,7 @@
           [filter]="true"
           filterBy="deptName"
           [showClear]="true"
+          class="ng-dirty ng-invalid w-full"
         >
         </p-select>
         <small
@@ -58,11 +78,11 @@
           optionLabel="branchName"
           dataKey="branchId"
           placeholder="Select a branch"
-          class="w-full md:w-56"
           [ngModelOptions]="{ standalone: true }"
           [filter]="true"
           filterBy="deptName"
           [showClear]="true"
+          class="ng-dirty ng-invalid w-full"
         >
         </p-select>
         <small
@@ -92,11 +112,11 @@
           optionLabel="deptName"
           dataKey="deptId"
           placeholder="Select a Department"
-          class="w-full md:w-56"
           [ngModelOptions]="{ standalone: true }"
           [filter]="true"
           filterBy="deptName"
           [showClear]="true"
+          class="ng-dirty ng-invalid w-full"
         >
         </p-select>
         <small
@@ -126,11 +146,11 @@
           optionLabel="positionName"
           dataKey="positionId"
           placeholder="Select a Position"
-          class="w-full md:w-56"
           [ngModelOptions]="{ standalone: true }"
           [filter]="true"
           filterBy="deptName"
           [showClear]="true"
+          class="ng-dirty ng-invalid w-full"
         >
         </p-select>
 
@@ -142,25 +162,6 @@
           class="p-text"
         >
           Position Is Required.
-        </small>
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Aallowance Name</label>
-        <input
-          pInputText
-          formControlName="allowanceName"
-          type="text"
-          class="p-2 border rounded-md"
-        />
-        <small
-          *ngIf="
-            allowanceForm.controls['allowanceName'].invalid &&
-            allowanceForm.get('allowanceName')?.dirty
-          "
-          class="p-text"
-        >
-          Allowance Name Is Required
         </small>
       </div>
 
