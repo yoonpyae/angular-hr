@@ -8,7 +8,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { Select, SelectModule } from 'primeng/select';
 import { Table, TableModule } from 'primeng/table';
-import { AllowanceModel } from '../../core/models/allowance.model';
+import {
+  AllowanceModel,
+  ViAllowanceModel,
+} from '../../core/models/allowance.model';
 import { AllowanceService } from '../../core/services/allowance.service';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
@@ -40,6 +43,7 @@ import { DropdownModule } from 'primeng/dropdown';
 export class AllowanceComponent implements OnInit {
   selectedAllowance!: AllowanceModel;
   allowances: AllowanceModel[] = [];
+  viAllowances: ViAllowanceModel[] = [];
   loading: boolean = true;
   totalAllowances: number = 0;
   mostCommonCompanyId: string = '';
@@ -61,6 +65,7 @@ export class AllowanceComponent implements OnInit {
   loadData(): void {
     this.allowanceService.get().subscribe((res) => {
       this.allowances = res.data as AllowanceModel[];
+      this.viAllowances = res.data as ViAllowanceModel[];
       this.totalAllowances = this.allowances.length; // Count total allowances
       this.mostCommonCompanyId = this.findMostCommonCompanyId(); // Find most common companyId
       this.trueStatusCount = this.countTrueStatus(); // Count true statuses

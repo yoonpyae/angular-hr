@@ -23,16 +23,16 @@
 <div class="card">
   <p-table
     #dt1
-    [value]="allowances"
+    [value]="viAllowances"
     [tableStyle]="{ 'min-width': '50rem' }"
     [scrollable]="true"
     [globalFilterFields]="[
       'allowanceId',
-      'companyId',
-      'branchId',
-      'deptId',
-      'positionId',
       'allowanceName',
+      'companyName',
+      'branchName',
+      'deptName',
+      'positionName',
       'description',
       'status',
       'createdOn',
@@ -82,25 +82,25 @@
           Allowance ID
           <p-sortIcon field="allowanceId" />
         </th> -->
-        <th pSortableColumn="companyId">
-          Company ID
-          <p-sortIcon field="companyId" />
-        </th>
-        <th pSortableColumn="branchId">
-          Branch ID
-          <p-sortIcon field="branchId" />
-        </th>
-        <th pSortableColumn="deptId">
-          Dept ID
-          <p-sortIcon field="deptId" />
-        </th>
-        <th pSortableColumn="positionId">
-          Position ID
-          <p-sortIcon field="positionId" />
-        </th>
         <th pSortableColumn="allowanceName">
           Allowance Name
           <p-sortIcon field="allowanceName" />
+        </th>
+        <th pSortableColumn="companyName">
+          Company Name
+          <p-sortIcon field="companyName" />
+        </th>
+        <th pSortableColumn="branchName">
+          Branch Name
+          <p-sortIcon field="branchName" />
+        </th>
+        <th pSortableColumn="deptName">
+          Dept Name
+          <p-sortIcon field="deptName" />
+        </th>
+        <th pSortableColumn="positionName">
+          Position Name
+          <p-sortIcon field="positionName" />
         </th>
         <th pSortableColumn="description">
           Description
@@ -145,11 +145,11 @@
     <ng-template #body let-allowance>
       <tr class="whitespace-nowrap">
         <!-- <td>{{ allowance.allowanceId }}</td> -->
-        <td>{{ allowance.companyId }}</td>
-        <td>{{ allowance.branchId }}</td>
-        <td>{{ allowance.deptId }}</td>
-        <td>{{ allowance.positionId }}</td>
         <td>{{ allowance.allowanceName }}</td>
+        <td>{{ allowance.companyName }}</td>
+        <td>{{ allowance.branchName }}</td>
+        <td>{{ allowance.deptName }}</td>
+        <td>{{ allowance.positionName }}</td>
         <td><div [innerHTML]="allowance.description"></div></td>
         <td>
           <p-tag
