@@ -50,7 +50,6 @@ export class AllowanceEntryComponent implements OnInit {
   selectedCompany: any;
 
   branches: BranchModel[] = [];
-  //filteredBranches: BranchModel[] = [];
   selectedBranch: any;
 
   depts: DepartmentModel[] = [];
@@ -211,7 +210,7 @@ export class AllowanceEntryComponent implements OnInit {
   }
 
   // Department
-  getDepartments(branchId: number, companyId: number): void {
+  getDepartments(branchId: number, companyId: string): void {
     this.deptService.getbyBranchIdbyCompanyId(branchId, companyId).subscribe({
       next: (res) => {
         this.depts = res.data as DepartmentModel[];

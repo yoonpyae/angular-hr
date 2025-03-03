@@ -23,7 +23,7 @@ export class DepartmentService {
 
   getbyBranchIdbyCompanyId(
     branchId: number,
-    companyId: number
+    companyId: string
   ): Observable<RootModel> {
     let url: string = `${enviornment.apiUrl}/api/Departments/by?branchId=${branchId}&companyId=${companyId}`;
     return this.http.get<RootModel>(url);
