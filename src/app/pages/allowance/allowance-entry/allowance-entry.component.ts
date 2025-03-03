@@ -99,9 +99,9 @@ export class AllowanceEntryComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.allowanceForm.get('status')?.valueChanges.subscribe((value) => {
-      console.log('Status changed:', value);
-    });
+    // this.allowanceForm.get('status')?.valueChanges.subscribe((value) => {
+    //   console.log('Status changed:', value);
+    // });
 
     this.allowanceID = parseInt(this.route.snapshot.paramMap.get('id') ?? '');
     if (this.allowanceID > 0) {
@@ -156,6 +156,7 @@ export class AllowanceEntryComponent implements OnInit {
     }
   }
 
+  // Company
   getCompanies(): void {
     this.companyService.get().subscribe({
       next: (res) => {
@@ -180,6 +181,7 @@ export class AllowanceEntryComponent implements OnInit {
     }
   }
 
+  // Branch
   getBranches(companyId: string): void {
     this.branchService.getByCompanyID(companyId).subscribe({
       next: (res) => {
@@ -208,6 +210,7 @@ export class AllowanceEntryComponent implements OnInit {
     }
   }
 
+  // Department
   getDepartments(branchId: number, companyId: number): void {
     this.deptService.getbyBranchIdbyCompanyId(branchId, companyId).subscribe({
       next: (res) => {
@@ -234,6 +237,7 @@ export class AllowanceEntryComponent implements OnInit {
     }
   }
 
+  // Position
   getPositions(companyId: string, branchId: number, deptId: number) {
     this.positionService
       .getbyBranchIdbyCompanyIdbyDeptId(companyId, branchId, deptId)
