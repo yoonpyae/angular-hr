@@ -55,6 +55,11 @@
           [filter]="true"
           filterBy="deptName"
           [showClear]="true"
+          [ngClass]="{
+            'ng-dirty ng-invalid':
+              deductionForm.controls['branchId'].invalid &&
+              deductionForm.get('branchId')?.dirty
+          }"
         >
         </p-select>
         <small
