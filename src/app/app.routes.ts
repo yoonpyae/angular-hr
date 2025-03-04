@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 import { AllowanceComponent } from './pages/allowance/allowance.component';
 import { AllowanceEntryComponent } from './pages/allowance/allowance-entry/allowance-entry.component';
 import { DepartmentComponent } from './pages/department/department.component';
+import { DeductionComponent } from './pages/deduction/deduction.component';
+import { DeductionEntryComponent } from './pages/deduction/deduction-entry/deduction-entry.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -62,4 +64,21 @@ export const routes: Routes = [
     ],
   },
   { path: 'department', component: DepartmentComponent },
+  {
+    path: 'deduction',
+    children: [
+      {
+        path: '',
+        component: DeductionComponent,
+      },
+      {
+        path: 'entry',
+        component: DeductionEntryComponent,
+      },
+      {
+        path: 'entry/:id',
+        component: DeductionEntryComponent,
+      },
+    ],
+  },
 ];

@@ -1,0 +1,177 @@
+<p-toast position="top-right"></p-toast>
+<h1 class="text-4xl font-bold text-center mb-8">deduction List</h1>
+
+<div class="card">
+  <p-table
+    #dt1
+    [value]="deduction"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [scrollable]="true"
+    [globalFilterFields]="[
+      'deductionId',
+      'deductionName',
+      'companyName',
+      'branchName',
+      'deptName',
+      'description',
+      'status',
+      'createdOn',
+      'createdBy',
+      'updatedOn',
+      'updatedBy',
+      'deletedOn',
+      'deletedBy',
+      'remark'
+    ]"
+    [paginator]="true"
+    dataKey="deductionId"
+    [rows]="8"
+    [(selection)]="selectedDeduction"
+    showGridlines
+    [rowsPerPageOptions]="[8, 15, 30]"
+  >
+    <ng-template #caption>
+      <div class="flex items-center justify-between mb-3">
+        <p-button
+          icon="pi pi-plus"
+          label="Create"
+          routerLink="entry"
+          class="p-button-primary"
+        >
+        </p-button>
+
+        <p-iconfield
+          icon="pi pi-check"
+          iconPosition="left"
+          class="w-80 mt-2 sm:mt-0"
+        >
+          <input
+            pInputText
+            type="text"
+            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+            pInputText
+            placeholder="Search"
+            class="p-inputtext w-full border rounded-lg px-3 py-2"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+
+    <ng-template #header>
+      <tr class="bg-gray-100 whitespace-nowrap">
+        <!-- <th pSortableColumn="deductionId">
+          deduction ID
+          <p-sortIcon field="deductionId" />
+        </th> -->
+        <th pSortableColumn="deductionName">
+          DeductionName
+          <p-sortIcon field="deductionName" />
+        </th>
+        <th pSortableColumn="companyName">
+          Company Name
+          <p-sortIcon field="companyName" />
+        </th>
+        <th pSortableColumn="branchName">
+          Branch Name
+          <p-sortIcon field="branchName" />
+        </th>
+        <th pSortableColumn="deptName">
+          Dept Name
+          <p-sortIcon field="deptName" />
+        </th>
+        <th pSortableColumn="description">
+          description
+          <p-sortIcon field="description" />
+        </th>
+        <th pSortableColumn="isDefault">
+          isDefault
+          <p-sortIcon field="isDefault" />
+        </th>
+        <th pSortableColumn="status">
+          Status
+          <p-sortIcon field="status" />
+        </th>
+        <th pSortableColumn="createdOn">
+          Created On
+          <p-sortIcon field="createdOn" />
+        </th>
+        <th pSortableColumn="createdBy">
+          Created By
+          <p-sortIcon field="createdBy" />
+        </th>
+        <th pSortableColumn="updatedOn">
+          Updated On
+          <p-sortIcon field="updatedOn" />
+        </th>
+        <th pSortableColumn="updatedBy">
+          Updated By
+          <p-sortIcon field="updatedBy" />
+        </th>
+        <th pSortableColumn="deletedOn">
+          Deleted On
+          <p-sortIcon field="deletedOn" />
+        </th>
+        <th pSortableColumn="deletedBy">
+          Deleted By
+          <p-sortIcon field="deletedBy" />
+        </th>
+        <th pSortableColumn="remark">
+          Remark
+          <p-sortIcon field="remark" />
+        </th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-deduction>
+      <tr class="whitespace-nowrap">
+        <!-- <td>{{ deduction.deductionId }}</td> -->
+        <td>{{ deduction.deductionName }}</td>
+        <td>{{ deduction.companyName }}</td>
+        <td>{{ deduction.branchName }}</td>
+        <td>{{ deduction.deptName }}</td>
+
+        <td><div [innerHTML]="deduction.description"></div></td>
+        <td>
+          <p-tag
+            [value]="deduction.isDefault"
+            [severity]="getSeverity(deduction.isDefault)"
+          />
+        </td>
+        <td>
+          <p-tag
+            [value]="deduction.status"
+            [severity]="getSeverity(deduction.status)"
+          />
+        </td>
+        <td>{{ deduction.createdOn }}</td>
+        <td>{{ deduction.createdBy }}</td>
+        <td>{{ deduction.updatedOn }}</td>
+        <td>{{ deduction.updatedBy }}</td>
+        <td>{{ deduction.deletedOn }}</td>
+        <td>{{ deduction.deletedBy }}</td>
+        <td>{{ deduction.remark }}</td>
+        <td>
+          <p-button variant="text" (onClick)="update(deduction)">Edit</p-button>
+          <p-button
+            variant="text"
+            [rounded]="true"
+            severity="danger"
+            (onClick)="delete(deduction)"
+            >Delete</p-button
+          >
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="3" class="text-center p-4 text-gray-500">
+          No deductions found.
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-confirmdialog key="positionDialog" position="bottom" />

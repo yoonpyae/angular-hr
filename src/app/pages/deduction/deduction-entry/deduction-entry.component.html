@@ -2,9 +2,9 @@
 <!-- Add this at the top to show notifications -->
 
 <div class="p-8 max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
-  <h2 class="text-2xl font-bold text-gray-700 mb-6">Allowance Form</h2>
+  <h2 class="text-2xl font-bold text-gray-700 mb-6">Deduction Form</h2>
 
-  <form [formGroup]="allowanceForm" (ngSubmit)="submit()" class="space-y-4">
+  <form [formGroup]="deductionForm" (ngSubmit)="submit()" class="space-y-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <!-- <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Allowance ID</label>
@@ -17,21 +17,21 @@
       </div> -->
 
       <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Allowance Name</label>
+        <label class="text-gray-600 font-medium">Deduction Name</label>
         <input
           pInputText
-          formControlName="allowanceName"
+          formControlName="deductionName"
           type="text"
           class="p-2 border rounded-md"
         />
         <small
           *ngIf="
-            allowanceForm.controls['allowanceName'].invalid &&
-            allowanceForm.get('allowanceName')?.dirty
+            deductionForm.controls['deductionName'].invalid &&
+            deductionForm.get('deductionName')?.dirty
           "
           class="p-text"
         >
-          Allowance Name Is Required
+          Deduction Name Is Required
         </small>
       </div>
 
@@ -59,8 +59,8 @@
         </p-select>
         <small
           *ngIf="
-            allowanceForm.controls['companyId'].invalid &&
-            allowanceForm.get('companyId')?.dirty
+            deductionForm.controls['companyId'].invalid &&
+            deductionForm.get('companyId')?.dirty
           "
           class="p-text text-red-600"
         >
@@ -83,15 +83,15 @@
           [showClear]="true"
           [ngClass]="{
             'ng-dirty ng-invalid':
-              allowanceForm.controls['branchId'].invalid &&
-              allowanceForm.get('branchId')?.dirty
+              deductionForm.controls['branchId'].invalid &&
+              deductionForm.get('branchId')?.dirty
           }"
         >
         </p-select>
         <small
           *ngIf="
-            allowanceForm.controls['branchId'].invalid &&
-            allowanceForm.get('branchId')?.dirty
+            deductionForm.controls['branchId'].invalid &&
+            deductionForm.get('branchId')?.dirty
           "
           class="p-text text-red-600"
         >
@@ -121,58 +121,19 @@
           [showClear]="true"
           [ngClass]="{
             'ng-dirty ng-invalid':
-              allowanceForm.controls['deptId'].invalid &&
-              allowanceForm.get('deptId')?.dirty
+              deductionForm.controls['deptId'].invalid &&
+              deductionForm.get('deptId')?.dirty
           }"
         >
         </p-select>
         <small
           *ngIf="
-            allowanceForm.controls['deptId'].invalid &&
-            allowanceForm.get('deptId')?.dirty
+            deductionForm.controls['deptId'].invalid &&
+            deductionForm.get('deptId')?.dirty
           "
           class="p-text text-red-600"
         >
           Department Is Required.
-        </small>
-      </div>
-
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Position Id</label>
-        <!-- <input
-          pInputText
-          formControlName="positionId"
-          type="text"
-          class="p-2 border rounded-md"
-        /> -->
-
-        <p-select
-          [options]="positions"
-          [(ngModel)]="selectedPosition"
-          (onChange)="onPositionChange()"
-          optionLabel="positionName"
-          dataKey="positionId"
-          placeholder="Select a Position"
-          [ngModelOptions]="{ standalone: true }"
-          [filter]="true"
-          filterBy="deptName"
-          [showClear]="true"
-          [ngClass]="{
-            'ng-dirty ng-invalid':
-              allowanceForm.controls['positionId'].invalid &&
-              allowanceForm.get('positionId')?.dirty
-          }"
-        >
-        </p-select>
-
-        <small
-          *ngIf="
-            allowanceForm.controls['positionId'].invalid &&
-            allowanceForm.get('positionId')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          Position Is Required.
         </small>
       </div>
 
@@ -194,6 +155,11 @@
           class="p-2 border rounded-md"
         ></textarea>
       </div> -->
+
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Is Default</label>
+        <p-toggleswitch formControlName="isDefault" />
+      </div>
 
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Status</label>

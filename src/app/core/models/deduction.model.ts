@@ -1,11 +1,11 @@
-export interface AllowanceModel {
-  allowanceId: number;
+export interface DeductionModel {
+  deductionId: number;
   companyId: string;
   branchId: number;
   deptId: number;
-  positionId: number;
-  allowanceName: string;
-  description: null | string;
+  deductionName: string;
+  description: string;
+  isDefault: boolean;
   status: boolean;
   createdOn: null | string;
   createdBy: null | string;
@@ -14,29 +14,25 @@ export interface AllowanceModel {
   deletedOn: null | string;
   deletedBy: null | string;
   remark: null | string;
-  // phoneNumber: string;
-  // email: string;
-  // password: string;
 }
 
-export interface ViAllowanceModel {
-  allowanceId: number;
-  allowanceName: string;
+export interface ViDeductionModel {
+  deductionId: number;
+  deductionName: string;
   companyId: string;
   companyName: string;
   branchId: number;
   branchName: string;
   deptId: number;
   deptName: string;
-  positionId: number;
-  positionName: string;
   description: string;
+  isDefault: boolean;
   status: boolean;
-  createdOn: string;
-  createdBy: string;
+  createdOn: null | string;
+  createdBy: null | string;
   updatedOn: null | string;
   updatedBy: null | string;
-  deletedOn: null;
+  deletedOn: null | string;
   deletedBy: null | string;
-  remark: null | string;
+  remark: null;
 }

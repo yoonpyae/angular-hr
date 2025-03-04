@@ -15,9 +15,9 @@ import { AllowanceService } from '../../../core/services/allowance.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToggleSwitch } from 'primeng/toggleswitch';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { Editor } from 'primeng/editor';
+import { EditorModule } from 'primeng/editor';
 import { CompanyService } from '../../../core/services/company.service';
-import { Select } from 'primeng/select';
+import { SelectModule } from 'primeng/select';
 import { ViCompanyModel } from '../../../core/models/company.model';
 import { BranchModel } from '../../../core/models/branch.model';
 import { BranchService } from '../../../core/services/branch.service';
@@ -37,8 +37,8 @@ import { PositionService } from '../../../core/services/position.service';
     ToastModule,
     ToggleSwitch,
     ProgressSpinnerModule,
-    Editor,
-    Select,
+    EditorModule,
+    SelectModule,
   ],
   standalone: true,
   templateUrl: './allowance-entry.component.html',
@@ -80,10 +80,10 @@ export class AllowanceEntryComponent implements OnInit {
 
   private formBuilder = inject(FormBuilder);
   allowanceForm = this.formBuilder.group({
-    allowanceId: [0, Validators.required],
+    allowanceId: [0],
     companyId: ['', Validators.required],
-    branchId: [0, Validators.required],
-    deptId: [0, Validators.required],
+    branchId: [0, Validators.required], // Initially disabled
+    deptId: [0, Validators.required], // Initially disabled
     positionId: [0, Validators.required],
     allowanceName: ['', Validators.required],
     description: [''],
@@ -101,6 +101,38 @@ export class AllowanceEntryComponent implements OnInit {
     // this.allowanceForm.get('status')?.valueChanges.subscribe((value) => {
     //   console.log('Status changed:', value);
     // });
+
+    if (!this.isEdit)
+      this.allowanceForm
+        .get('companyId')
+        ?.valueChanges.subscribe((companyId) => {
+          if (companyId) {
+            this.allowanceForm.controls.branchId.enable();
+          } else {
+            this.allowanceForm.controls.branchId.disable();
+            this.allowanceForm.controls.deptId.disable();
+            this.allowanceForm.controls.positionId.disable();
+          }
+        });
+
+    this.allowanceForm.controls.status.setValue(false);
+
+    this.allowanceForm.get('branchId')?.valueChanges.subscribe((branchId) => {
+      if (branchId) {
+        this.allowanceForm.controls.deptId.enable();
+      } else {
+        this.allowanceForm.controls.deptId.disable();
+        this.allowanceForm.controls.positionId.disable();
+      }
+    });
+
+    this.allowanceForm.get('deptId')?.valueChanges.subscribe((deptId) => {
+      if (deptId) {
+        this.allowanceForm.controls.positionId.enable();
+      } else {
+        this.allowanceForm.controls.positionId.disable();
+      }
+    });
 
     this.allowanceID = parseInt(this.route.snapshot.paramMap.get('id') ?? '');
     if (this.allowanceID > 0) {
@@ -153,6 +185,8 @@ export class AllowanceEntryComponent implements OnInit {
       // Fetch companies if not editing
       this.getCompanies();
     }
+
+    if (!this.isEdit) this.allowanceForm.reset();
   }
 
   // Company

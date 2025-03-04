@@ -50,7 +50,6 @@ export class AllowanceComponent implements OnInit {
   trueStatusCount: number = 0;
   falseStatusCount: number = 0;
 
-  activityValues: number[] = [0, 100];
   constructor(
     private allowanceService: AllowanceService,
     private rout: Router,
