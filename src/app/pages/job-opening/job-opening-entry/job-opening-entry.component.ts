@@ -25,6 +25,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BranchService } from '../../../core/services/branch.service';
 import { CompanyService } from '../../../core/services/company.service';
 import { DepartmentService } from '../../../core/services/department.service';
+import { DatePicker } from 'primeng/datepicker';
 
 @Component({
   selector: 'app-job-opening-entry',
@@ -39,7 +40,9 @@ import { DepartmentService } from '../../../core/services/department.service';
     ProgressSpinnerModule,
     EditorModule,
     SelectModule,
+    DatePicker,
   ],
+
   templateUrl: './job-opening-entry.component.html',
   styleUrl: './job-opening-entry.component.scss',
   providers: [DatePipe, MessageService],
