@@ -10,6 +10,7 @@ import { AllowanceEntryComponent } from './pages/allowance/allowance-entry/allow
 import { DepartmentComponent } from './pages/department/department.component';
 import { DeductionComponent } from './pages/deduction/deduction.component';
 import { DeductionEntryComponent } from './pages/deduction/deduction-entry/deduction-entry.component';
+import { JobOpeningComponent } from './pages/job-opening/job-opening.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -80,5 +81,10 @@ export const routes: Routes = [
         component: DeductionEntryComponent,
       },
     ],
+  },
+
+  {
+    path: 'jobOpening',
+    component: JobOpeningComponent,
   },
 ];
