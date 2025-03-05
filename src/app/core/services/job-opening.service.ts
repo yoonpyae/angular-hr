@@ -14,4 +14,9 @@ export class JobOpeningService {
     let url: string = `${enviornment.apiUrl}/api/JobOpening`;
     return this.http.get<RootModel>(url);
   }
+
+  getbyid(id: number): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/JobOpening/${id}`;
+    return this.http.get<RootModel>(url);
+  }
 }
