@@ -1,21 +1,11 @@
 <p-toast key="globalMessage"></p-toast>
-<!-- Add this at the top to show notifications -->
 
 <div class="p-8 max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
   <h2 class="text-2xl font-bold text-gray-700 mb-6">Deduction Form</h2>
 
   <form [formGroup]="deductionForm" (ngSubmit)="submit()" class="space-y-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Allowance ID</label>
-        <input
-          pInputText
-          formControlName="allowanceId"
-          type="number"
-          class="p-2 border rounded-md"
-        />
-      </div> -->
-
+      <!-- #region Deduction Name -->
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Deduction Name</label>
         <input
@@ -29,21 +19,16 @@
             deductionForm.controls['deductionName'].invalid &&
             deductionForm.get('deductionName')?.dirty
           "
-          class="p-text"
+          class="p-text text-red-600"
         >
-          Deduction Name Is Required
+          Deduction Name is required.
         </small>
       </div>
+      <!-- #endregion Deduction Name -->
 
-      <div class="flex flex-col gap">
-        <label class="text-gray-600 font-medium">Company Id</label>
-        <!-- <input
-          pInputTextarea
-          formControlName="companyId"
-          type="text"
-          class="p-2 border rounded-md"
-        /> -->
-
+      <!-- #region Company Id -->
+      <div class="flex flex-col gap-1">
+        <label class="text-gray-600 font-medium">Company</label>
         <p-select
           [options]="companies"
           [(ngModel)]="selectedCompany"
@@ -53,15 +38,13 @@
           placeholder="Select a Company"
           [ngModelOptions]="{ standalone: true }"
           [filter]="true"
-          filterBy="deptName"
           [showClear]="true"
           [ngClass]="{
             'ng-dirty ng-invalid':
-              deductionForm.controls['branchId'].invalid &&
-              deductionForm.get('branchId')?.dirty
+              deductionForm.controls['companyId'].invalid &&
+              deductionForm.get('companyId')?.dirty
           }"
-        >
-        </p-select>
+        ></p-select>
         <small
           *ngIf="
             deductionForm.controls['companyId'].invalid &&
@@ -69,30 +52,30 @@
           "
           class="p-text text-red-600"
         >
-          company Is Required.
+          Company is required.
         </small>
       </div>
+      <!-- #endregion Company Id -->
 
+      <!-- #region Branch Id -->
       <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Branch Id</label>
+        <label class="text-gray-600 font-medium">Branch</label>
         <p-select
           [options]="branches"
           [(ngModel)]="selectedBranch"
           (onChange)="onBranchChange()"
           optionLabel="branchName"
           dataKey="branchId"
-          placeholder="Select a branch"
+          placeholder="Select a Branch"
           [ngModelOptions]="{ standalone: true }"
           [filter]="true"
-          filterBy="deptName"
           [showClear]="true"
           [ngClass]="{
             'ng-dirty ng-invalid':
               deductionForm.controls['branchId'].invalid &&
               deductionForm.get('branchId')?.dirty
           }"
-        >
-        </p-select>
+        ></p-select>
         <small
           *ngIf="
             deductionForm.controls['branchId'].invalid &&
@@ -100,19 +83,14 @@
           "
           class="p-text text-red-600"
         >
-          branch Is Required.
+          Branch is required.
         </small>
       </div>
+      <!-- #endregion Branch Id -->
 
+      <!-- #region Department Id -->
       <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Dept Id</label>
-        <!-- <input
-          pInputText
-          formControlName="deptId"
-          type="number"
-          class="p-2 border rounded-md"
-        /> -->
-
+        <label class="text-gray-600 font-medium">Department</label>
         <p-select
           [options]="depts"
           [(ngModel)]="selectedDept"
@@ -122,15 +100,13 @@
           placeholder="Select a Department"
           [ngModelOptions]="{ standalone: true }"
           [filter]="true"
-          filterBy="deptName"
           [showClear]="true"
           [ngClass]="{
             'ng-dirty ng-invalid':
               deductionForm.controls['deptId'].invalid &&
               deductionForm.get('deptId')?.dirty
           }"
-        >
-        </p-select>
+        ></p-select>
         <small
           *ngIf="
             deductionForm.controls['deptId'].invalid &&
@@ -138,10 +114,12 @@
           "
           class="p-text text-red-600"
         >
-          Department Is Required.
+          Department is required.
         </small>
       </div>
+      <!-- #endregion Department Id -->
 
+      <!-- #region Description -->
       <div class="md:col-span-2 flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Description</label>
         <p-editor
@@ -149,28 +127,23 @@
           [style]="{ height: '320px' }"
         ></p-editor>
       </div>
+      <!-- #endregion Description -->
 
-      <!-- <div class="md:col-span-2 flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Description</label>
-
-        <textarea
-          pInputTextarea
-          formControlName="description"
-          rows="3"
-          class="p-2 border rounded-md"
-        ></textarea>
-      </div> -->
-
+      <!-- #region Is Default -->
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Is Default</label>
         <p-toggleswitch formControlName="isDefault" />
       </div>
+      <!-- #endregion Is Default -->
 
+      <!-- #region Status -->
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Status</label>
         <p-toggleswitch formControlName="status" />
       </div>
+      <!-- #endregion Status -->
 
+      <!-- #region Remark -->
       <div class="md:col-span-2 flex flex-col gap-1">
         <label class="text-gray-600 font-medium">Remark</label>
         <textarea
@@ -180,8 +153,10 @@
           class="p-2 border rounded-md"
         ></textarea>
       </div>
+      <!-- #endregion Remark -->
     </div>
 
+    <!-- #region Submit Button -->
     <div class="text-center mt-6">
       <button
         pButton
@@ -193,5 +168,6 @@
         class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all"
       ></button>
     </div>
+    <!-- #endregion Submit Button -->
   </form>
 </div>

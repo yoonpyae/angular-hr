@@ -79,28 +79,6 @@ export class DeductionComponent implements OnInit {
   }
 
   delete(deduction: DeductionModel): void {
-    // if (
-    //   confirm(`Are you sure you want to delete ${deduction.deductionName}?`)
-    // ) {
-    //   this.deductionService.delete(deduction.deductionId).subscribe(
-    //     (res) => {
-    //       this.loadData();
-    //       this.messageService.add({
-    //         severity: 'success',
-    //         summary: 'Deleted',
-    //         detail: `Allowance ${deduction.deductionName} has been deleted.`,
-    //       });
-    //     },
-    //     (error) => {
-    //       this.messageService.add({
-    //         severity: 'error',
-    //         summary: 'Error',
-    //         detail: `Failed to delete ${deduction.deductionName}.`,
-    //       });
-    //     }
-    //   );
-    // }
-
     this.confirmationService.confirm({
       message: 'Are You Sure Want To Delete?',
       header: 'Delete Confirmation',
