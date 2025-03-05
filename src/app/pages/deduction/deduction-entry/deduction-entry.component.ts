@@ -143,6 +143,7 @@ export class DeductionEntryComponent implements OnInit {
     }
     if (!this.isEdit) this.deductionForm.reset();
   }
+
   getCompanies() {
     this.companyService.get().subscribe({
       next: (res) => {
@@ -196,7 +197,7 @@ export class DeductionEntryComponent implements OnInit {
     }
   }
 
-  // Department
+  // #region Department
   getDepartments(branchId: number, companyId: string): void {
     this.deptService.getbyBranchIdbyCompanyId(branchId, companyId).subscribe({
       next: (res) => {
@@ -216,6 +217,7 @@ export class DeductionEntryComponent implements OnInit {
       this.deductionForm.controls.deptId.setValue(this.selectedDept.deptId);
     }
   }
+  // #endregion
 
   submit(): void {
     console.log('Form Submitted:', this.deductionForm.value);
