@@ -170,6 +170,7 @@ export class JobOpeningEntryComponent implements OnInit {
     if (!this.isEdit) this.jobOpeingForm.reset();
   }
 
+  // #region Company
   getCompanies() {
     this.companyService.get().subscribe({
       next: (res) => {
@@ -193,8 +194,9 @@ export class JobOpeningEntryComponent implements OnInit {
       this.getBranches(this.selectedCompany.companyId);
     }
   }
+  // #endregion
 
-  // Branch
+  // #region Branch
   getBranches(companyId: string): void {
     this.branchService.getByCompanyID(companyId).subscribe({
       next: (res) => {
@@ -222,6 +224,7 @@ export class JobOpeningEntryComponent implements OnInit {
       );
     }
   }
+  // #endregion
 
   // #region Department
   getDepartments(branchId: number, companyId: string): void {
@@ -251,7 +254,7 @@ export class JobOpeningEntryComponent implements OnInit {
   }
   // #endregion
 
-  // Position
+  // #region Position
   getPositions(companyId: string, branchId: number, deptId: number) {
     this.positionService
       .getbyBranchIdbyCompanyIdbyDeptId(companyId, branchId, deptId)
@@ -275,4 +278,5 @@ export class JobOpeningEntryComponent implements OnInit {
       );
     }
   }
+  // #endregion
 }
