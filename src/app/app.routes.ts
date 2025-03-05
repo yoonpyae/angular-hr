@@ -11,6 +11,7 @@ import { DepartmentComponent } from './pages/department/department.component';
 import { DeductionComponent } from './pages/deduction/deduction.component';
 import { DeductionEntryComponent } from './pages/deduction/deduction-entry/deduction-entry.component';
 import { JobOpeningComponent } from './pages/job-opening/job-opening.component';
+import { JobOpeningEntryComponent } from './pages/job-opening/job-opening-entry/job-opening-entry.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -85,6 +86,19 @@ export const routes: Routes = [
 
   {
     path: 'jobOpening',
-    component: JobOpeningComponent,
+    children: [
+      {
+        path: '',
+        component: JobOpeningComponent,
+      },
+      {
+        path: 'entry',
+        component: JobOpeningEntryComponent,
+      },
+      {
+        path: 'entry/:id',
+        component: JobOpeningEntryComponent,
+      },
+    ],
   },
 ];
