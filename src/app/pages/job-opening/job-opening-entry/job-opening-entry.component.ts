@@ -279,4 +279,113 @@ export class JobOpeningEntryComponent implements OnInit {
     }
   }
   // #endregion
+
+  submit(): void {
+    console.log('Form Submitted:', this.jobOpeingForm.value);
+
+    if (this.jobOpeingForm.valid) {
+      var model: JobOpeningModel = {
+        id: this.jobOpeingForm.controls.id.value ?? 0,
+        title: this.jobOpeingForm.controls.title.value ?? '',
+        description: this.jobOpeingForm.controls.description.value ?? '',
+        noOfApplicants: this.jobOpeingForm.controls.noOfApplicants.value ?? 0,
+        startOn: this.datepipe.transform(
+          this.jobOpeingForm.controls.startOn.value,
+          'yyyy-MM-dd'
+        ),
+        endOn: this.datepipe.transform(
+          this.jobOpeingForm.controls.endOn.value,
+          'yyyy-MM-dd'
+        ),
+        companyId: this.jobOpeingForm.controls.companyId.value ?? '',
+        branchId: this.jobOpeingForm.controls.branchId.value ?? 0,
+        deptId: this.jobOpeingForm.controls.deptId.value ?? 0,
+        positionId: this.jobOpeingForm.controls.positionId.value ?? 0,
+        openingStatus: this.jobOpeingForm.controls.openingStatus.value ?? true,
+        createdOn: this.datepipe.transform(
+          this.jobOpeingForm.controls.createdOn.value,
+          'yyyy-MM-dd'
+        ),
+        createdBy: this.jobOpeingForm.controls.createdBy.value ?? '',
+        updatedOn: this.datepipe.transform(
+          this.jobOpeingForm.controls.updatedOn.value,
+          'yyyy-MM-dd'
+        ),
+        updatedBy: this.jobOpeingForm.controls.updatedBy.value ?? '',
+        deletedOn: this.datepipe.transform(
+          this.jobOpeingForm.controls.deletedOn.value,
+          'yyyy-MM-dd'
+        ),
+        deletedBy: this.jobOpeingForm.controls.deletedBy.value ?? '',
+        remark: this.jobOpeingForm.controls.remark.value ?? '',
+      };
+
+      if (!this.isEdit) {
+        model.id = 0;
+        model.createdOn = this.datepipe.transform(
+          new Date(),
+          'yyyy-MM-ddTHH:mm:ss'
+        );
+        model.createdBy = 'devAdmin';
+
+        this.isSubmitting = true;
+        this.jobOpeningService.create(model).subscribe({
+          next: (res) => {
+            console.log('API Response:', res);
+            if (res.success) {
+              this.modalVisible = false;
+
+              this.messageService.add({
+                key: 'globalMessage',
+                severity: 'info',
+                summary: 'Success',
+                detail: res.message.toString(),
+              });
+
+              this.isSubmitting = false;
+              this.router.navigate(['/jobOpening']); // Navigate to jobOpening page
+            }
+          },
+          error: (err) => {
+            this.isSubmitting = false;
+            console.error('Error:', err);
+          },
+        });
+      }
+      // else {
+      //   model.updatedOn = this.datepipe.transform(
+      //     new Date(),
+      //     'yyyy-MM-ddTHH:mm:ss'
+      //   );
+      //   model.updatedBy = 'Admin';
+      //   this.jobOpeningService.update(this.id, model).subscribe({
+      //     next: (res) => {
+      //       console.log('API Response:', res);
+      //       if (res.success) {
+      //         this.modalVisible = false;
+
+      //         this.messageService.add({
+      //           key: 'globalMessage',
+      //           severity: 'info',
+      //           summary: 'Success',
+      //           detail: res.message.toString(),
+      //         });
+
+      //         this.isSubmitting = false;
+      //         this.router.navigate(['/jobOpening']); // Navigate to jobOpening page
+      //       }
+      //     },
+      //     error: (err) => {
+      //       this.isSubmitting = false;
+      //       console.error('Error:', err);
+      //     },
+      //   });
+      // }
+    } else {
+      Object.keys(this.jobOpeingForm.controls).forEach((field) => {
+        const control = this.jobOpeingForm.get(field);
+        control?.markAsDirty({ onlySelf: true });
+      });
+    }
+  }
 }

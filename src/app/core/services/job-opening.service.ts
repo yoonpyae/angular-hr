@@ -22,7 +22,7 @@ export class JobOpeningService {
     return this.http.get<RootModel>(url);
   }
 
-  create(id: number, model: JobOpeningModel): Observable<RootModel> {
+  create(model: JobOpeningModel): Observable<RootModel> {
     let url: string = `${enviornment.apiUrl}/api/JobOpening`;
     return this.http.post<RootModel>(url, JSON.stringify(model), {
       headers: {

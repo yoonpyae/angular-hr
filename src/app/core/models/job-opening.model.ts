@@ -3,8 +3,8 @@ export interface JobOpeningModel {
   title: string;
   description: string;
   noOfApplicants: number;
-  startOn: null;
-  endOn: null;
+  startOn: null | string;
+  endOn: null | string;
   companyId: string;
   branchId: number;
   deptId: number;
