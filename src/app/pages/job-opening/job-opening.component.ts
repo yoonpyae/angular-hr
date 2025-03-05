@@ -57,6 +57,16 @@ export class JobOpeningComponent implements OnInit {
   }
 
   loadData() {
-    throw new Error('Method not implemented.');
+    this.jobOpeningService.get().subscribe({
+      next: (res) => {
+        this.jobOpening = res.data as ViJobOpeningModel[];
+      },
+      error: (err) => {
+        this.isloading = false;
+      },
+      complete: () => {
+        this.isloading = false;
+      },
+    });
   }
 }
