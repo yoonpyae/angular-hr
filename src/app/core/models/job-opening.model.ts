@@ -18,9 +18,9 @@ export interface ViJobOpeningModel {
   createdBy: null | string;
   updatedOn: null | string;
   updatedBy: null | string;
-  deletedOn: null;
-  deletedBy: null;
-  remark: null;
+  deletedOn: null | string;
+  deletedBy: null | string;
+  remark: null | string;
 }
 
 export interface JobOpeningModel {
@@ -35,11 +35,11 @@ export interface JobOpeningModel {
   deptId: number;
   positionId: number;
   openingStatus: boolean;
-  createdOn: null;
-  createdBy: null;
-  updatedOn: string;
-  updatedBy: string;
-  deletedOn: string;
-  deletedBy: string;
-  remark: null;
+  createdOn: null | string;
+  createdBy: null | string;
+  updatedOn: null | string;
+  updatedBy: null | string;
+  deletedOn: null | string;
+  deletedBy: null | string;
+  remark: null | string;
 }
