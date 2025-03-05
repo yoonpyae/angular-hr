@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialog } from 'primeng/confirmdialog';
@@ -15,6 +15,7 @@ import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { ViJobOpeningModel } from '../../core/models/job-opening.model';
+import { JobOpeningService } from '../../core/services/job-opening.service';
 
 @Component({
   selector: 'app-job-opening',
@@ -38,8 +39,19 @@ import { ViJobOpeningModel } from '../../core/models/job-opening.model';
   styleUrl: './job-opening.component.scss',
   providers: [MessageService, ConfirmationService],
 })
-export class JobOpeningComponent {
+export class JobOpeningComponent implements OnInit {
   jobOpening: ViJobOpeningModel[] = [];
   selectedJobOpeing!: ViJobOpeningModel;
   isloading: boolean = true;
+
+  constructor(
+    private jobOpeningService: JobOpeningService,
+    private route: Router,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
+
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 }
