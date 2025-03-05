@@ -52,6 +52,11 @@ export class JobOpeningComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadData();
+    console.log('JobOpening:', this.jobOpening);
+  }
+
+  loadData() {
     throw new Error('Method not implemented.');
   }
 }
