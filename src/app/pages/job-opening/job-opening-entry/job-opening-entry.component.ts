@@ -1,6 +1,11 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { EditorModule } from 'primeng/editor';
@@ -71,6 +76,28 @@ export class JobOpeningEntryComponent implements OnInit {
     private messageService: MessageService,
     private router: Router
   ) {}
+
+  private formBuilder = inject(FormBuilder);
+  jobOpeingForm = this.formBuilder.group({
+    id: [0],
+    title: ['', Validators.required],
+    description: [''],
+    noOfApplicants: [0],
+    startOn: [''],
+    endOn: [''],
+    companyId: ['', Validators.required],
+    branchId: [0, Validators.required],
+    deptId: [0, Validators.required],
+    positionId: [0, Validators.required],
+    openingStatus: [true],
+    createdOn: [''],
+    createdBy: [''],
+    updatedOn: [''],
+    updatedBy: [''],
+    deletedOn: [''],
+    deletedBy: [''],
+    remark: [''],
+  });
 
   ngOnInit(): void {
     throw new Error('Method not implemented.');
