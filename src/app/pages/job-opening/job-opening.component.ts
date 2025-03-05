@@ -14,7 +14,10 @@ import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
-import { ViJobOpeningModel } from '../../core/models/job-opening.model';
+import {
+  JobOpeningModel,
+  ViJobOpeningModel,
+} from '../../core/models/job-opening.model';
 import { JobOpeningService } from '../../core/services/job-opening.service';
 
 @Component({
@@ -68,6 +71,34 @@ export class JobOpeningComponent implements OnInit {
       complete: () => {
         this.isloading = false;
       },
+    });
+  }
+
+  update(jobOpening: JobOpeningModel): void {
+    this.route.navigate(['/jobOpening/entry', jobOpening.id]);
+  }
+
+  delete(jobOpening: JobOpeningModel): void {
+    this.confirmationService.confirm({
+      message: 'Are You Sure Want To Delete?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        this.jobOpeningService.delete(jobOpening.id).subscribe((res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Confirmed',
+            detail: `jobOpening ${jobOpening.title} has been deleted.`,
+          });
+          this.loadData();
+          //deselect
+          this.selectedJobOpeing = null as any;
+        });
+      },
+      reject: () => {
+        this.selectedJobOpeing = null as any;
+      },
+      key: 'positionDialog',
     });
   }
 

@@ -354,36 +354,35 @@ export class JobOpeningEntryComponent implements OnInit {
             console.error('Error:', err);
           },
         });
+      } else {
+        model.updatedOn = this.datepipe.transform(
+          new Date(),
+          'yyyy-MM-ddTHH:mm:ss'
+        );
+        model.updatedBy = 'Admin';
+        this.jobOpeningService.update(this.joID, model).subscribe({
+          next: (res) => {
+            console.log('API Response:', res);
+            if (res.success) {
+              this.modalVisible = false;
+
+              this.messageService.add({
+                key: 'globalMessage',
+                severity: 'info',
+                summary: 'Success',
+                detail: res.message.toString(),
+              });
+
+              this.isSubmitting = false;
+              this.router.navigate(['/jobOpening']); // Navigate to jobOpening page
+            }
+          },
+          error: (err) => {
+            this.isSubmitting = false;
+            console.error('Error:', err);
+          },
+        });
       }
-      // else {
-      //   model.updatedOn = this.datepipe.transform(
-      //     new Date(),
-      //     'yyyy-MM-ddTHH:mm:ss'
-      //   );
-      //   model.updatedBy = 'Admin';
-      //   this.jobOpeningService.update(this.id, model).subscribe({
-      //     next: (res) => {
-      //       console.log('API Response:', res);
-      //       if (res.success) {
-      //         this.modalVisible = false;
-
-      //         this.messageService.add({
-      //           key: 'globalMessage',
-      //           severity: 'info',
-      //           summary: 'Success',
-      //           detail: res.message.toString(),
-      //         });
-
-      //         this.isSubmitting = false;
-      //         this.router.navigate(['/jobOpening']); // Navigate to jobOpening page
-      //       }
-      //     },
-      //     error: (err) => {
-      //       this.isSubmitting = false;
-      //       console.error('Error:', err);
-      //     },
-      //   });
-      // }
     } else {
       Object.keys(this.jobOpeingForm.controls).forEach((field) => {
         const control = this.jobOpeingForm.get(field);
