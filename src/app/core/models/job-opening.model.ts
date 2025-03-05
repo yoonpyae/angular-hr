@@ -22,3 +22,24 @@ export interface ViJobOpeningModel {
   deletedBy: null;
   remark: null;
 }
+
+export interface JobOpeningModel {
+  id: number;
+  title: string;
+  description: string;
+  noOfApplicants: number;
+  startOn: null;
+  endOn: null;
+  companyId: string;
+  branchId: number;
+  deptId: number;
+  positionId: number;
+  openingStatus: boolean;
+  createdOn: null;
+  createdBy: null;
+  updatedOn: string;
+  updatedBy: string;
+  deletedOn: string;
+  deletedBy: string;
+  remark: null;
+}
