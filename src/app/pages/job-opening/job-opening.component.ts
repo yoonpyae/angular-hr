@@ -60,6 +60,7 @@ export class JobOpeningComponent implements OnInit {
     this.jobOpeningService.get().subscribe({
       next: (res) => {
         this.jobOpening = res.data as ViJobOpeningModel[];
+        console.log(this.jobOpening);
       },
       error: (err) => {
         this.isloading = false;
@@ -68,5 +69,14 @@ export class JobOpeningComponent implements OnInit {
         this.isloading = false;
       },
     });
+  }
+
+  getSeverity(status: boolean) {
+    switch (status) {
+      case true:
+        return 'success';
+      case false:
+        return 'danger';
+    }
   }
 }
