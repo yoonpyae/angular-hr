@@ -8,12 +8,12 @@ import {
 } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { Editor, EditorModule } from 'primeng/editor';
+import { EditorModule } from 'primeng/editor';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { Select, SelectModule } from 'primeng/select';
+import { SelectModule } from 'primeng/select';
 import { ToastModule } from 'primeng/toast';
-import { ToggleSwitch, ToggleSwitchModule } from 'primeng/toggleswitch';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 import { ViCompanyModel } from '../../../core/models/company.model';
 import { BranchModel } from '../../../core/models/branch.model';
 import { DepartmentModel } from '../../../core/models/department.model';
@@ -23,7 +23,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BranchService } from '../../../core/services/branch.service';
 import { CompanyService } from '../../../core/services/company.service';
 import { DepartmentService } from '../../../core/services/department.service';
-import { PositionService } from '../../../core/services/position.service';
 
 @Component({
   selector: 'app-deduction-entry',
@@ -66,7 +65,6 @@ export class DeductionEntryComponent implements OnInit {
     private companyService: CompanyService,
     private branchService: BranchService,
     private deptService: DepartmentService,
-    private positionService: PositionService,
     private route: ActivatedRoute,
     private datepipe: DatePipe,
     private messageService: MessageService,

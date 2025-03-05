@@ -49,7 +49,7 @@ export class DeductionComponent implements OnInit {
 
   constructor(
     private deductionService: DeductionService,
-    private rout: Router,
+    private route: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
@@ -63,7 +63,6 @@ export class DeductionComponent implements OnInit {
     this.deductionService.get().subscribe({
       next: (res) => {
         this.deduction = res.data as ViDeductionModel[];
-        console.error(this.deduction);
       },
       error: (err) => {
         this.loading = false;
@@ -75,7 +74,7 @@ export class DeductionComponent implements OnInit {
   }
 
   update(deduction: DeductionModel): void {
-    this.rout.navigate(['/deduction/entry', deduction.deductionId]);
+    this.route.navigate(['/deduction/entry', deduction.deductionId]);
   }
 
   delete(deduction: DeductionModel): void {
