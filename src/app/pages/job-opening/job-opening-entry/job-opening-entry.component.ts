@@ -102,4 +102,110 @@ export class JobOpeningEntryComponent implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
+
+  getCompanies() {
+    this.companyService.get().subscribe({
+      next: (res) => {
+        this.companies = res.data.companies as ViCompanyModel[];
+        if (this.isEdit) {
+          this.selectedCompany = this.companies.filter(
+            (x) => x.companyId == this.model.companyId
+          )[0];
+          this.onCompanyChange();
+        }
+      },
+      error: () => {},
+    });
+  }
+
+  onCompanyChange(): void {
+    if (this.selectedCompany !== undefined && this.selectedCompany !== null) {
+      this.jobOpeingForm.controls.companyId.setValue(
+        this.selectedCompany.companyId
+      );
+      this.getBranches(this.selectedCompany.companyId);
+    }
+  }
+
+  // Branch
+  getBranches(companyId: string): void {
+    this.branchService.getByCompanyID(companyId).subscribe({
+      next: (res) => {
+        this.branches = res.data as BranchModel[];
+        if (this.isEdit) {
+          this.selectedBranch = this.branches.filter(
+            (x) => x.branchId == this.model.branchId
+          )[0];
+          this.onBranchChange();
+        }
+      },
+      error: () => {},
+    });
+  }
+
+  onBranchChange(): void {
+    if (this.selectedBranch !== undefined && this.selectedBranch !== null) {
+      this.jobOpeingForm.controls.branchId.setValue(
+        this.selectedBranch.branchId
+      );
+
+      this.getDepartments(
+        this.selectedBranch.branchId,
+        this.selectedCompany.companyId
+      );
+    }
+  }
+
+  // #region Department
+  getDepartments(branchId: number, companyId: string): void {
+    this.deptService.getbyBranchIdbyCompanyId(branchId, companyId).subscribe({
+      next: (res) => {
+        this.depts = res.data as DepartmentModel[];
+        if (this.isEdit) {
+          this.selectedDept = this.depts.filter(
+            (x) => x.deptId == this.model.deptId
+          )[0];
+          this.onDeptChange();
+        }
+      },
+    });
+  }
+
+  onDeptChange() {
+    if (this.selectedDept !== undefined && this.selectedDept !== null) {
+      this.jobOpeingForm.controls.deptId.setValue(this.selectedDept.deptId);
+
+      this.getPositions(
+        this.selectedCompany.companyId,
+        this.selectedBranch.branchId,
+        this.selectedDept.deptId
+      );
+    }
+  }
+  // #endregion
+
+  // Position
+  getPositions(companyId: string, branchId: number, deptId: number) {
+    this.positionService
+      .getbyBranchIdbyCompanyIdbyDeptId(companyId, branchId, deptId)
+      .subscribe({
+        next: (res) => {
+          this.positions = res.data as PositionModel[];
+          if (this.isEdit) {
+            this.selectedPosition = this.positions.filter(
+              (x) => x.positionId == this.model.positionId
+            )[0];
+            this.onPositionChange();
+          }
+        },
+      });
+  }
+
+  onPositionChange() {
+    if (this.selectedPosition !== undefined && this.selectedPosition !== null) {
+      this.jobOpeingForm.controls.positionId.setValue(
+        this.selectedPosition.positionId
+      );
+    }
+  }
 }
