@@ -30,4 +30,18 @@ export class JobOpeningService {
       },
     });
   }
+
+  update(id: number, model: JobOpeningModel): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/JobOpening/${id}`;
+    return this.http.put<RootModel>(url, JSON.stringify(model), {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+
+  delete(id: number): Observable<RootModel> {
+    let url: string = `${enviornment.apiUrl}/api/JobOpening/${id}`;
+    return this.http.delete<RootModel>(url);
+  }
 }
