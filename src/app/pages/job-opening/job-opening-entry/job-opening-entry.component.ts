@@ -100,7 +100,74 @@ export class JobOpeningEntryComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.jobOpeingForm.get('openingStatus')?.valueChanges.subscribe((value) => {
+      console.log('openingStatus changed:', value);
+    });
+
+    if (!this.isEdit)
+      this.joID = parseInt(this.route.snapshot.paramMap.get('id') ?? '');
+
+    if (this.joID > 0) {
+      this.isEdit = true;
+      this.jobOpeningService.getbyid(this.joID).subscribe((res) => {
+        this.model = res.data as JobOpeningModel;
+        console.log(this.model);
+
+        this.jobOpeingForm.controls.id.setValue(this.model.id);
+        this.jobOpeingForm.controls.title.setValue(this.model.title);
+        this.jobOpeingForm.controls.description.setValue(
+          this.model.description
+        );
+        this.jobOpeingForm.controls.noOfApplicants.setValue(
+          this.model.noOfApplicants
+        );
+        this.jobOpeingForm.controls.startOn.setValue(
+          this.model.startOn
+            ? this.datepipe.transform(this.model.startOn, 'yyyy-MM-dd')
+            : null
+        );
+        this.jobOpeingForm.controls.endOn.setValue(
+          this.model.endOn
+            ? this.datepipe.transform(this.model.endOn, 'yyyy-MM-dd')
+            : null
+        );
+        this.jobOpeingForm.controls.companyId.setValue(this.model.companyId);
+        this.jobOpeingForm.controls.branchId.setValue(this.model.branchId);
+        this.jobOpeingForm.controls.deptId.setValue(this.model.deptId);
+        this.jobOpeingForm.controls.positionId.setValue(this.model.positionId);
+        this.jobOpeingForm.controls.openingStatus.setValue(
+          this.model.openingStatus
+        );
+        this.jobOpeingForm.controls.createdOn.setValue(
+          this.model.createdOn
+            ? this.datepipe.transform(this.model.createdOn, 'yyyy-MM-dd')
+            : null
+        );
+
+        this.jobOpeingForm.controls.createdBy.setValue(this.model.createdBy);
+        this.jobOpeingForm.controls.updatedOn.setValue(
+          this.model.updatedOn
+            ? this.datepipe.transform(this.model.updatedOn, 'yyyy-MM-dd')
+            : null
+        );
+
+        this.jobOpeingForm.controls.updatedBy.setValue(this.model.updatedBy);
+        this.jobOpeingForm.controls.deletedOn.setValue(
+          this.model.deletedOn
+            ? this.datepipe.transform(this.model.deletedOn, 'yyyy-MM-dd')
+            : null
+        );
+        this.jobOpeingForm.controls.deletedBy.setValue(this.model.deletedBy);
+        this.jobOpeingForm.controls.remark.setValue(this.model.remark);
+
+        // Fetch companies and set selected company
+        this.getCompanies();
+      });
+    } else {
+      // Fetch companies if not editing
+      this.getCompanies();
+    }
+    if (!this.isEdit) this.jobOpeingForm.reset();
   }
 
   getCompanies() {

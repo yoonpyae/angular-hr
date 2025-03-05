@@ -98,9 +98,9 @@ export class AllowanceEntryComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    // this.allowanceForm.get('status')?.valueChanges.subscribe((value) => {
-    //   console.log('Status changed:', value);
-    // });
+    this.allowanceForm.get('status')?.valueChanges.subscribe((value) => {
+      console.log('Status changed:', value);
+    });
 
     if (!this.isEdit)
       this.allowanceForm
