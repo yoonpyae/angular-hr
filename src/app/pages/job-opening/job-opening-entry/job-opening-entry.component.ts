@@ -129,10 +129,19 @@ export class JobOpeningEntryComponent implements OnInit {
             ? this.datepipe.transform(this.model.startOn, 'yyyy-MM-dd')
             : null
         );
+        console.log(
+          'Transformed startOn:',
+          this.datepipe.transform(this.model.startOn, 'yyyy-MM-dd')
+        );
+
         this.jobOpeingForm.controls.endOn.setValue(
           this.model.endOn
             ? this.datepipe.transform(this.model.endOn, 'yyyy-MM-dd')
             : null
+        );
+        console.log(
+          'Transformed endOn:',
+          this.datepipe.transform(this.model.endOn, 'yyyy-MM-dd')
         );
         this.jobOpeingForm.controls.companyId.setValue(this.model.companyId);
         this.jobOpeingForm.controls.branchId.setValue(this.model.branchId);

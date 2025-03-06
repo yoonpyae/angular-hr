@@ -57,7 +57,10 @@
           class="p-2 border rounded-md"
         /> -->
 
-        <p-datepicker formControlName="startOn" />
+        <p-datepicker
+          formControlName="startOn"
+          [showIcon]="true"
+        ></p-datepicker>
         <small
           *ngIf="
             jobOpeingForm.controls['startOn'].invalid &&
@@ -80,7 +83,7 @@
                   class="p-2 border rounded-md"
                 /> -->
 
-        <p-datepicker formControlName="endOn" />
+        <p-datepicker formControlName="endOn" [showIcon]="true"></p-datepicker>
         <small
           *ngIf="
             jobOpeingForm.controls['endOn'].invalid &&
