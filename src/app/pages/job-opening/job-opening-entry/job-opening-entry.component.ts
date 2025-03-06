@@ -86,8 +86,8 @@ export class JobOpeningEntryComponent implements OnInit {
     title: ['', Validators.required],
     description: [''],
     noOfApplicants: [0],
-    startOn: [''],
-    endOn: [''],
+    startOn: [null as Date | null],
+    endOn: [null as Date | null],
     companyId: ['', Validators.required],
     branchId: [0, Validators.required],
     deptId: [0, Validators.required],
@@ -125,20 +125,18 @@ export class JobOpeningEntryComponent implements OnInit {
           this.model.noOfApplicants
         );
         this.jobOpeingForm.controls.startOn.setValue(
-          this.model.startOn
-            ? this.datepipe.transform(this.model.startOn, 'yyyy-MM-dd')
-            : null
+          this.model.startOn ? new Date(this.model.startOn) : null
         );
+
         console.log(
           'Transformed startOn:',
           this.datepipe.transform(this.model.startOn, 'yyyy-MM-dd')
         );
 
         this.jobOpeingForm.controls.endOn.setValue(
-          this.model.endOn
-            ? this.datepipe.transform(this.model.endOn, 'yyyy-MM-dd')
-            : null
+          this.model.endOn ? new Date(this.model.endOn) : null
         );
+
         console.log(
           'Transformed endOn:',
           this.datepipe.transform(this.model.endOn, 'yyyy-MM-dd')
