@@ -2,11 +2,26 @@
 <h1 class="text-4xl font-bold text-center mb-8">deduction List</h1>
 
 <div class="card">
+  <p-toast />
+  <p-toolbar styleClass="mb-6">
+    <ng-template #start>
+      <p-button
+        severity="danger"
+        label="Delete"
+        icon="pi pi-trash"
+        outlined
+        (onClick)="deleteSelectedDeductions()"
+        [disabled]="!selectedDeduction || !selectedDeduction.length"
+      />
+    </ng-template>
+  </p-toolbar>
+
   <p-table
     #dt1
     [value]="deduction"
     [tableStyle]="{ 'min-width': '50rem' }"
     [scrollable]="true"
+    [filterDelay]="0"
     [globalFilterFields]="[
       'deductionId',
       'deductionName',
@@ -25,10 +40,13 @@
     ]"
     [paginator]="true"
     dataKey="deductionId"
-    [rows]="8"
+    [rowHover]="true"
+    [rows]="10"
     [(selection)]="selectedDeduction"
-    showGridlines
-    [rowsPerPageOptions]="[8, 15, 30]"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [loading]="loading"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">
@@ -59,6 +77,9 @@
 
     <ng-template #header>
       <tr class="bg-gray-100 whitespace-nowrap">
+        <th>
+          <p-tableHeaderCheckbox />
+        </th>
         <!-- <th pSortableColumn="deductionId">
           deduction ID
           <p-sortIcon field="deductionId" />
@@ -124,7 +145,10 @@
     </ng-template>
 
     <ng-template #body let-deduction>
-      <tr class="whitespace-nowrap">
+      <tr class="whitespace-nowrap, p-selectable-row">
+        <td>
+          <p-tableCheckbox [value]="deduction" />
+        </td>
         <!-- <td>{{ deduction.deductionId }}</td> -->
         <td pFrozenColumn>{{ deduction.deductionName }}</td>
         <td>{{ deduction.companyName }}</td>
@@ -152,14 +176,21 @@
         <td>{{ deduction.deletedBy }}</td>
         <td>{{ deduction.remark }}</td>
         <td>
-          <p-button variant="text" (onClick)="update(deduction)">Edit</p-button>
           <p-button
-            variant="text"
+            icon="pi pi-pencil"
+            class="mr-2"
             [rounded]="true"
+            [outlined]="true"
+            (onClick)="update(deduction)"
+          />
+
+          <p-button
+            icon="pi pi-trash"
             severity="danger"
+            [rounded]="true"
+            [outlined]="true"
             (onClick)="delete(deduction)"
-            >Delete</p-button
-          >
+          />
         </td>
       </tr>
     </ng-template>
@@ -170,6 +201,11 @@
           No deductions found.
         </td>
       </tr>
+    </ng-template>
+    <ng-template #summary>
+      <div class="flex items-center justify-between">
+        In total there are {{ deduction ? deduction.length : 0 }} deductions.
+      </div>
     </ng-template>
   </p-table>
 </div>

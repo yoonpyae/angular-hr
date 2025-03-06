@@ -91,10 +91,6 @@ export class DeductionEntryComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.deductionForm.get('status')?.valueChanges.subscribe((value) => {
-      console.log('Status changed:', value);
-    });
-
     if (!this.isEdit)
       this.deductionID = parseInt(this.route.snapshot.paramMap.get('id') ?? '');
 

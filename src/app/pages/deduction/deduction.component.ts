@@ -19,6 +19,8 @@ import {
 } from '../../core/models/deduction.model';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { DeductionService } from '../../core/services/deduction.service';
+import { DragDropModule } from 'primeng/dragdrop';
+import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-deduction',
@@ -37,6 +39,8 @@ import { DeductionService } from '../../core/services/deduction.service';
     DropdownModule,
     FormsModule,
     ConfirmDialog,
+    DragDropModule,
+    ToolbarModule,
   ],
   templateUrl: './deduction.component.html',
   styleUrl: './deduction.component.scss',
@@ -44,7 +48,7 @@ import { DeductionService } from '../../core/services/deduction.service';
 })
 export class DeductionComponent implements OnInit {
   deduction: ViDeductionModel[] = [];
-  selectedDeduction!: ViDeductionModel;
+  selectedDeduction!: ViDeductionModel[] | null;
   loading: boolean = true;
 
   constructor(
@@ -101,6 +105,26 @@ export class DeductionComponent implements OnInit {
     });
   }
 
+  deleteSelectedDeductions() {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete the selected deductions?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.deduction = this.deduction.filter(
+          (val) => !this.selectedDeduction?.includes(val)
+        );
+        this.selectedDeduction = null;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Products Deleted',
+          life: 3000,
+        });
+      },
+    });
+  }
+
   getSeverity(status: boolean) {
     switch (status) {
       case true:
@@ -108,5 +132,13 @@ export class DeductionComponent implements OnInit {
       case false:
         return 'danger';
     }
+  }
+
+  onReorder(event: any): void {
+    // Update the deduction array with the new order
+    this.deduction = [...event.value];
+
+    // Log the new order for debugging
+    console.log('Reordered Deductions:', this.deduction);
   }
 }
