@@ -235,7 +235,7 @@ export class DeductionEntryComponent implements OnInit {
         deptId: this.deductionForm.controls.deptId.value ?? 0,
         isDefault: this.deductionForm.controls.isDefault.value ?? true,
         description: this.deductionForm.controls.description.value ?? '',
-        status: this.deductionForm.controls.status.value ?? true,
+        status: this.deductionForm.controls.status.value === true,
         createdOn: this.datepipe.transform(
           this.deductionForm.controls.createdOn.value,
           'yyyy-MM-dd'
