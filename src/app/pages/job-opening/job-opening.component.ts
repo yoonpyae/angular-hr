@@ -38,6 +38,7 @@ import { JobOpeningService } from '../../core/services/job-opening.service';
     FormsModule,
     ConfirmDialog,
   ],
+
   templateUrl: './job-opening.component.html',
   styleUrl: './job-opening.component.scss',
   providers: [MessageService, ConfirmationService],

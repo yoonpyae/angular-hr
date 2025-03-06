@@ -233,7 +233,7 @@ export class DeductionEntryComponent implements OnInit {
         companyId: this.deductionForm.controls.companyId.value ?? '',
         branchId: this.deductionForm.controls.branchId.value ?? 0,
         deptId: this.deductionForm.controls.deptId.value ?? 0,
-        isDefault: this.deductionForm.controls.isDefault.value ?? true,
+        isDefault: this.deductionForm.controls.isDefault.value === true,
         description: this.deductionForm.controls.description.value ?? '',
         status: this.deductionForm.controls.status.value === true,
         createdOn: this.datepipe.transform(
