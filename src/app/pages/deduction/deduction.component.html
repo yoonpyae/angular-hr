@@ -63,7 +63,7 @@
           deduction ID
           <p-sortIcon field="deductionId" />
         </th> -->
-        <th pSortableColumn="deductionName">
+        <th pFrozenColumn pSortableColumn="deductionName">
           DeductionName
           <p-sortIcon field="deductionName" />
         </th>
@@ -126,7 +126,7 @@
     <ng-template #body let-deduction>
       <tr class="whitespace-nowrap">
         <!-- <td>{{ deduction.deductionId }}</td> -->
-        <td>{{ deduction.deductionName }}</td>
+        <td pFrozenColumn>{{ deduction.deductionName }}</td>
         <td>{{ deduction.companyName }}</td>
         <td>{{ deduction.branchName }}</td>
         <td>{{ deduction.deptName }}</td>
