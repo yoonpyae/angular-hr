@@ -10,6 +10,9 @@ import { SelectModule } from 'primeng/select';
 import { Table, TableModule } from 'primeng/table';
 import { PolicyModel } from '../../core/models/policy.model';
 import { PolicyService } from '../../core/services/policy.service';
+import { ConfirmDialog } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-policy',
@@ -24,9 +27,12 @@ import { PolicyService } from '../../core/services/policy.service';
     SelectModule,
     MultiSelectModule,
     TableModule,
+    ConfirmDialog,
+    ToastModule,
   ],
   templateUrl: './policy.component.html',
   styleUrl: './policy.component.scss',
+  providers: [ConfirmationService, MessageService],
 })
 export class PolicyComponent implements OnInit {
   selectedPolicy!: PolicyModel;
@@ -34,7 +40,12 @@ export class PolicyComponent implements OnInit {
   loading: boolean = true;
 
   activityValues: number[] = [0, 100];
-  constructor(private policyService: PolicyService, private rout: Router) {}
+  constructor(
+    private policyService: PolicyService,
+    private rout: Router,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.loadData();
@@ -53,12 +64,29 @@ export class PolicyComponent implements OnInit {
   }
 
   delete(policy: PolicyModel): void {
-    this.selectedPolicy = policy;
-    if (this.selectedPolicy !== null) {
-      this.policyService.delete(this.selectedPolicy.id).subscribe((res) => {
-        this.loadData();
-      });
-    }
+    this.selectedPolicy = policy; // Store selected policy before confirmation
+
+    this.confirmationService.confirm({
+      header: 'Are you sure?',
+      message: 'Please confirm to proceed.',
+      accept: () => {
+        this.policyService.delete(policy.id).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Deleted',
+            detail: `Policy ${policy.policyType} has been deleted.`,
+          });
+          this.loadData(); // Reload the data after successful deletion
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Cancelled',
+          detail: 'Policy deletion was cancelled.',
+        });
+      },
+    });
   }
 
   clear(table: Table) {
