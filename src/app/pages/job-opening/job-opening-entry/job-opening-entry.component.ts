@@ -103,9 +103,9 @@ export class JobOpeningEntryComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.jobOpeingForm.get('openingStatus')?.valueChanges.subscribe((value) => {
-      console.log('openingStatus changed:', value);
-    });
+    // this.jobOpeingForm.get('openingStatus')?.valueChanges.subscribe((value) => {
+    //   console.log('openingStatus changed:', value);
+    // });
 
     if (!this.isEdit)
       this.joID = parseInt(this.route.snapshot.paramMap.get('id') ?? '');
@@ -311,7 +311,7 @@ export class JobOpeningEntryComponent implements OnInit {
         branchId: this.jobOpeingForm.controls.branchId.value ?? 0,
         deptId: this.jobOpeingForm.controls.deptId.value ?? 0,
         positionId: this.jobOpeingForm.controls.positionId.value ?? 0,
-        openingStatus: this.jobOpeingForm.controls.openingStatus.value ?? true,
+        openingStatus: this.jobOpeingForm.controls.openingStatus.value === true,
         createdOn: this.datepipe.transform(
           this.jobOpeingForm.controls.createdOn.value,
           'yyyy-MM-dd'
