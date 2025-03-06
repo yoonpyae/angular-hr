@@ -67,7 +67,7 @@
           jobOpening ID
           <p-sortIcon field="id" />
         </th> -->
-        <th pSortableColumn="title">
+        <th pFrozenColumn pSortableColumn="title">
           title
           <p-sortIcon field="title" />
         </th>
@@ -159,7 +159,7 @@
     <ng-template #body let-jobOpening>
       <tr class="whitespace-nowrap">
         <!-- <td>{{ jobOpening.id }}</td> -->
-        <td>{{ jobOpening.title }}</td>
+        <td pFrozenColumn>{{ jobOpening.title }}</td>
         <td><div [innerHTML]="jobOpening.description"></div></td>
         <td>{{ jobOpening.noOfApplicants }}</td>
         <td>{{ jobOpening.startOn }}</td>
