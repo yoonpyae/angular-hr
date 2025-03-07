@@ -3,15 +3,17 @@
 
 <div class="card">
   <p-toast />
+
   <p-toolbar styleClass="mb-6">
     <ng-template #start>
       <p-button
         severity="danger"
         label="Delete"
         icon="pi pi-trash"
+        dataKey="deductionId"
         outlined
-        (onClick)="deleteSelectedDeductions()"
-        [disabled]="!selectedDeduction || !selectedDeduction.length"
+        (click)="deleteSelectedDeductions()"
+        [disabled]="!selectedDeduction || selectedDeduction.length === 0"
       />
     </ng-template>
   </p-toolbar>

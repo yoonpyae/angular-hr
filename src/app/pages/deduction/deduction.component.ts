@@ -48,7 +48,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 })
 export class DeductionComponent implements OnInit {
   deduction: ViDeductionModel[] = [];
-  selectedDeduction!: ViDeductionModel[] | null;
+  selectedDeduction!: ViDeductionModel[];
   loading: boolean = true;
 
   constructor(
@@ -106,21 +106,22 @@ export class DeductionComponent implements OnInit {
   }
 
   deleteSelectedDeductions() {
+    console.log('Delete button clicked, function executed.');
+
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete the selected deductions?',
-      header: 'Confirm',
+      header: 'Confirm Deletion',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.deduction = this.deduction.filter(
-          (val) => !this.selectedDeduction?.includes(val)
-        );
-        this.selectedDeduction = null;
+        console.log('User accepted deletion.');
         this.messageService.add({
           severity: 'success',
-          summary: 'Successful',
-          detail: 'Products Deleted',
-          life: 3000,
+          summary: 'Deleted',
+          detail: 'Selected deductions deleted successfully.',
         });
+      },
+      reject: () => {
+        console.log('User rejected deletion.');
       },
     });
   }

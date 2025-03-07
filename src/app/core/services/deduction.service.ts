@@ -43,4 +43,9 @@ export class DeductionService {
     let url: string = `${enviornment.apiUrl}/api/Deductions/${id}`;
     return this.http.delete<RootModel>(url);
   }
+
+  deleteMultiple(deductionIds: number[]): Observable<RootModel> {
+    const url = `${enviornment.apiUrl}/api/Deductions/deleteMultiple`;
+    return this.http.post<RootModel>(url, deductionIds); // Send list of IDs in body
+  }
 }

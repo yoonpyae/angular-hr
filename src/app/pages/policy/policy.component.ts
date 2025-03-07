@@ -13,6 +13,7 @@ import { PolicyService } from '../../core/services/policy.service';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { InplaceModule } from 'primeng/inplace';
 
 @Component({
   selector: 'app-policy',
@@ -29,6 +30,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     TableModule,
     ConfirmDialog,
     ToastModule,
+    InplaceModule,
   ],
   templateUrl: './policy.component.html',
   styleUrl: './policy.component.scss',
