@@ -68,6 +68,7 @@ export class JobOpeningEntryComponent implements OnInit {
   modalVisible: boolean = false;
   checked: boolean = false;
   loading: boolean = false;
+  today: Date = new Date();
 
   constructor(
     private jobOpeningService: JobOpeningService,
@@ -190,6 +191,7 @@ export class JobOpeningEntryComponent implements OnInit {
             (x) => x.companyId == this.model.companyId
           )[0];
           this.onCompanyChange();
+          this.onBranchChange();
         }
       },
       error: () => {},
@@ -216,6 +218,7 @@ export class JobOpeningEntryComponent implements OnInit {
             (x) => x.branchId == this.model.branchId
           )[0];
           this.onBranchChange();
+          this.onCompanyChange();
         }
       },
       error: () => {},

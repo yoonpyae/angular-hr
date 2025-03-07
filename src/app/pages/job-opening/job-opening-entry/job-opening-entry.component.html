@@ -53,6 +53,7 @@
         <p-datepicker
           formControlName="startOn"
           [showIcon]="true"
+          [maxDate]="today"
         ></p-datepicker>
         <small
           *ngIf="
@@ -63,6 +64,14 @@
         >
           startOn is required.
         </small>
+        <!-- <small
+          *ngIf="
+            jobOpeingForm.get('startOn')?.hasError('futureDateNotAllowed') &&
+            jobOpeingForm.get('startOn')?.touched
+          "
+          style="color: red"
+          >Start date cannot be in the future.</small
+        > -->
       </div>
       <!-- #endregion startOn -->
 
