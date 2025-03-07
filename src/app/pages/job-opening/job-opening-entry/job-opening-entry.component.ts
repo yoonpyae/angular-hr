@@ -26,6 +26,7 @@ import { BranchService } from '../../../core/services/branch.service';
 import { CompanyService } from '../../../core/services/company.service';
 import { DepartmentService } from '../../../core/services/department.service';
 import { DatePicker } from 'primeng/datepicker';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-job-opening-entry',
@@ -81,26 +82,29 @@ export class JobOpeningEntryComponent implements OnInit {
   ) {}
 
   private formBuilder = inject(FormBuilder);
-  jobOpeingForm = this.formBuilder.group({
-    id: [0],
-    title: ['', Validators.required],
-    description: [''],
-    noOfApplicants: [0],
-    startOn: [null as Date | null, Validators.required],
-    endOn: [null as Date | null, Validators.required],
-    companyId: ['', Validators.required],
-    branchId: [0, Validators.required],
-    deptId: [0, Validators.required],
-    positionId: [0, Validators.required],
-    openingStatus: [true],
-    createdOn: [''],
-    createdBy: [''],
-    updatedOn: [''],
-    updatedBy: [''],
-    deletedOn: [''],
-    deletedBy: [''],
-    remark: [''],
-  });
+  jobOpeingForm = this.formBuilder.group(
+    {
+      id: [0],
+      title: ['', Validators.required],
+      description: [''],
+      noOfApplicants: [0],
+      startOn: [null as Date | null, Validators.required],
+      endOn: [null as Date | null, Validators.required],
+      companyId: ['', Validators.required],
+      branchId: [0, Validators.required],
+      deptId: [0, Validators.required],
+      positionId: [0, Validators.required],
+      openingStatus: [true],
+      createdOn: [''],
+      createdBy: [''],
+      updatedOn: [''],
+      updatedBy: [''],
+      deletedOn: [''],
+      deletedBy: [''],
+      remark: [''],
+    },
+    { validators: dateRangeValidator() } // Attach the custom validator
+  );
 
   ngOnInit(): void {
     if (!this.isEdit)
@@ -393,4 +397,16 @@ export class JobOpeningEntryComponent implements OnInit {
       });
     }
   }
+}
+
+function dateRangeValidator(): ValidatorFn {
+  return (formGroup: AbstractControl): ValidationErrors | null => {
+    const startOn = formGroup.get('startOn')?.value;
+    const endOn = formGroup.get('endOn')?.value;
+
+    if (startOn && endOn && new Date(endOn) < new Date(startOn)) {
+      return { dateRangeInvalid: true }; // Error if end date is earlier than start date
+    }
+    return null; // No error
+  };
 }

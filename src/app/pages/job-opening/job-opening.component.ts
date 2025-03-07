@@ -19,6 +19,7 @@ import {
   ViJobOpeningModel,
 } from '../../core/models/job-opening.model';
 import { JobOpeningService } from '../../core/services/job-opening.service';
+import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-job-opening',
@@ -37,6 +38,7 @@ import { JobOpeningService } from '../../core/services/job-opening.service';
     DropdownModule,
     FormsModule,
     ConfirmDialog,
+    Skeleton,
   ],
 
   templateUrl: './job-opening.component.html',

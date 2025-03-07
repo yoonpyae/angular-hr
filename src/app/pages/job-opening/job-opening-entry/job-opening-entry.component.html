@@ -79,6 +79,14 @@
         >
           endOn is required.
         </small>
+        <small
+          *ngIf="
+            jobOpeingForm.hasError('dateRangeInvalid') &&
+            jobOpeingForm.get('endOn')?.touched
+          "
+          style="color: red"
+          >End date cannot be earlier than start date.</small
+        >
       </div>
       <!-- #endregion startOn -->
 
