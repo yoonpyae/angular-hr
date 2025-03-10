@@ -1,17 +1,13 @@
 <p-toast key="globalMessage"></p-toast>
 
 <div class="p-6 max-w-3xl mx-auto bg-white shadow-lg rounded-lg">
-  <h2 class="text-2xl font-bold text-gray-700 mb-4 text-center">
-    jobOpeningForm
-  </h2>
-
-  <form [formGroup]="jobOpeingForm" (ngSubmit)="submit()" class="space-y-6">
+  <h2 class="text-lg font-bold text-gray-700 mb-3 text-center">Job Opening</h2>
+  <form [formGroup]="jobOpeingForm" (ngSubmit)="submit()" class="space-y-4">
     <!-- Job Details Section -->
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-2">
       <!-- #region title -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Title</label>
+        <label class="text-gray-600 text-sm">Title</label>
         <ng-container *ngIf="isLoading; else titleField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -20,7 +16,7 @@
             pInputText
             formControlName="title"
             type="text"
-            class="p-2 border rounded-md"
+            class="p-1 border rounded text-sm"
             placeholder="Enter job title"
           />
 
@@ -39,7 +35,7 @@
 
       <!-- #region noOfApplicants -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">No. of Applicants</label>
+        <label class="text-gray-600 text-sm">No. of Applicants</label>
         <ng-container *ngIf="isLoading; else noOfApplicantsField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -49,7 +45,7 @@
             formControlName="noOfApplicants"
             type="number"
             min="1"
-            class="p-2 border rounded-md"
+            class="p-1 border rounded text-sm"
             placeholder="Enter number"
           />
           <small
@@ -64,10 +60,13 @@
         </ng-template>
       </div>
       <!-- #endregion noOfApplicants -->
+    </div>
 
+    <!-- Start & End -->
+    <div class="grid grid-cols-2 gap-2">
       <!-- #region startOn -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">startOn</label>
+        <label class="text-gray-600 text-sm">startOn</label>
         <ng-container *ngIf="isLoading; else startOnField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -92,7 +91,7 @@
 
       <!-- #region endOn -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">endOn</label>
+        <label class="text-gray-600 text-sm">endOn</label>
         <ng-container *ngIf="isLoading; else endOnField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -126,10 +125,10 @@
 
     <!-- Company & Location Section -->
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-2 gap-2">
       <!-- #region Company Id -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Company</label>
+        <label class="text-gray-600 text-sm">Company</label>
         <ng-container *ngIf="isLoading; else companyField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -165,7 +164,7 @@
 
       <!-- #region Branch Id -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Branch</label>
+        <label class="text-gray-600 text-sm">Branch</label>
         <ng-container *ngIf="isLoading; else branchField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -201,7 +200,7 @@
 
       <!-- #region Department Id -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Department</label>
+        <label class="text-gray-600 text-sm">Department</label>
         <ng-container *ngIf="isLoading; else deptField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -237,7 +236,7 @@
 
       <!-- #region position Id -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Position</label>
+        <label class="text-gray-600 text-sm">Position</label>
         <ng-container *ngIf="isLoading; else positionField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -277,15 +276,15 @@
     <div class="grid grid-cols-1">
       <!-- #region Description -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Description</label>
+        <label class="text-gray-600 text-sm">Description</label>
         <ng-container *ngIf="isLoading; else desField">
-          <p-skeleton width="100%" height="200px"></p-skeleton>
+          <p-skeleton width="100%" height="100px"></p-skeleton>
         </ng-container>
         <ng-template #desField>
           <p-editor
             class="pb-5"
             formControlName="description"
-            [style]="{ height: '150px' }"
+            [style]="{ height: '100px' }"
           ></p-editor>
         </ng-template>
       </div>
@@ -293,9 +292,9 @@
 
       <!-- #region Remark -->
       <div class="flex flex-col">
-        <label class="text-gray-600 font-medium">Remarks</label>
+        <label class="text-gray-600 text-sm">Remarks</label>
         <ng-container *ngIf="isLoading; else remarkField">
-          <p-skeleton width="100%" height="40px"></p-skeleton>
+          <p-skeleton width="100%" height="20px"></p-skeleton>
         </ng-container>
         <ng-template #remarkField>
           <textarea
@@ -312,7 +311,7 @@
 
     <!-- #region Status -->
     <div class="flex items-center gap-2">
-      <label class="text-gray-600 font-medium">openingStatus</label>
+      <label class="text-gray-600 text-sm">openingStatus</label>
 
       <p-toggleSwitch
         formControlName="openingStatus"
@@ -326,12 +325,11 @@
     <div class="text-center">
       <button
         pButton
-        icon="pi pi-check"
         [disabled]="isSubmitting"
         [loading]="isSubmitting"
         label="Submit"
         type="submit"
-        class="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-all"
+        class="bg-teal-500 hover:bg-teal-600 text-white text-sm py-1 px-4 rounded-md shadow-md"
       ></button>
     </div>
     <!-- #endregion Submit Button -->
