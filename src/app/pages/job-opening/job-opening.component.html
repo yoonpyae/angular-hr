@@ -75,7 +75,7 @@
           jobOpening ID
           <p-sortIcon field="id" />
         </th> -->
-          <th pFrozenColumn pSortableColumn="title">
+          <th pSortableColumn="title">
             title
             <p-sortIcon field="title" />
           </th>
@@ -160,14 +160,14 @@
             <p-sortIcon field="remark" />
           </th>
 
-          <th>Action</th>
+          <th pFrozenColumn alignFrozen="right">Action</th>
         </tr>
       </ng-template>
 
       <ng-template #body let-jobOpening>
         <tr class="whitespace-nowrap text-xs sm:text-sm" *ngIf="jobOpening">
           <!-- <td>{{ jobOpening.id }}</td> -->
-          <td class="hidden sm:table-cell" pFrozenColumn>
+          <td class="hidden sm:table-cell">
             {{ jobOpening.title }}
           </td>
           <td class="hidden sm:table-cell">
@@ -193,7 +193,7 @@
           <td class="hidden sm:table-cell">{{ jobOpening.deletedOn }}</td>
           <td class="hidden sm:table-cell">{{ jobOpening.deletedBy }}</td>
           <td class="hidden sm:table-cell">{{ jobOpening.remark }}</td>
-          <td>
+          <td pFrozenColumn="action" alignFrozen="right">
             <p-button variant="text" (onClick)="update(jobOpening)"
               >Edit</p-button
             >
