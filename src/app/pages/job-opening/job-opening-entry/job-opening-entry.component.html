@@ -1,72 +1,80 @@
 <p-toast key="globalMessage"></p-toast>
 
-<div class="p-8 max-w-4xl mx-auto bg-white shadow-lg rounded-lg">
-  <h2 class="text-2xl font-bold text-gray-700 mb-6">Deduction Form</h2>
+<div class="p-6 max-w-3xl mx-auto bg-white shadow-lg rounded-lg">
+  <h2 class="text-2xl font-bold text-gray-700 mb-4 text-center">
+    Deduction Form
+  </h2>
 
-  <form [formGroup]="jobOpeingForm" (ngSubmit)="submit()" class="space-y-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <!-- #region title -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">title</label>
-        <input
-          pInputText
-          formControlName="title"
-          type="text"
-          class="p-2 border rounded-md"
-        />
-        <small
-          *ngIf="
-            jobOpeingForm.controls['title'].invalid &&
-            jobOpeingForm.get('title')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          title is required.
-        </small>
-      </div>
-      <!-- #endregion title -->
+  <form [formGroup]="jobOpeingForm" (ngSubmit)="submit()" class="space-y-6">
+    <!-- Job Details Section -->
+    <div class="p-4 rounded-md">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Job Details</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- #region title -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Title</label>
+          <input
+            pInputText
+            formControlName="title"
+            type="text"
+            class="p-2 border rounded-md"
+            placeholder="Enter job title"
+          />
 
-      <!-- #region noOfApplicants -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">noOfApplicants</label>
-        <input
-          pInputText
-          formControlName="noOfApplicants"
-          min="0"
-          type="number"
-          class="p-2 border rounded-md"
-        />
-        <small
-          *ngIf="
-            jobOpeingForm.controls['noOfApplicants'].invalid &&
-            jobOpeingForm.get('noOfApplicants')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          noOfApplicants is required.
-        </small>
-      </div>
-      <!-- #endregion noOfApplicants -->
+          <small
+            *ngIf="
+              jobOpeingForm.controls['title'].invalid &&
+              jobOpeingForm.get('title')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            title is required.
+          </small>
+        </div>
+        <!-- #endregion title -->
 
-      <!-- #region startOn -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">startOn</label>
-        <p-datepicker
-          formControlName="startOn"
-          [showIcon]="true"
-          [minDate]="today"
-          [showButtonBar]="true"
-        ></p-datepicker>
-        <small
-          *ngIf="
-            jobOpeingForm.controls['startOn'].invalid &&
-            jobOpeingForm.get('startOn')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          startOn is required.
-        </small>
-        <!-- <small
+        <!-- #region noOfApplicants -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">No. of Applicants</label>
+          <input
+            pInputText
+            formControlName="noOfApplicants"
+            type="number"
+            min="0"
+            class="p-2 border rounded-md"
+            placeholder="Enter number"
+          />
+          <small
+            *ngIf="
+              jobOpeingForm.controls['noOfApplicants'].invalid &&
+              jobOpeingForm.get('noOfApplicants')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            noOfApplicants is required.
+          </small>
+        </div>
+        <!-- #endregion noOfApplicants -->
+
+        <!-- #region startOn -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">startOn</label>
+          <p-datepicker
+            formControlName="startOn"
+            [showIcon]="true"
+            [minDate]="today"
+            [showButtonBar]="true"
+          ></p-datepicker>
+          <small
+            *ngIf="
+              jobOpeingForm.controls['startOn'].invalid &&
+              jobOpeingForm.get('startOn')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            startOn is required.
+          </small>
+          <!-- <small
           *ngIf="
             jobOpeingForm.get('startOn')?.hasError('futureDateNotAllowed') &&
             jobOpeingForm.get('startOn')?.touched
@@ -74,197 +82,215 @@
           style="color: red"
           >Start date cannot be in the future.</small
         > -->
-      </div>
-      <!-- #endregion startOn -->
+        </div>
+        <!-- #endregion startOn -->
 
-      <!-- #region endOn -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">endOn</label>
-        <p-datepicker
-          formControlName="endOn"
-          [showIcon]="true"
-          [showButtonBar]="true"
-        ></p-datepicker>
-        <small
-          *ngIf="
-            jobOpeingForm.controls['endOn'].invalid &&
-            jobOpeingForm.get('endOn')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          endOn is required.
-        </small>
-        <small
-          *ngIf="
-            jobOpeingForm.hasError('dateRangeInvalid') &&
-            jobOpeingForm.get('endOn')?.touched
-          "
-          style="color: red"
-          >End date cannot be earlier than start date.</small
-        >
+        <!-- #region endOn -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">endOn</label>
+          <p-datepicker
+            formControlName="endOn"
+            [showIcon]="true"
+            [showButtonBar]="true"
+          ></p-datepicker>
+          <small
+            *ngIf="
+              jobOpeingForm.controls['endOn'].invalid &&
+              jobOpeingForm.get('endOn')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            endOn is required.
+          </small>
+          <small
+            *ngIf="
+              jobOpeingForm.hasError('dateRangeInvalid') &&
+              jobOpeingForm.get('endOn')?.touched
+            "
+            style="color: red"
+            >End date cannot be earlier than start date.</small
+          >
+        </div>
+        <!-- #endregion endOn -->
       </div>
-      <!-- #endregion endOn -->
-
-      <!-- #region Company Id -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Company</label>
-        <p-select
-          [options]="companies"
-          [(ngModel)]="selectedCompany"
-          (onChange)="onCompanyChange()"
-          optionLabel="companyName"
-          dataKey="companyId"
-          placeholder="Select a Company"
-          [ngModelOptions]="{ standalone: true }"
-          [filter]="true"
-          [showClear]="true"
-          [ngClass]="{
-            'ng-dirty ng-invalid':
-              jobOpeingForm.controls['companyId'].invalid &&
-              jobOpeingForm.get('companyId')?.dirty
-          }"
-        ></p-select>
-        <small
-          *ngIf="
-            jobOpeingForm.controls['companyId'].invalid &&
-            jobOpeingForm.get('companyId')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          Company is required.
-        </small>
-      </div>
-      <!-- #endregion Company Id -->
-
-      <!-- #region Branch Id -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Branch</label>
-        <p-select
-          [options]="branches"
-          [(ngModel)]="selectedBranch"
-          (onChange)="onBranchChange()"
-          optionLabel="branchName"
-          dataKey="branchId"
-          placeholder="Select a Branch"
-          [ngModelOptions]="{ standalone: true }"
-          [filter]="true"
-          [showClear]="true"
-          [ngClass]="{
-            'ng-dirty ng-invalid':
-              jobOpeingForm.controls['branchId'].invalid &&
-              jobOpeingForm.get('branchId')?.dirty
-          }"
-        ></p-select>
-        <small
-          *ngIf="
-            jobOpeingForm.controls['branchId'].invalid &&
-            jobOpeingForm.get('branchId')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          Branch is required.
-        </small>
-      </div>
-      <!-- #endregion Branch Id -->
-
-      <!-- #region Department Id -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Department</label>
-        <p-select
-          [options]="depts"
-          [(ngModel)]="selectedDept"
-          (onChange)="onDeptChange()"
-          optionLabel="deptName"
-          dataKey="deptId"
-          placeholder="Select a Department"
-          [ngModelOptions]="{ standalone: true }"
-          [filter]="true"
-          [showClear]="true"
-          [ngClass]="{
-            'ng-dirty ng-invalid':
-              jobOpeingForm.controls['deptId'].invalid &&
-              jobOpeingForm.get('deptId')?.dirty
-          }"
-        ></p-select>
-        <small
-          *ngIf="
-            jobOpeingForm.controls['deptId'].invalid &&
-            jobOpeingForm.get('deptId')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          Department is required.
-        </small>
-      </div>
-      <!-- #endregion Department Id -->
-
-      <!-- #region position Id -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Position</label>
-        <p-select
-          [options]="positions"
-          [(ngModel)]="selectedPosition"
-          (onChange)="onPositionChange()"
-          optionLabel="positionName"
-          dataKey="positionId"
-          placeholder="Select a Position"
-          [ngModelOptions]="{ standalone: true }"
-          [filter]="true"
-          [showClear]="true"
-          [ngClass]="{
-            'ng-dirty ng-invalid':
-              jobOpeingForm.controls['positionId'].invalid &&
-              jobOpeingForm.get('positionId')?.dirty
-          }"
-        ></p-select>
-        <small
-          *ngIf="
-            jobOpeingForm.controls['positionId'].invalid &&
-            jobOpeingForm.get('positionId')?.dirty
-          "
-          class="p-text text-red-600"
-        >
-          position is required.
-        </small>
-      </div>
-      <!-- #endregion position Id -->
-
-      <!-- #region Description -->
-      <div class="md:col-span-2 flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Description</label>
-        <p-editor
-          formControlName="description"
-          [style]="{ height: '320px' }"
-        ></p-editor>
-      </div>
-      <!-- #endregion Description -->
-
-      <!-- #region Status -->
-      <div class="flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">openingStatus</label>
-        <p-toggleSwitch
-          formControlName="openingStatus"
-          onLabel="Open"
-          offLabel="Closed"
-        ></p-toggleSwitch>
-      </div>
-      <!-- #endregion Status -->
-
-      <!-- #region Remark -->
-      <div class="md:col-span-2 flex flex-col gap-1">
-        <label class="text-gray-600 font-medium">Remark</label>
-        <textarea
-          pInputTextarea
-          formControlName="remark"
-          rows="3"
-          class="p-2 border rounded-md"
-        ></textarea>
-      </div>
-      <!-- #endregion Remark -->
     </div>
 
+    <!-- Company & Location Section -->
+    <div class="p-4 rounded-md">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">
+        Company & Location
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- #region Company Id -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Company</label>
+          <p-select
+            [options]="companies"
+            [(ngModel)]="selectedCompany"
+            (onChange)="onCompanyChange()"
+            optionLabel="companyName"
+            dataKey="companyId"
+            placeholder="Select a Company"
+            [ngModelOptions]="{ standalone: true }"
+            [filter]="true"
+            [showClear]="true"
+            [ngClass]="{
+              'ng-dirty ng-invalid':
+                jobOpeingForm.controls['companyId'].invalid &&
+                jobOpeingForm.get('companyId')?.dirty
+            }"
+          ></p-select>
+          <small
+            *ngIf="
+              jobOpeingForm.controls['companyId'].invalid &&
+              jobOpeingForm.get('companyId')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            Company is required.
+          </small>
+        </div>
+        <!-- #endregion Company Id -->
+
+        <!-- #region Branch Id -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Branch</label>
+          <p-select
+            [options]="branches"
+            [(ngModel)]="selectedBranch"
+            (onChange)="onBranchChange()"
+            optionLabel="branchName"
+            dataKey="branchId"
+            placeholder="Select a Branch"
+            [ngModelOptions]="{ standalone: true }"
+            [filter]="true"
+            [showClear]="true"
+            [ngClass]="{
+              'ng-dirty ng-invalid':
+                jobOpeingForm.controls['branchId'].invalid &&
+                jobOpeingForm.get('branchId')?.dirty
+            }"
+          ></p-select>
+          <small
+            *ngIf="
+              jobOpeingForm.controls['branchId'].invalid &&
+              jobOpeingForm.get('branchId')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            Branch is required.
+          </small>
+        </div>
+        <!-- #endregion Branch Id -->
+
+        <!-- #region Department Id -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Department</label>
+          <p-select
+            [options]="depts"
+            [(ngModel)]="selectedDept"
+            (onChange)="onDeptChange()"
+            optionLabel="deptName"
+            dataKey="deptId"
+            placeholder="Select a Department"
+            [ngModelOptions]="{ standalone: true }"
+            [filter]="true"
+            [showClear]="true"
+            [ngClass]="{
+              'ng-dirty ng-invalid':
+                jobOpeingForm.controls['deptId'].invalid &&
+                jobOpeingForm.get('deptId')?.dirty
+            }"
+          ></p-select>
+          <small
+            *ngIf="
+              jobOpeingForm.controls['deptId'].invalid &&
+              jobOpeingForm.get('deptId')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            Department is required.
+          </small>
+        </div>
+        <!-- #endregion Department Id -->
+
+        <!-- #region position Id -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Position</label>
+          <p-select
+            [options]="positions"
+            [(ngModel)]="selectedPosition"
+            (onChange)="onPositionChange()"
+            optionLabel="positionName"
+            dataKey="positionId"
+            placeholder="Select a Position"
+            [ngModelOptions]="{ standalone: true }"
+            [filter]="true"
+            [showClear]="true"
+            [ngClass]="{
+              'ng-dirty ng-invalid':
+                jobOpeingForm.controls['positionId'].invalid &&
+                jobOpeingForm.get('positionId')?.dirty
+            }"
+          ></p-select>
+          <small
+            *ngIf="
+              jobOpeingForm.controls['positionId'].invalid &&
+              jobOpeingForm.get('positionId')?.dirty
+            "
+            class="p-text text-red-600"
+          >
+            position is required.
+          </small>
+        </div>
+        <!-- #endregion position Id -->
+      </div>
+    </div>
+
+    <!-- Description Section -->
+    <div class="p-4 rounded-md">
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">
+        Additional Information
+      </h3>
+      <div class="grid grid-cols-1">
+        <!-- #region Description -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Description</label>
+          <p-editor
+            formControlName="description"
+            [style]="{ height: '200px' }"
+          ></p-editor>
+        </div>
+        <!-- #endregion Description -->
+
+        <!-- #region Remark -->
+        <div class="flex flex-col">
+          <label class="text-gray-600 font-medium">Remarks</label>
+          <textarea
+            pInputTextarea
+            formControlName="remark"
+            rows="3"
+            class="p-2 border rounded-md"
+            placeholder="Enter remarks (optional)"
+          ></textarea>
+        </div>
+        <!-- #endregion Remark -->
+      </div>
+    </div>
+
+    <!-- #region Status -->
+    <div class="flex items-center gap-2">
+      <label class="text-gray-600 font-medium">openingStatus</label>
+      <p-toggleSwitch
+        formControlName="openingStatus"
+        onLabel="Open"
+        offLabel="Closed"
+      ></p-toggleSwitch>
+    </div>
+    <!-- #endregion Status -->
+
     <!-- #region Submit Button -->
-    <div class="text-center mt-6">
+    <div class="text-center">
       <button
         pButton
         icon="pi pi-check"
