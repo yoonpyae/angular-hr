@@ -1,5 +1,5 @@
 <p-toast position="top-right"></p-toast>
-<h1 class="text-4xl font-bold text-center mb-8">jobOpening List</h1>
+<h1 class="text-4xl text-center mb-8 font-extralight">jobOpening List</h1>
 
 <div class="card w-full overflow-x-auto">
   <div *ngIf="isloading">
@@ -53,20 +53,34 @@
             [outlined]="true"
           />
 
-          <p-iconfield
-            icon="pi pi-check"
-            iconPosition="left"
-            class="w-full sm:w-80"
-          >
+          <div class="relative w-full sm:w-80 border rounded-lg">
+            <div
+              class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+            >
+              <svg
+                class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                />
+              </svg>
+            </div>
             <input
-              pInputText
-              type="text"
+              type="search"
+              id="default-search"
+              class="block w-full p-4 ps-10 text-sm text-gray-900 border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
               (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
-              pInputText
-              placeholder="Search"
-              class="p-inputtext w-full border rounded-lg px-3 py-2"
+              placeholder="Search keyword"
             />
-          </p-iconfield>
+          </div>
         </div>
       </ng-template>
 
