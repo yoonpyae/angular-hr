@@ -99,7 +99,17 @@
         </p>
         <ng-template #footer>
           <div class="flex gap-4 mt-1">
+            <p-drawer [(visible)]="visible" header="Drawer">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </p-drawer>
             <p-button
+              (click)="visible = true"
+              icon="pi pi-arrow-right"
               label="Learn More"
               severity="secondary"
               class="w-full"
