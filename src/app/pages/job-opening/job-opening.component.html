@@ -49,8 +49,9 @@
             label="Create"
             routerLink="entry"
             class="w-full sm:w-auto p-button-primary"
-          >
-          </p-button>
+            [rounded]="true"
+            [outlined]="true"
+          />
 
           <p-iconfield
             icon="pi pi-check"
@@ -145,16 +146,6 @@
             <p-sortIcon field="updatedBy" />
           </th>
 
-          <th pSortableColumn="deletedOn">
-            Deleted On
-            <p-sortIcon field="deletedOn" />
-          </th>
-
-          <th pSortableColumn="deletedBy">
-            Deleted By
-            <p-sortIcon field="deletedBy" />
-          </th>
-
           <th pSortableColumn="remark">
             Remark
             <p-sortIcon field="remark" />
@@ -190,20 +181,23 @@
           <td class="hidden sm:table-cell">{{ jobOpening.createdBy }}</td>
           <td class="hidden sm:table-cell">{{ jobOpening.updatedOn }}</td>
           <td class="hidden sm:table-cell">{{ jobOpening.updatedBy }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.deletedOn }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.deletedBy }}</td>
           <td class="hidden sm:table-cell">{{ jobOpening.remark }}</td>
           <td pFrozenColumn="action" alignFrozen="right">
-            <p-button variant="text" (onClick)="update(jobOpening)"
-              >Edit</p-button
-            >
             <p-button
-              variant="text"
+              icon="pi pi-pencil"
+              class="mr-2"
               [rounded]="true"
+              [outlined]="true"
+              (onClick)="update(jobOpening)"
+            />
+
+            <p-button
+              icon="pi pi-trash"
               severity="danger"
+              [rounded]="true"
+              [outlined]="true"
               (onClick)="delete(jobOpening)"
-              >Delete</p-button
-            >
+            />
           </td>
         </tr>
       </ng-template>
