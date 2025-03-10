@@ -30,6 +30,14 @@
               range from e-commerce apps to social networking platforms, built
               using Flutter, React Native, and Swift.
             </p>
+            <div class="card flex justify-center">
+              <p-datepicker
+                [(ngModel)]="rangeDates"
+                selectionMode="range"
+                [readonlyInput]="true"
+                [showButtonBar]="true"
+              />
+            </div>
           </p-tabpanel>
           <p-tabpanel value="2">
             <p class="m-0">
