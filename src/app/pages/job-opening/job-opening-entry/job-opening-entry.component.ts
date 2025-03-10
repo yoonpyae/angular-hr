@@ -27,6 +27,7 @@ import { CompanyService } from '../../../core/services/company.service';
 import { DepartmentService } from '../../../core/services/department.service';
 import { DatePicker } from 'primeng/datepicker';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { Skeleton } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-job-opening-entry',
@@ -42,6 +43,7 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
     EditorModule,
     SelectModule,
     DatePicker,
+    Skeleton,
   ],
 
   templateUrl: './job-opening-entry.component.html',
@@ -68,6 +70,7 @@ export class JobOpeningEntryComponent implements OnInit {
   modalVisible: boolean = false;
   checked: boolean = false;
   loading: boolean = false;
+  isLoading: boolean = true;
   today: Date = new Date();
 
   constructor(
@@ -179,6 +182,9 @@ export class JobOpeningEntryComponent implements OnInit {
       this.getCompanies();
     }
     if (!this.isEdit) this.jobOpeingForm.reset();
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 1000);
   }
 
   // #region Company
@@ -191,7 +197,6 @@ export class JobOpeningEntryComponent implements OnInit {
             (x) => x.companyId == this.model.companyId
           )[0];
           this.onCompanyChange();
-          this.onBranchChange();
         }
       },
       error: () => {},
@@ -203,9 +208,24 @@ export class JobOpeningEntryComponent implements OnInit {
       this.jobOpeingForm.controls.companyId.setValue(
         this.selectedCompany.companyId
       );
+
+      // Reset dependent fields when company changes
+      this.jobOpeingForm.controls.branchId.setValue(null);
+      this.jobOpeingForm.controls.deptId.setValue(null);
+      this.jobOpeingForm.controls.positionId.setValue(null);
+
+      this.branches = [];
+      this.depts = [];
+      this.positions = [];
+
+      this.selectedBranch != null;
+      this.selectedDept != null;
+      this.selectedPosition != null;
+
       this.getBranches(this.selectedCompany.companyId);
     }
   }
+
   // #endregion
 
   // #region Branch
@@ -218,7 +238,6 @@ export class JobOpeningEntryComponent implements OnInit {
             (x) => x.branchId == this.model.branchId
           )[0];
           this.onBranchChange();
-          this.onCompanyChange();
         }
       },
       error: () => {},
@@ -348,12 +367,14 @@ export class JobOpeningEntryComponent implements OnInit {
             if (res.success) {
               this.modalVisible = false;
 
-              this.messageService.add({
-                key: 'globalMessage',
-                severity: 'info',
-                summary: 'Success',
-                detail: res.message.toString(),
-              });
+              setTimeout(() => {
+                this.messageService.add({
+                  key: 'globalMessage',
+                  severity: 'info',
+                  summary: 'Success',
+                  detail: res.message.toString(),
+                });
+              }, 500);
 
               this.isSubmitting = false;
               this.router.navigate(['/jobOpening']); // Navigate to jobOpening page
