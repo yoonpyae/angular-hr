@@ -12,8 +12,7 @@
         icon="pi pi-trash"
         dataKey="deductionId"
         outlined
-        (click)="deleteSelectedDeductions()"
-        [disabled]="!selectedDeduction || selectedDeduction.length === 0"
+        (onClick)="delete()"
       />
     </ng-template>
   </p-toolbar>
@@ -186,13 +185,13 @@
             (onClick)="update(deduction)"
           />
 
-          <p-button
+          <!-- <p-button
             icon="pi pi-trash"
             severity="danger"
             [rounded]="true"
             [outlined]="true"
             (onClick)="delete(deduction)"
-          />
+          /> -->
         </td>
       </tr>
     </ng-template>

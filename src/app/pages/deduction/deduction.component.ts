@@ -21,6 +21,7 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 import { DeductionService } from '../../core/services/deduction.service';
 import { DragDropModule } from 'primeng/dragdrop';
 import { ToolbarModule } from 'primeng/toolbar';
+import { UndoIcon } from 'primeng/icons';
 
 @Component({
   selector: 'app-deduction',
@@ -48,7 +49,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 })
 export class DeductionComponent implements OnInit {
   deduction: ViDeductionModel[] = [];
-  selectedDeduction!: ViDeductionModel[];
+  selectedDeduction!: ViDeductionModel;
   loading: boolean = true;
 
   constructor(
@@ -81,28 +82,37 @@ export class DeductionComponent implements OnInit {
     this.route.navigate(['/deduction/entry', deduction.deductionId]);
   }
 
-  delete(deduction: DeductionModel): void {
-    this.confirmationService.confirm({
-      message: 'Are You Sure Want To Delete?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this.deductionService.delete(deduction.deductionId).subscribe((res) => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Confirmed',
-            detail: `Deduction ${deduction.deductionName} has been deleted.`,
-          });
-          this.loadData();
-          //deselect
+  delete(): void {
+    if (
+      this.selectedDeduction !== null ||
+      this.selectedDeduction !== undefined
+    ) {
+      console.log(this.selectedDeduction.deductionId);
+      this.confirmationService.confirm({
+        message: 'Are You Sure Want To Delete?',
+        header: 'Delete Confirmation',
+        icon: 'pi pi-info-circle',
+        accept: () => {
+          // this.deductionService
+          //   .delete(this.selectedDeduction.deductionId)
+          //   .subscribe((res) => {
+          //     this.messageService.add({
+          //       severity: 'success',
+          //       summary: 'Confirmed',
+          //       detail: `Deduction ${this.selectedDeduction.deductionName} has been deleted.`,
+          //     });
+          //     this.loadData();
+          //     //deselect
+          //     this.selectedDeduction = null as any;
+          //   });
+          console.log('success');
+        },
+        reject: () => {
           this.selectedDeduction = null as any;
-        });
-      },
-      reject: () => {
-        this.selectedDeduction = null as any;
-      },
-      key: 'positionDialog',
-    });
+        },
+        key: 'positionDialog',
+      });
+    }
   }
 
   deleteSelectedDeductions() {
