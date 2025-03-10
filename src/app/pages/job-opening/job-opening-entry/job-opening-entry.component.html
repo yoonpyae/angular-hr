@@ -54,6 +54,7 @@
           formControlName="startOn"
           [showIcon]="true"
           [minDate]="today"
+          [showButtonBar]="true"
         ></p-datepicker>
         <small
           *ngIf="
@@ -78,7 +79,11 @@
       <!-- #region endOn -->
       <div class="flex flex-col gap-1">
         <label class="text-gray-600 font-medium">endOn</label>
-        <p-datepicker formControlName="endOn" [showIcon]="true"></p-datepicker>
+        <p-datepicker
+          formControlName="endOn"
+          [showIcon]="true"
+          [showButtonBar]="true"
+        ></p-datepicker>
         <small
           *ngIf="
             jobOpeingForm.controls['endOn'].invalid &&
