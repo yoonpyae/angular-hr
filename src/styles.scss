@@ -11,16 +11,26 @@
   @tailwind utilities;
 }
 
-.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
+.app-dark {
+  // Apply dark mode styles for PrimeNG
+  --surface-a: #1e1e1e; // Background
+  --surface-b: #222; // Panel Background
+  --text-color: #fff; // Text color
 }
 
-.dark-mode p-button {
-  background-color: #333;
-  border-color: #555;
+// Override table styles for dark mode
+.app-dark .p-datatable {
+  background-color: var(--surface-a);
+  color: var(--text-color);
 }
 
-.dark-mode p-button:hover {
-  background-color: #555;
+.app-dark .p-datatable th,
+.app-dark .p-datatable td {
+  background-color: var(--surface-b);
+  color: var(--text-color);
+}
+
+.app-dark .p-button {
+  background-color: var(--surface-b);
+  color: var(--text-color);
 }

@@ -1,3 +1,6 @@
+<button (click)="toggleDarkMode(!isDarkMode)">
+  {{ isDarkMode ? "Light Mode" : "Dark Mode" }}
+</button>
 <div class="p-8">
   <router-outlet />
 </div>

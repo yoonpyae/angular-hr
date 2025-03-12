@@ -23,9 +23,10 @@ export class DarkModeService {
 
   // Apply the theme
   applyTheme(): void {
-    const userPref = this.getUserPreference();
     const isDarkMode =
-      userPref !== null ? userPref : this.getSystemPreference();
+      this.getUserPreference() !== null
+        ? this.getUserPreference()
+        : this.getSystemPreference();
 
     if (isDarkMode) {
       document.documentElement.classList.add('dark-mode');

@@ -21,6 +21,7 @@ import {
 import { JobOpeningService } from '../../core/services/job-opening.service';
 import { Skeleton } from 'primeng/skeleton';
 import { Observable } from 'rxjs';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-job-opening',
@@ -40,6 +41,7 @@ import { Observable } from 'rxjs';
     FormsModule,
     ConfirmDialog,
     Skeleton,
+    DarkModeToggleComponent,
   ],
 
   templateUrl: './job-opening.component.html',
