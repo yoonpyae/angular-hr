@@ -36,6 +36,7 @@
       dataKey="id"
       [rows]="8"
       [(selection)]="selectedJobOpeing"
+      selectionMode="multiple"
       showGridlines
       [rowsPerPageOptions]="[8, 15, 30]"
       class="w-full"
@@ -44,24 +45,35 @@
         <div
           class="flex flex-col sm:flex-row items-center justify-between mb-3 gap-3"
         >
-          <p-button
-            icon="pi pi-plus"
-            label="Create"
-            routerLink="entry"
-            class="w-full sm:w-auto p-button-primary"
-            [rounded]="true"
-            [outlined]="true"
-          />
-          <p-button
-            icon="pi pi-trash"
-            label="Delete Selected"
-            class="w-full sm:w-auto"
-            [rounded]="true"
-            [outlined]="true"
-            (click)="deleteSelected()"
-            [disabled]="!selectedJobOpeing.length"
-          />
-
+          <div class="flex gap-3">
+            <p-button
+              icon="pi pi-plus"
+              label="Create"
+              routerLink="entry"
+              class="w-full sm:w-auto p-button-primary"
+              [rounded]="true"
+              [outlined]="true"
+            />
+            <p-button
+              icon="pi pi-trash"
+              label="Delete"
+              class="w-full sm:w-auto"
+              [rounded]="true"
+              [outlined]="true"
+              (click)="deleteSelected()"
+              [disabled]="!selectedJobOpeing.length"
+              severity="danger"
+            />
+            <p-button
+              icon="pi pi-file"
+              label="Export"
+              (click)="exportCSVManually()"
+              class="w-full sm:w-auto"
+              [rounded]="true"
+              [outlined]="true"
+              severity="secondary"
+            />
+          </div>
           <div class="relative w-full sm:w-80 border rounded-lg">
             <i
               class="pi pi-search absolute inset-y-4 start-0 flex items-center ps-3 text-gray-500"
@@ -171,6 +183,7 @@
         >
           <td>
             <p-tableCheckbox [value]="jobOpening"></p-tableCheckbox>
+            <!-- <p-tableRadioButton [value]="jobOpening" /> -->
           </td>
           <!-- <td>{{ jobOpening.id }}</td> -->
           <td class="hidden sm:table-cell">

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService, ConfirmationService } from 'primeng/api';
@@ -11,7 +11,7 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { SelectModule } from 'primeng/select';
-import { TableModule } from 'primeng/table';
+import { Table, TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import {
@@ -50,6 +50,7 @@ export class JobOpeningComponent implements OnInit {
   jobOpening: ViJobOpeningModel[] = [];
   selectedJobOpeing: ViJobOpeningModel[] = [];
   isloading: boolean = true;
+  @ViewChild('dt1') dt1!: Table;
 
   constructor(
     private jobOpeningService: JobOpeningService,
@@ -144,6 +145,73 @@ export class JobOpeningComponent implements OnInit {
         return 'success';
       case false:
         return 'danger';
+    }
+  }
+
+  exportCSVManually() {
+    if (this.jobOpening && this.jobOpening.length > 0) {
+      const csvData = this.convertToCSV(this.jobOpening);
+      this.downloadCSV(csvData, 'job_opening_list.csv');
+    } else {
+      console.error('No data available to export');
+    }
+  }
+
+  convertToCSV(data: ViJobOpeningModel[]): string {
+    const headers = [
+      'Title',
+      'Description',
+      'No of Applicants',
+      'Start On',
+      'End On',
+      'Company Name',
+      'Branch Name',
+      'Dept Name',
+      'Position Name',
+      'Opening Status',
+      'Created On',
+      'Created By',
+      'Updated On',
+      'Updated By',
+      'Remark',
+    ];
+
+    const rows = data.map((item) => [
+      item.title,
+      item.description,
+      item.noOfApplicants,
+      item.startOn,
+      item.endOn,
+      item.companyName,
+      item.branchName,
+      item.deptName,
+      item.positionName,
+      item.openingStatus ? 'Open' : 'Closed', // Adjust this as needed
+      item.createdOn,
+      item.createdBy,
+      item.updatedOn,
+      item.updatedBy,
+      item.remark,
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map((row) => row.join(','))
+      .join('\n');
+
+    return csvContent;
+  }
+
+  downloadCSV(csvData: string, filename: string) {
+    const blob = new Blob([csvData], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   }
 }

@@ -7,6 +7,8 @@ import { CardModule } from 'primeng/card';
 import { DrawerModule } from 'primeng/drawer';
 import { FormsModule } from '@angular/forms';
 import { DatePicker } from 'primeng/datepicker';
+import { DarkModeService } from '../../core/services/dark-mode.service';
+import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,7 @@ import { DatePicker } from 'primeng/datepicker';
     CardModule,
     FormsModule,
     DatePicker,
+    DarkModeToggleComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -26,4 +29,15 @@ import { DatePicker } from 'primeng/datepicker';
 export class HomeComponent {
   visible: boolean = false;
   rangeDates: Date[] | undefined;
+
+  isDarkMode = false;
+
+  constructor(private darkModeService: DarkModeService) {
+    this.isDarkMode = document.documentElement.classList.contains('dark-mode');
+  }
+
+  toggleDarkMode(): void {
+    this.darkModeService.toggleDarkMode();
+    this.isDarkMode = document.documentElement.classList.contains('dark-mode');
+  }
 }

@@ -28,6 +28,7 @@ import { DepartmentService } from '../../../core/services/department.service';
 import { DatePicker } from 'primeng/datepicker';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Skeleton } from 'primeng/skeleton';
+import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({
   selector: 'app-job-opening-entry',
@@ -43,6 +44,7 @@ import { Skeleton } from 'primeng/skeleton';
     EditorModule,
     SelectModule,
     DatePicker,
+    AutoFocusModule,
     Skeleton,
   ],
 
