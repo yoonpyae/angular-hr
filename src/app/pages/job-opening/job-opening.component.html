@@ -52,6 +52,15 @@
             [rounded]="true"
             [outlined]="true"
           />
+          <p-button
+            icon="pi pi-trash"
+            label="Delete Selected"
+            class="w-full sm:w-auto"
+            [rounded]="true"
+            [outlined]="true"
+            (click)="deleteSelected()"
+            [disabled]="!selectedJobOpeing.length"
+          />
 
           <div class="relative w-full sm:w-80 border rounded-lg">
             <i
@@ -74,6 +83,7 @@
           jobOpening ID
           <p-sortIcon field="id" />
         </th> -->
+          <th>#</th>
           <th pSortableColumn="title">
             title
             <p-sortIcon field="title" />
@@ -154,7 +164,14 @@
       </ng-template>
 
       <ng-template #body let-jobOpening>
-        <tr class="whitespace-nowrap text-xs sm:text-sm" *ngIf="jobOpening">
+        <tr
+          class="whitespace-nowrap text-xs sm:text-sm"
+          *ngIf="jobOpening"
+          [pSelectableRow]="jobOpening"
+        >
+          <td>
+            <p-tableCheckbox [value]="jobOpening"></p-tableCheckbox>
+          </td>
           <!-- <td>{{ jobOpening.id }}</td> -->
           <td class="hidden sm:table-cell">
             {{ jobOpening.title }}
@@ -189,13 +206,13 @@
               (onClick)="update(jobOpening)"
             />
 
-            <p-button
+            <!-- <p-button
               icon="pi pi-trash"
               severity="danger"
               [rounded]="true"
               [outlined]="true"
               (onClick)="delete(jobOpening)"
-            />
+            /> -->
           </td>
         </tr>
       </ng-template>

@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs';
+import { RootModel } from './root.model';
+
 export interface JobOpeningModel {
   id: number;
   title: string;
@@ -20,6 +23,8 @@ export interface JobOpeningModel {
 }
 
 export interface ViJobOpeningModel {
+  map(arg0: (job: any) => Observable<RootModel>): unknown;
+  length: number;
   id: number;
   title: string;
   description: string;

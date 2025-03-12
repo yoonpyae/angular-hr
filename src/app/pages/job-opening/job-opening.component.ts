@@ -20,6 +20,7 @@ import {
 } from '../../core/models/job-opening.model';
 import { JobOpeningService } from '../../core/services/job-opening.service';
 import { Skeleton } from 'primeng/skeleton';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-job-opening',
@@ -47,7 +48,7 @@ import { Skeleton } from 'primeng/skeleton';
 })
 export class JobOpeningComponent implements OnInit {
   jobOpening: ViJobOpeningModel[] = [];
-  selectedJobOpeing!: ViJobOpeningModel;
+  selectedJobOpeing: ViJobOpeningModel[] = [];
   isloading: boolean = true;
 
   constructor(
@@ -100,6 +101,38 @@ export class JobOpeningComponent implements OnInit {
       },
       reject: () => {
         this.selectedJobOpeing = null as any;
+      },
+      key: 'positionDialog',
+    });
+  }
+
+  deleteSelected() {
+    if (!this.selectedJobOpeing || this.selectedJobOpeing.length === 0) return;
+
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete ${this.selectedJobOpeing.length} selected job openings?`,
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      accept: () => {
+        const deleteObservables: Observable<any>[] = this.selectedJobOpeing.map(
+          (job) => this.jobOpeningService.delete(job.id)
+        );
+
+        Promise.all(deleteObservables.map((obs) => obs.toPromise())).then(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Deleted',
+              detail: `${this.selectedJobOpeing.length} job openings have been deleted.`,
+            });
+
+            this.loadData(); // Refresh the list after deletion
+            // this.selectedJobOpeing = []; // Clear selection
+          }
+        );
+      },
+      reject: () => {
+        // this.selectedJobOpeing = [];
       },
       key: 'positionDialog',
     });
