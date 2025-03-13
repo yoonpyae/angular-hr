@@ -82,57 +82,27 @@ export class DeductionComponent implements OnInit {
     this.route.navigate(['/deduction/entry', deduction.deductionId]);
   }
 
-  delete(): void {
-    if (
-      this.selectedDeduction !== null ||
-      this.selectedDeduction !== undefined
-    ) {
-      console.log(this.selectedDeduction.deductionId);
-      this.confirmationService.confirm({
-        message: 'Are You Sure Want To Delete?',
-        header: 'Delete Confirmation',
-        icon: 'pi pi-info-circle',
-        accept: () => {
-          // this.deductionService
-          //   .delete(this.selectedDeduction.deductionId)
-          //   .subscribe((res) => {
-          //     this.messageService.add({
-          //       severity: 'success',
-          //       summary: 'Confirmed',
-          //       detail: `Deduction ${this.selectedDeduction.deductionName} has been deleted.`,
-          //     });
-          //     this.loadData();
-          //     //deselect
-          //     this.selectedDeduction = null as any;
-          //   });
-          console.log('success');
-        },
-        reject: () => {
-          this.selectedDeduction = null as any;
-        },
-        key: 'positionDialog',
-      });
-    }
-  }
-
-  deleteSelectedDeductions() {
-    console.log('Delete button clicked, function executed.');
-
+  delete(deduction: DeductionModel): void {
     this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected deductions?',
-      header: 'Confirm Deletion',
-      icon: 'pi pi-exclamation-triangle',
+      message: 'Are You Sure Want To Delete?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
       accept: () => {
-        console.log('User accepted deletion.');
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Deleted',
-          detail: 'Selected deductions deleted successfully.',
+        this.deductionService.delete(deduction.deductionId).subscribe((res) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Confirmed',
+            detail: `Deduction ${deduction.deductionName} has been deleted.`,
+          });
+          this.loadData();
+          //deselect
+          this.selectedDeduction = null as any;
         });
       },
       reject: () => {
-        console.log('User rejected deletion.');
+        this.selectedDeduction = null as any;
       },
+      key: 'positionDialog',
     });
   }
 
