@@ -85,7 +85,7 @@
           deduction ID
           <p-sortIcon field="deductionId" />
         </th> -->
-        <th pFrozenColumn pSortableColumn="deductionName">
+        <th pSortableColumn="deductionName">
           DeductionName
           <p-sortIcon field="deductionName" />
         </th>
@@ -134,7 +134,7 @@
           Remark
           <p-sortIcon field="remark" />
         </th>
-        <th>Action</th>
+        <th pFrozenColumn alignFrozen="right">Action</th>
       </tr>
     </ng-template>
 
@@ -144,7 +144,7 @@
           <p-tableCheckbox [value]="deduction" />
         </td>
         <!-- <td>{{ deduction.deductionId }}</td> -->
-        <td pFrozenColumn>{{ deduction.deductionName }}</td>
+        <td>{{ deduction.deductionName }}</td>
         <td>{{ deduction.companyName }}</td>
         <td>{{ deduction.branchName }}</td>
         <td>{{ deduction.deptName }}</td>
@@ -168,7 +168,7 @@
         <td>{{ deduction.updatedBy }}</td>
 
         <td>{{ deduction.remark }}</td>
-        <td>
+        <td pFrozenColumn="action" alignFrozen="right">
           <p-button
             icon="pi pi-pencil"
             class="mr-2"
@@ -177,13 +177,13 @@
             (onClick)="update(deduction)"
           />
 
-          <!-- <p-button
+          <p-button
             icon="pi pi-trash"
             severity="danger"
             [rounded]="true"
             [outlined]="true"
-            (onClick)="delete(deduction)"
-          /> -->
+            (onClick)="delete()"
+          />
         </td>
       </tr>
     </ng-template>
