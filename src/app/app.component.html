@@ -1,13 +1,3 @@
-<p-button
-  [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"
-  [label]="isDarkMode ? 'Light Mode' : 'Dark Mode'"
-  class="w-full sm:w-auto"
-  [rounded]="true"
-  [outlined]="true"
-  (click)="toggleDarkMode()"
-  severity="secondary"
-/>
-
 <!-- <p-button
   icon="pi pi-moon"
   label="Dark Mode"
@@ -20,5 +10,14 @@
   [label]="isDarkMode ? 'Light Mode' : 'Dark Mode'"
 /> -->
 <div class="p-8">
+  <p-button
+    [icon]="isDarkMode ? 'pi pi-sun' : 'pi pi-moon'"
+    [label]="isDarkMode ? 'Light Mode' : 'Dark Mode'"
+    class="w-full sm:w-auto"
+    [rounded]="true"
+    [outlined]="true"
+    (click)="toggleDarkMode()"
+    severity="secondary"
+  />
   <router-outlet />
 </div>

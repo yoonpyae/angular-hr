@@ -12,48 +12,77 @@
 }
 
 .app-dark {
-  // Apply dark mode styles for PrimeNG
-  --surface-a: #1e1e1e; // Background
-  --surface-b: #222; // Panel Background
-  --text-color: #fff; // Text color
-}
+  /* 🎨 Define Dark Theme Colors */
+  --surface-a: #181818 !important; /* Background */
+  --surface-b: #222222 !important; /* Headers, Panels */
+  --surface-c: #2a2a2a !important; /* Rows */
+  --surface-d: #333333 !important; /* Hover Effect */
+  --text-color: #ffffff !important; /* Text */
+  --border-color: #444444 !important; /* Borders */
 
-.app-dark,
-.app-dark p-table,
-.app-dark .form,
-.app-dark form,
-.app-dark h2,
-.app-dark label,
-.app-dark input,
-.app-dark p-select,
-.app-dark p-editor,
-.app-dark textarea {
+  /* 🔹 Apply Dark Mode to General UI */
   background-color: var(--surface-a);
   color: var(--text-color);
-}
 
-.app-dark p-button {
-  background-color: var(--surface-a);
-  border-color: #555;
-}
+  /* 📌 PrimeNG DataTable */
+  .p-datatable {
+    background: var(--surface-a) !important;
+    color: var(--text-color) !important;
+  }
 
-.app-dark p-button:hover {
-  background-color: #555;
-}
+  .p-datatable thead > tr > th,
+  div,
+  label {
+    background: var(--surface-b) !important;
+    color: var(--text-color) !important;
+  }
 
-// Override table styles for dark mode
-.app-dark .p-datatable {
-  background-color: var(--surface-a);
-  color: var(--text-color);
-}
+  .p-datatable tbody > tr,
+  .p-datatable tbody > tr > td {
+    background: var(--surface-c) !important;
+    color: var(--text-color) !important;
+  }
 
-.app-dark .p-datatable th,
-.app-dark .p-datatable td {
-  background-color: var(--surface-b);
-  color: var(--text-color);
-}
+  .p-datatable tbody > tr:hover {
+    background: var(--surface-d) !important;
+  }
 
-.app-dark .p-button {
-  background-color: var(--surface-b);
-  color: var(--text-color);
+  .p-datatable-footer,
+  .p-datatable-header {
+    background: var(--surface-b) !important;
+    color: var(--text-color) !important;
+  }
+
+  /* 🔘 PrimeNG Buttons */
+  .p-button {
+    background-color: var(--surface-b) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+  }
+
+  .p-button:hover {
+    background-color: var(--surface-d) !important;
+  }
+
+  /* 📌 PrimeNG Paginator */
+  .p-paginator {
+    background: var(--surface-a) !important;
+    color: var(--text-color) !important;
+  }
+
+  .p-paginator .p-paginator-pages {
+    background: var(--surface-b) !important;
+    color: var(--text-color) !important;
+  }
+
+  /* 🎯 Apply Dark Mode to Forms */
+  .form,
+  form,
+  input,
+  textarea,
+  p-select,
+  p-editor {
+    background-color: var(--surface-b) !important;
+    color: var(--text-color) !important;
+  }
 }
