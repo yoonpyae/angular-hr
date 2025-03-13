@@ -18,6 +18,29 @@
   --text-color: #fff; // Text color
 }
 
+.app-dark,
+.app-dark p-table,
+.app-dark .form,
+.app-dark form,
+.app-dark h2,
+.app-dark label,
+.app-dark input,
+.app-dark p-select,
+.app-dark p-editor,
+.app-dark textarea {
+  background-color: var(--surface-a);
+  color: var(--text-color);
+}
+
+.app-dark p-button {
+  background-color: var(--surface-a);
+  border-color: #555;
+}
+
+.app-dark p-button:hover {
+  background-color: #555;
+}
+
 // Override table styles for dark mode
 .app-dark .p-datatable {
   background-color: var(--surface-a);

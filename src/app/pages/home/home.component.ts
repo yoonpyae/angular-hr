@@ -8,7 +8,6 @@ import { DrawerModule } from 'primeng/drawer';
 import { FormsModule } from '@angular/forms';
 import { DatePicker } from 'primeng/datepicker';
 import { DarkModeService } from '../../core/services/dark-mode.service';
-import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.component';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +20,6 @@ import { DarkModeToggleComponent } from '../dark-mode-toggle/dark-mode-toggle.co
     CardModule,
     FormsModule,
     DatePicker,
-    DarkModeToggleComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
