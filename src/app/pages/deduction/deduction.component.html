@@ -67,9 +67,7 @@
 
     <ng-template #header>
       <tr class="bg-gray-100 whitespace-nowrap">
-        <th>
-          <p-tableHeaderCheckbox />
-        </th>
+        <th style="width: 3rem"></th>
         <!-- <th pSortableColumn="deductionId">
           deduction ID
           <p-sortIcon field="deductionId" />
@@ -127,10 +125,11 @@
       </tr>
     </ng-template>
 
-    <ng-template #body let-deduction>
-      <tr class="whitespace-nowrap, p-selectable-row">
+    <ng-template #body let-deduction let-index="rowIndex">
+      <tr class="whitespace-nowrap, p-selectable-row" [pReorderableRow]="index">
         <td>
-          <p-tableCheckbox [value]="deduction" />
+          <span class="pi pi-bars cursor-move" pReorderableRowHandle></span>
+          <!-- ✅ Drag handle -->
         </td>
         <!-- <td>{{ deduction.deductionId }}</td> -->
         <td>{{ deduction.deductionName }}</td>
