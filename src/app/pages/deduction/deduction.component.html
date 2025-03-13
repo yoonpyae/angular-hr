@@ -1,194 +1,136 @@
 <p-toast position="top-right"></p-toast>
-<h1 class="text-4xl font-bold text-center mb-8">deduction List</h1>
+<h1 class="text-4xl font-bold text-center mb-8">Deduction List</h1>
 
 <div class="card">
-  <p-table
-    #dt1
-    [value]="deduction"
-    [tableStyle]="{ 'min-width': '50rem' }"
-    [scrollable]="true"
-    [filterDelay]="0"
-    [globalFilterFields]="[
-      'deductionId',
-      'deductionName',
-      'companyName',
-      'branchName',
-      'deptName',
-      'description',
-      'status',
-      'createdOn',
-      'createdBy',
-      'updatedOn',
-      'updatedBy',
-      'deletedOn',
-      'deletedBy',
-      'remark'
-    ]"
-    [paginator]="true"
-    dataKey="deductionId"
-    [rowHover]="true"
-    [rows]="10"
-    [(selection)]="selectedDeduction"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]"
-    [loading]="loading"
-    [scrollable]="true"
-    scrollHeight="650px"
-    [virtualScroll]="true"
-    [virtualScrollItemSize]="46"
-  >
-    <ng-template #caption>
-      <div class="flex items-center justify-between mb-3">
-        <p-button
-          icon="pi pi-plus"
-          label="Create"
-          routerLink="entry"
-          class="p-button-primary w-full sm:w-auto"
-        >
-        </p-button>
-
-        <p-iconfield
-          icon="pi pi-check"
-          iconPosition="left"
-          class="w-80 mt-2 sm:mt-0 w-full sm:w-auto"
-        >
-          <input
-            pInputText
-            type="text"
-            (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
-            pInputText
-            placeholder="Search"
-            class="p-inputtext w-full border rounded-lg px-3 py-2"
-          />
-        </p-iconfield>
-      </div>
-    </ng-template>
-
-    <ng-template #header>
-      <tr class="bg-gray-100 whitespace-nowrap">
-        <th style="width: 3rem"></th>
-        <!-- <th pSortableColumn="deductionId">
-          deduction ID
-          <p-sortIcon field="deductionId" />
-        </th> -->
-        <th pSortableColumn="deductionName">
-          DeductionName
-          <p-sortIcon field="deductionName" />
-        </th>
-        <th pSortableColumn="companyName">
-          Company Name
-          <p-sortIcon field="companyName" />
-        </th>
-        <th pSortableColumn="branchName">
-          Branch Name
-          <p-sortIcon field="branchName" />
-        </th>
-        <th pSortableColumn="deptName">
-          Dept Name
-          <p-sortIcon field="deptName" />
-        </th>
-        <th pSortableColumn="description">
-          description
-          <p-sortIcon field="description" />
-        </th>
-        <th pSortableColumn="isDefault">
-          isDefault
-          <p-sortIcon field="isDefault" />
-        </th>
-        <th pSortableColumn="status">
-          Status
-          <p-sortIcon field="status" />
-        </th>
-        <th pSortableColumn="createdOn">
-          Created On
-          <p-sortIcon field="createdOn" />
-        </th>
-        <th pSortableColumn="createdBy">
-          Created By
-          <p-sortIcon field="createdBy" />
-        </th>
-        <th pSortableColumn="updatedOn">
-          Updated On
-          <p-sortIcon field="updatedOn" />
-        </th>
-        <th pSortableColumn="updatedBy">
-          Updated By
-          <p-sortIcon field="updatedBy" />
-        </th>
-
-        <th pSortableColumn="remark">
-          Remark
-          <p-sortIcon field="remark" />
-        </th>
-        <th pFrozenColumn alignFrozen="right">Action</th>
-      </tr>
-    </ng-template>
-
-    <ng-template #body let-deduction let-index="rowIndex">
-      <tr class="whitespace-nowrap, p-selectable-row" [pReorderableRow]="index">
-        <td>
-          <span class="pi pi-bars cursor-move" pReorderableRowHandle></span>
-          <!-- ✅ Drag handle -->
-        </td>
-        <!-- <td>{{ deduction.deductionId }}</td> -->
-        <td>{{ deduction.deductionName }}</td>
-        <td>{{ deduction.companyName }}</td>
-        <td>{{ deduction.branchName }}</td>
-        <td>{{ deduction.deptName }}</td>
-
-        <td><span [innerHTML]="deduction.description"></span></td>
-        <td>
-          <p-tag
-            [value]="deduction.isDefault"
-            [severity]="getSeverity(deduction.isDefault)"
-          />
-        </td>
-        <td>
-          <p-tag
-            [value]="deduction.status"
-            [severity]="getSeverity(deduction.status)"
-          />
-        </td>
-        <td>{{ deduction.createdOn }}</td>
-        <td>{{ deduction.createdBy }}</td>
-        <td>{{ deduction.updatedOn }}</td>
-        <td>{{ deduction.updatedBy }}</td>
-
-        <td>{{ deduction.remark }}</td>
-        <td pFrozenColumn="action" alignFrozen="right">
+  <div class="overflow-auto">
+    <p-table
+      #dt1
+      [value]="deduction"
+      [tableStyle]="{ 'min-width': '50rem' }"
+      [scrollable]="true"
+      scrollHeight="650px"
+      [filterDelay]="0"
+      [globalFilterFields]="[
+        'deductionId',
+        'deductionName',
+        'companyName',
+        'branchName',
+        'deptName',
+        'description',
+        'status',
+        'createdOn',
+        'createdBy',
+        'updatedOn',
+        'updatedBy',
+        'deletedOn',
+        'deletedBy',
+        'remark'
+      ]"
+      [paginator]="true"
+      dataKey="deductionId"
+      [rowHover]="true"
+      [rows]="10"
+      [(selection)]="selectedDeduction"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading"
+      [virtualScroll]="true"
+      [virtualScrollItemSize]="46"
+      class="responsive-table"
+    >
+      <ng-template #caption>
+        <div class="flex flex-wrap items-center justify-between mb-3">
           <p-button
-            icon="pi pi-pencil"
-            class="mr-2"
-            [rounded]="true"
-            [outlined]="true"
-            (onClick)="update(deduction)"
-          />
+            icon="pi pi-plus"
+            label="Create"
+            routerLink="entry"
+            class="p-button-primary w-full sm:w-auto"
+          ></p-button>
 
-          <p-button
-            icon="pi pi-trash"
-            severity="danger"
-            [rounded]="true"
-            [outlined]="true"
-            (onClick)="delete(deduction)"
-          />
-        </td>
-      </tr>
-    </ng-template>
+          <p-iconfield icon="pi pi-search" class="w-full sm:w-80 mt-2 sm:mt-0">
+            <input
+              pInputText
+              type="text"
+              (input)="dt1.filterGlobal($any($event.target).value, 'contains')"
+              placeholder="Search"
+              class="p-inputtext w-full border rounded-lg px-3 py-2"
+            />
+          </p-iconfield>
+        </div>
+      </ng-template>
 
-    <ng-template #emptymessage>
-      <tr>
-        <td colspan="3" class="text-center p-4 text-gray-500">
-          No deductions found.
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template #summary>
-      <div class="flex items-center justify-between">
-        In total there are {{ deduction ? deduction.length : 0 }} deductions.
-      </div>
-    </ng-template>
-  </p-table>
+      <ng-template #header>
+        <tr class="bg-gray-100 whitespace-nowrap">
+          <th class="" style="width: 3rem"></th>
+          <th pSortableColumn="deductionName">
+            Deduction Name <p-sortIcon field="deductionName" />
+          </th>
+          <th pSortableColumn="companyName" class="">
+            Company Name <p-sortIcon field="companyName" />
+          </th>
+          <th pSortableColumn="branchName" class="hidden lg:table-cell">
+            Branch Name <p-sortIcon field="branchName" />
+          </th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
+          <th pSortableColumn="createdOn" class="">
+            Created On <p-sortIcon field="createdOn" />
+          </th>
+          <th pFrozenColumn alignFrozen="right">Action</th>
+        </tr>
+      </ng-template>
+
+      <ng-template #body let-deduction let-index="rowIndex">
+        <tr
+          class="whitespace-nowrap p-selectable-row"
+          [pReorderableRow]="index"
+        >
+          <td class="">
+            <span class="pi pi-bars cursor-move" pReorderableRowHandle></span>
+          </td>
+          <td>{{ deduction.deductionName }}</td>
+          <td class="">{{ deduction.companyName }}</td>
+          <td class="hidden lg:table-cell">{{ deduction.branchName }}</td>
+          <td>
+            <p-tag
+              [value]="deduction.status"
+              [severity]="getSeverity(deduction.status)"
+            />
+          </td>
+          <td class="">{{ deduction.createdOn }}</td>
+          <td pFrozenColumn="action" alignFrozen="right">
+            <p-button
+              icon="pi pi-pencil"
+              class="mr-2"
+              [rounded]="true"
+              [outlined]="true"
+              (onClick)="update(deduction)"
+            />
+            <p-button
+              icon="pi pi-trash"
+              severity="danger"
+              [rounded]="true"
+              [outlined]="true"
+              (onClick)="delete(deduction)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="6" class="text-center p-4 text-gray-500">
+            No deductions found.
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #summary>
+        <div class="flex items-center justify-between">
+          In total there are {{ deduction ? deduction.length : 0 }} deductions.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
 
 <p-confirmdialog key="positionDialog" position="bottom" />
