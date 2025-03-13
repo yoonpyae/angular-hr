@@ -10,6 +10,10 @@
     [rowsPerPageOptions]="[8, 15, 30]"
     class="p-datatable-striped p-datatable-gridlines"
     responsiveLayout="scroll"
+    [scrollable]="true"
+    scrollHeight="660px"
+    [virtualScroll]="true"
+    [virtualScrollItemSize]="46"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">

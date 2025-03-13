@@ -2,21 +2,6 @@
 <h1 class="text-4xl font-bold text-center mb-8">deduction List</h1>
 
 <div class="card">
-  <p-toast />
-
-  <p-toolbar styleClass="mb-6">
-    <ng-template #start>
-      <p-button
-        severity="danger"
-        label="Delete"
-        icon="pi pi-trash"
-        dataKey="deductionId"
-        outlined
-        (onClick)="delete()"
-      />
-    </ng-template>
-  </p-toolbar>
-
   <p-table
     #dt1
     [value]="deduction"
@@ -48,6 +33,10 @@
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[10, 25, 50]"
     [loading]="loading"
+    [scrollable]="true"
+    scrollHeight="650px"
+    [virtualScroll]="true"
+    [virtualScrollItemSize]="46"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">

@@ -48,6 +48,10 @@
     [rows]="8"
     showGridlines
     [rowsPerPageOptions]="[8, 15, 30]"
+    [scrollable]="true"
+    scrollHeight="650px"
+    [virtualScroll]="true"
+    [virtualScrollItemSize]="46"
   >
     <ng-template #caption>
       <div class="flex items-center justify-between mb-3">
