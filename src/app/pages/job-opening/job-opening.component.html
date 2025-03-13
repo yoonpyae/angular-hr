@@ -43,9 +43,7 @@
       class="w-full"
     >
       <ng-template #caption>
-        <div
-          class="flex flex-col sm:flex-row items-center justify-between mb-3 gap-3"
-        >
+        <div class="flex flex-col items-center justify-between mb-3 gap-3">
           <div class="flex gap-3">
             <p-button
               icon="pi pi-plus"
@@ -187,30 +185,30 @@
             <!-- <p-tableRadioButton [value]="jobOpening" /> -->
           </td>
           <!-- <td>{{ jobOpening.id }}</td> -->
-          <td class="hidden sm:table-cell">
+          <td>
             {{ jobOpening.title }}
           </td>
-          <td class="hidden sm:table-cell">
+          <td>
             <span [innerHTML]="jobOpening.description"></span>
           </td>
-          <td class="hidden sm:table-cell">{{ jobOpening.noOfApplicants }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.startOn }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.endOn }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.companyName }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.branchName }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.deptName }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.positionName }}</td>
+          <td>{{ jobOpening.noOfApplicants }}</td>
+          <td>{{ jobOpening.startOn }}</td>
+          <td>{{ jobOpening.endOn }}</td>
+          <td>{{ jobOpening.companyName }}</td>
+          <td>{{ jobOpening.branchName }}</td>
+          <td>{{ jobOpening.deptName }}</td>
+          <td>{{ jobOpening.positionName }}</td>
           <td>
             <p-tag
               [value]="jobOpening.openingStatus"
               [severity]="getSeverity(jobOpening.openingStatus)"
             />
           </td>
-          <td class="hidden sm:table-cell">{{ jobOpening.createdOn }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.createdBy }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.updatedOn }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.updatedBy }}</td>
-          <td class="hidden sm:table-cell">{{ jobOpening.remark }}</td>
+          <td>{{ jobOpening.createdOn }}</td>
+          <td>{{ jobOpening.createdBy }}</td>
+          <td>{{ jobOpening.updatedOn }}</td>
+          <td>{{ jobOpening.updatedBy }}</td>
+          <td>{{ jobOpening.remark }}</td>
           <td pFrozenColumn="action" alignFrozen="right">
             <p-button
               icon="pi pi-pencil"
