@@ -102,4 +102,38 @@ export class HomeComponent implements OnInit {
       value: allCookies[cookie.key] || 'Expired',
     }));
   }
+
+  saveJsonCookie(): void {
+    const jsonData = {
+      userId: 123,
+      username: 'john_doe',
+      preferences: {
+        theme: 'dark',
+        notifications: true,
+      },
+    };
+  
+    const jsonString = JSON.stringify(jsonData);
+    const expirationDate = new Date();
+    expirationDate.setSeconds(expirationDate.getSeconds() + 60); // 60 seconds
+    this.cookieService.set('userData', jsonString, { expires: expirationDate });
+  
+    console.log('JSON cookie set:', jsonString);
+  }
+  
+  getJsonCookie(): void {
+    const jsonString = this.cookieService.get('userData');
+  
+    if (jsonString) {
+      const jsonData = JSON.parse(jsonString);
+      console.log('Retrieved JSON cookie:', jsonData);
+    } else {
+      console.log('JSON cookie does not exist or has expired.');
+    }
+  }
+  
+  deleteJsonCookie(): void {
+    this.cookieService.delete('userData');
+    console.log('JSON cookie deleted.');
+  }
 }
