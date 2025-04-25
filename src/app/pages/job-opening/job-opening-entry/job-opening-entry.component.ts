@@ -85,7 +85,7 @@ export class JobOpeningEntryComponent implements OnInit {
     private datepipe: DatePipe,
     private messageService: MessageService,
     private router: Router
-  ) {}
+  ) { }
 
   private formBuilder = inject(FormBuilder);
   jobOpeingForm = this.formBuilder.group(
@@ -201,7 +201,7 @@ export class JobOpeningEntryComponent implements OnInit {
           this.onCompanyChange();
         }
       },
-      error: () => {},
+      error: () => { },
     });
   }
 
@@ -242,7 +242,7 @@ export class JobOpeningEntryComponent implements OnInit {
           this.onBranchChange();
         }
       },
-      error: () => {},
+      error: () => { },
     });
   }
 
