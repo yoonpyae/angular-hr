@@ -1,13 +1,13 @@
 <p-toast key="globalMessage"></p-toast>
 
-<div class="p-6 max-w-3xl mx-auto bg-white shadow-lg rounded-lg form">
-  <h2 class="text-lg font-bold text-gray-700 mb-3 text-center">Job Opening</h2>
-  <form [formGroup]="jobOpeingForm" (ngSubmit)="submit()" class="space-y-4">
+<div class="p-6 max-w-3xl mx-auto bg-pink-50 shadow-lg rounded-3xl form border border-pink-200">
+  <h2 class="text-xl font-extrabold text-pink-600 mb-5 text-center">🌸 Job Opening 🌸</h2>
+  <form [formGroup]="jobOpeingForm" (ngSubmit)="submit()" class="space-y-6">
     <!-- Job Details Section -->
-    <div class="grid md:grid-cols-2 gap-2">
+    <div class="grid md:grid-cols-2 gap-4">
       <!-- #region title -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Title</label>
+        <label class="text-pink-500 text-sm font-medium">Title</label>
         <ng-container *ngIf="isLoading; else titleField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -16,19 +16,15 @@
             pInputText
             formControlName="title"
             type="text"
-            class="p-1 border rounded text-sm"
+            class="p-2 border border-pink-300 rounded-lg text-sm focus:ring-pink-400 focus:border-pink-400"
             placeholder="Enter job title"
             [pAutoFocus]="true"
           />
-
           <small
-            *ngIf="
-              jobOpeingForm.controls['title'].invalid &&
-              jobOpeingForm.get('title')?.dirty
-            "
-            class="p-text text-red-600"
+            *ngIf="jobOpeingForm.controls['title'].invalid && jobOpeingForm.get('title')?.dirty"
+            class="p-text text-red-500"
           >
-            title is required.
+            Title is required.
           </small>
         </ng-template>
       </div>
@@ -36,7 +32,7 @@
 
       <!-- #region noOfApplicants -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">No. of Applicants</label>
+        <label class="text-pink-500 text-sm font-medium">No. of Applicants</label>
         <ng-container *ngIf="isLoading; else noOfApplicantsField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -46,17 +42,14 @@
             formControlName="noOfApplicants"
             type="number"
             min="1"
-            class="p-1 border rounded text-sm"
+            class="p-2 border border-pink-300 rounded-lg text-sm focus:ring-pink-400 focus:border-pink-400"
             placeholder="Enter number"
           />
           <small
-            *ngIf="
-              jobOpeingForm.controls['noOfApplicants'].invalid &&
-              jobOpeingForm.get('noOfApplicants')?.dirty
-            "
-            class="p-text text-red-600"
+            *ngIf="jobOpeingForm.controls['noOfApplicants'].invalid && jobOpeingForm.get('noOfApplicants')?.dirty"
+            class="p-text text-red-500"
           >
-            noOfApplicants is required.
+            No. of Applicants is required.
           </small>
         </ng-template>
       </div>
@@ -64,27 +57,25 @@
     </div>
 
     <!-- Start & End -->
-    <div class="grid md:grid-cols-2 gap-2">
+    <div class="grid md:grid-cols-2 gap-4">
       <!-- #region startOn -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">startOn</label>
+        <label class="text-pink-500 text-sm font-medium">Start Date</label>
         <ng-container *ngIf="isLoading; else startOnField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
-        <ng-template #startOnField
-          ><p-datepicker
+        <ng-template #startOnField>
+          <p-datepicker
             formControlName="startOn"
             [showIcon]="true"
             [showButtonBar]="true"
+            class="rounded-lg"
           ></p-datepicker>
           <small
-            *ngIf="
-              jobOpeingForm.controls['startOn'].invalid &&
-              jobOpeingForm.get('startOn')?.dirty
-            "
-            class="p-text text-red-600"
+            *ngIf="jobOpeingForm.controls['startOn'].invalid && jobOpeingForm.get('startOn')?.dirty"
+            class="p-text text-red-500"
           >
-            startOn is required.
+            Start date is required.
           </small>
         </ng-template>
       </div>
@@ -92,7 +83,7 @@
 
       <!-- #region endOn -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">endOn</label>
+        <label class="text-pink-500 text-sm font-medium">End Date</label>
         <ng-container *ngIf="isLoading; else endOnField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
@@ -101,40 +92,35 @@
             formControlName="endOn"
             [showIcon]="true"
             [showButtonBar]="true"
+            class="rounded-lg"
           ></p-datepicker>
           <small
-            *ngIf="
-              jobOpeingForm.controls['endOn'].invalid &&
-              jobOpeingForm.get('endOn')?.dirty
-            "
-            class="p-text text-red-600"
+            *ngIf="jobOpeingForm.controls['endOn'].invalid && jobOpeingForm.get('endOn')?.dirty"
+            class="p-text text-red-500"
           >
-            endOn is required.
+            End date is required.
           </small>
           <small
-            *ngIf="
-              jobOpeingForm.hasError('dateRangeInvalid') &&
-              jobOpeingForm.get('endOn')?.touched
-            "
-            style="color: red"
-            >End date cannot be earlier than start date.</small
+            *ngIf="jobOpeingForm.hasError('dateRangeInvalid') && jobOpeingForm.get('endOn')?.touched"
+            class="text-red-500"
           >
+            End date cannot be earlier than start date.
+          </small>
         </ng-template>
       </div>
       <!-- #endregion endOn -->
     </div>
 
     <!-- Company & Location Section -->
-
-    <div class="grid md:grid-cols-2 grid-cols-1 gap-2">
+    <div class="grid md:grid-cols-2 gap-4">
       <!-- #region Company Id -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Company</label>
+        <label class="text-pink-500 text-sm font-medium">Company</label>
         <ng-container *ngIf="isLoading; else companyField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
-        <ng-template #companyField
-          ><p-select
+        <ng-template #companyField>
+          <p-select
             [options]="companies"
             [(ngModel)]="selectedCompany"
             (onChange)="onCompanyChange()"
@@ -144,18 +130,11 @@
             [ngModelOptions]="{ standalone: true }"
             [filter]="true"
             [showClear]="true"
-            [ngClass]="{
-              'ng-dirty ng-invalid':
-                jobOpeingForm.controls['companyId'].invalid &&
-                jobOpeingForm.get('companyId')?.dirty
-            }"
+            class="rounded-lg"
           ></p-select>
           <small
-            *ngIf="
-              jobOpeingForm.controls['companyId'].invalid &&
-              jobOpeingForm.get('companyId')?.dirty
-            "
-            class="p-text text-red-600"
+            *ngIf="jobOpeingForm.controls['companyId'].invalid && jobOpeingForm.get('companyId')?.dirty"
+            class="p-text text-red-500"
           >
             Company is required.
           </small>
@@ -165,12 +144,12 @@
 
       <!-- #region Branch Id -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Branch</label>
+        <label class="text-pink-500 text-sm font-medium">Branch</label>
         <ng-container *ngIf="isLoading; else branchField">
           <p-skeleton width="100%" height="40px"></p-skeleton>
         </ng-container>
-        <ng-template #branchField
-          ><p-select
+        <ng-template #branchField>
+          <p-select
             [options]="branches"
             [(ngModel)]="selectedBranch"
             (onChange)="onBranchChange()"
@@ -180,147 +159,37 @@
             [ngModelOptions]="{ standalone: true }"
             [filter]="true"
             [showClear]="true"
-            [ngClass]="{
-              'ng-dirty ng-invalid':
-                jobOpeingForm.controls['branchId'].invalid &&
-                jobOpeingForm.get('branchId')?.dirty
-            }"
+            class="rounded-lg"
           ></p-select>
           <small
-            *ngIf="
-              jobOpeingForm.controls['branchId'].invalid &&
-              jobOpeingForm.get('branchId')?.dirty
-            "
-            class="p-text text-red-600"
+            *ngIf="jobOpeingForm.controls['branchId'].invalid && jobOpeingForm.get('branchId')?.dirty"
+            class="p-text text-red-500"
           >
             Branch is required.
           </small>
         </ng-template>
       </div>
       <!-- #endregion Branch Id -->
-
-      <!-- #region Department Id -->
-      <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Department</label>
-        <ng-container *ngIf="isLoading; else deptField">
-          <p-skeleton width="100%" height="40px"></p-skeleton>
-        </ng-container>
-        <ng-template #deptField
-          ><p-select
-            [options]="depts"
-            [(ngModel)]="selectedDept"
-            (onChange)="onDeptChange()"
-            optionLabel="deptName"
-            dataKey="deptId"
-            placeholder="Select a Department"
-            [ngModelOptions]="{ standalone: true }"
-            [filter]="true"
-            [showClear]="true"
-            [ngClass]="{
-              'ng-dirty ng-invalid':
-                jobOpeingForm.controls['deptId'].invalid &&
-                jobOpeingForm.get('deptId')?.dirty
-            }"
-          ></p-select>
-          <small
-            *ngIf="
-              jobOpeingForm.controls['deptId'].invalid &&
-              jobOpeingForm.get('deptId')?.dirty
-            "
-            class="p-text text-red-600"
-          >
-            Department is required.
-          </small>
-        </ng-template>
-      </div>
-      <!-- #endregion Department Id -->
-
-      <!-- #region position Id -->
-      <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Position</label>
-        <ng-container *ngIf="isLoading; else positionField">
-          <p-skeleton width="100%" height="40px"></p-skeleton>
-        </ng-container>
-        <ng-template #positionField
-          ><p-select
-            [options]="positions"
-            [(ngModel)]="selectedPosition"
-            (onChange)="onPositionChange()"
-            optionLabel="positionName"
-            dataKey="positionId"
-            placeholder="Select a Position"
-            [ngModelOptions]="{ standalone: true }"
-            [filter]="true"
-            [showClear]="true"
-            [ngClass]="{
-              'ng-dirty ng-invalid':
-                jobOpeingForm.controls['positionId'].invalid &&
-                jobOpeingForm.get('positionId')?.dirty
-            }"
-          ></p-select>
-          <small
-            *ngIf="
-              jobOpeingForm.controls['positionId'].invalid &&
-              jobOpeingForm.get('positionId')?.dirty
-            "
-            class="p-text text-red-600"
-          >
-            position is required.
-          </small>
-        </ng-template>
-      </div>
-      <!-- #endregion position Id -->
     </div>
 
     <!-- Description Section -->
-
     <div class="grid grid-cols-1">
       <!-- #region Description -->
       <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Description</label>
+        <label class="text-pink-500 text-sm font-medium">Description</label>
         <ng-container *ngIf="isLoading; else desField">
           <p-skeleton width="100%" height="100px"></p-skeleton>
         </ng-container>
         <ng-template #desField>
           <p-editor
-            class="pb-5"
+            class="pb-5 border border-pink-300 rounded-lg"
             formControlName="description"
-            [style]="{ height: '100px' }"
+            [style]="{ height: '120px' }"
           ></p-editor>
         </ng-template>
       </div>
       <!-- #endregion Description -->
-
-      <!-- #region Remark -->
-      <div class="flex flex-col">
-        <label class="text-gray-600 text-sm">Remarks</label>
-        <ng-container *ngIf="isLoading; else remarkField">
-          <p-skeleton width="100%" height="20px"></p-skeleton>
-        </ng-container>
-        <ng-template #remarkField>
-          <textarea
-            pInputTextarea
-            formControlName="remark"
-            rows="3"
-            class="p-2 border rounded-md"
-            placeholder="Enter remarks (optional)"
-          ></textarea>
-        </ng-template>
-      </div>
-      <!-- #endregion Remark -->
     </div>
-
-    <!-- #region Status -->
-    <div class="flex items-center gap-2">
-      <label class="text-gray-600 text-sm">openingStatus</label>
-
-      <p-toggleSwitch
-        formControlName="openingStatus"
-        onLabel="Open"
-        offLabel="Closed"
-      ></p-toggleSwitch>
-    </div>
-    <!-- #endregion Status -->
 
     <!-- #region Submit Button -->
     <div class="text-center">
@@ -328,9 +197,9 @@
         pButton
         [disabled]="isSubmitting"
         [loading]="isSubmitting"
-        label="Submit"
+        label="✨ Submit ✨"
         type="submit"
-        class="bg-teal-500 hover:bg-teal-600 text-white text-sm py-1 px-4 rounded-md shadow-md"
+        class="bg-pink-500 hover:bg-pink-600 text-white text-sm py-2 px-6 rounded-full shadow-lg"
       ></button>
     </div>
     <!-- #endregion Submit Button -->
