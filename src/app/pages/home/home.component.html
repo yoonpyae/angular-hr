@@ -1,34 +1,56 @@
 <section id="portfolio" class="portfolio-section py-16 px-4">
   <div class="container mx-auto">
-    <div class="text-center mb-12">
-      <h1 class="text-4xl font-bold mb-4">HOME</h1>
-      <p class="text-lg text-indigo-500 font-semibold">
-        Discover the latest projects
+    <!-- Header Section with cute emoji -->
+    <div class="text-center mb-12 animate-bounce">
+      <h1 class="text-5xl font-extrabold text-pink-500 mb-4">
+        Welcome to HOME 
+        <span class="text-yellow-400">🏠</span>
+      </h1>
+      <p class="text-lg text-blue-400 font-medium">
+        Discover our adorable projects and sweet innovations 
+        <span class="text-yellow-400">✨</span>
       </p>
     </div>
 
-    <div class="card w-full max-w-4xl mx-auto">
+    <!-- Tabs Section with rounded corners -->
+    <div class="card w-full max-w-5xl mx-auto shadow-xl rounded-2xl overflow-hidden ">
       <p-tabs value="0" class="w-full">
         <p-tablist
-          class="flex flex-wrap justify-center md:justify-start gap-2 text-sm md:text-base"
+          class="flex flex-wrap justify-center md:justify-start gap-2 text-sm md:text-base bg-gradient-to-r from-pink-100 to-blue-100"
         >
-          <p-tab value="0" class="px-4 py-2">Web Development</p-tab>
-          <p-tab value="1" class="px-4 py-2">Mobile Applications</p-tab>
-          <p-tab value="2" class="px-4 py-2">UI/UX Design</p-tab>
+          <p-tab
+            value="0"
+            class="font-semibold px-6 py-3  text-pink-600 hover:bg-yellow-200 hover:text-yellow-600 transition-all transform hover:scale-105"
+          >
+            <i class="pi pi-globe mr-2"></i> Web Dev
+          </p-tab>
+          <p-tab
+            value="1"
+            class="font-semibold px-6 py-3  text-blue-600 hover:bg-yellow-200 hover:text-yellow-600 transition-all transform hover:scale-105"
+          >
+            <i class="pi pi-mobile mr-2"></i> Mobile Apps
+          </p-tab>
+          <p-tab
+            value="2"
+            class="font-semibold px-6 py-3  text-purple-600 hover:bg-yellow-200 hover:text-yellow-600 transition-all transform hover:scale-105"
+          >
+            <i class="pi pi-palette mr-2"></i> UI/UX Design
+          </p-tab>
         </p-tablist>
-        <p-tabpanels>
-          <p-tabpanel value="0">
-            <p class="m-0 text-sm md:text-base">
-              Our web development projects include responsive, user-friendly,
-              and high-performance websites using the latest technologies such
-              as React, Angular, and Vue.js.
+        <p-tabpanels class="p-6">
+          <p-tabpanel value="0" class="p-6  rounded-xl">
+            <p class="m-0 text-base text-pink-600 leading-relaxed">
+              <i class="pi pi-heart-fill text-pink-400 mr-2"></i>
+              Our web projects are as cute as buttons! We build responsive, 
+              user-friendly websites with React, Angular, and Vue.js that 
+              will make you smile. 😊
             </p>
           </p-tabpanel>
-          <p-tabpanel value="1">
-            <p class="m-0 text-sm md:text-base">
-              We specialize in developing mobile applications with intuitive
-              user experiences and robust functionality, using Flutter, React
-              Native, and Swift.
+          <p-tabpanel value="1" class="p-6 rounded-xl">
+            <p class="m-0 text-base text-blue-600 leading-relaxed">
+              <i class="pi pi-star-fill text-blue-400 mr-2"></i>
+              We craft delightful mobile apps with Flutter and React Native 
+              that spark joy in every tap and swipe! 📱💖
             </p>
             <div class="card flex justify-center mt-4">
               <p-datepicker
@@ -36,206 +58,175 @@
                 selectionMode="range"
                 [readonlyInput]="true"
                 [showButtonBar]="true"
-                class="w-full md:w-auto"
+                class="w-full md:w-auto border-pink-300 rounded-xl"
               />
             </div>
           </p-tabpanel>
-          <p-tabpanel value="2">
-            <p class="m-0 text-sm md:text-base">
-              Our UI/UX design approach focuses on aesthetics and usability,
-              using Figma and Adobe XD.
+          <p-tabpanel value="2" class="p-6  rounded-xl">
+            <p class="m-0 text-base text-purple-600 leading-relaxed">
+              <i class="pi pi-magic text-purple-400 mr-2"></i>
+              Our UI/UX designs are sweeter than candy! Using Figma and 
+              Adobe XD, we create interfaces that users will love at first sight. 🎨💕
             </p>
           </p-tabpanel>
         </p-tabpanels>
       </p-tabs>
     </div>
 
-    <div
-      class="flex flex-wrap justify-center md:justify-start items-center gap-2 mb-8"
-    >
+    <!-- Buttons Section with cute icons -->
+    <div class="flex flex-wrap justify-center gap-4 mt-12">
       <p-button
         routerLink="state"
         severity="info"
-        label="state"
+        label="State"
         icon="pi pi-check-circle"
-        class="filter-button px-4 py-2 rounded"
+        class="filter-button bg-gradient-to-r from-pink-400 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
       />
       <p-button
         routerLink="policy"
         severity="info"
-        label="policy"
+        label="Policy"
         icon="pi pi-file"
-        class="filter-button px-4 py-2 rounded"
+        class="filter-button bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
       />
       <p-button
         routerLink="allowance"
         severity="info"
-        label="allowance"
+        label="Allowance"
         icon="pi pi-dollar"
-        class="filter-button px-4 py-2 rounded"
+        class="filter-button bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
       />
       <p-button
         routerLink="deduction"
         severity="info"
-        label="deduction"
+        label="Deduction"
         icon="pi pi-link"
-        class="filter-button px-4 py-2 rounded"
+        class="filter-button bg-gradient-to-r from-purple-400 to-purple-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
       />
       <p-button
         routerLink="jobOpening"
         severity="info"
-        label="jobOpening"
-        icon="pi pi-link"
-        class="filter-button px-4 py-2 rounded"
+        label="Job Opening"
+        icon="pi pi-briefcase"
+        class="filter-button bg-gradient-to-r from-green-400 to-green-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
       />
     </div>
 
-    <div class="mb-4 p-8 flex items-center justify-center shadow-sm">
-      <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
-        <ng-template #header>
-          <img
-            alt="Project Showcase"
-            class="w-full"
-            src="https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?cs=srgb&dl=daylight-environment-forest-459225.jpg&fm=jpg"
-          />
-        </ng-template>
-        <ng-template #title> Featured Project </ng-template>
-        <ng-template #subtitle> Innovative Web Solution </ng-template>
-        <p>
-          This project showcases our expertise in web development, blending
-          creativity with technology to deliver an exceptional user experience.
-          Our goal is to make the web more accessible and engaging for everyone.
-        </p>
-        <ng-template #footer>
-          <div class="flex gap-4 mt-1">
-            <p-drawer [(visible)]="visible" header="Drawer">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </p-drawer>
-            <p-button
-              (click)="visible = true"
-              icon="pi pi-arrow-right"
-              label="Learn More"
-              severity="secondary"
-              class="w-full"
-              [outlined]="true"
-              styleClass="w-full"
-            />
-            <p-button label="Get Started" class="w-full" styleClass="w-full" />
-          </div>
-        </ng-template>
-      </p-card>
-    </div>
+    <!-- Cookie Testing Section - Now a cute cookie jar! -->
+    <div class="container mx-auto mt-16 p-8 rounded-2xl shadow-xl bg-gradient-to-br from-pink-100 to-blue-100 border-2 border-pink-200">
+      <h2 class="text-3xl font-bold text-center mb-8 text-pink-500">
+        <i class="pi pi-cookie mr-2"></i> Cookie Jar Testing 🍪
+      </h2>
 
-    <p-message closable>Closable Message</p-message>
+      <!-- Input Fields with cute labels -->
+      <div class="form-group text-center mb-6">
+        <label for="inputKey" class="block text-lg font-medium text-blue-500 mb-2">
+          <i class="pi pi-key"></i> Cookie Key:
+        </label>
+        <input
+          id="inputKey"
+          [(ngModel)]="inputKey"
+          type="text"
+          class="form-control w-full md:w-1/2 mx-auto px-4 py-3 border-2 border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-transparent"
+          placeholder="Name your cookie 🏷️"
+        />
+      </div>
+      <div class="form-group text-center mb-6">
+        <label for="inputValue" class="block text-lg font-medium text-blue-500 mb-2">
+          <i class="pi pi-pencil"></i> Cookie Value:
+        </label>
+        <input
+          id="inputValue"
+          [(ngModel)]="inputValue"
+          type="text"
+          class="form-control w-full md:w-1/2 mx-auto px-4 py-3 border-2 border-blue-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
+          placeholder="Sweet cookie content 🍬"
+        />
+      </div>
 
+      <!-- Buttons with cute effects -->
+      <div class="flex flex-wrap justify-center gap-4 mb-6">
+        <p-button
+          class="bg-gradient-to-r from-pink-400 to-pink-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+          (click)="saveCookie()"
+          label="Bake Cookie 🍪"
+          severity="success"
+        ></p-button>
+        <p-button
+          class="bg-gradient-to-r from-red-400 to-red-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+          (click)="clearAllCookies()"
+          label="Eat All Cookies 😋"
+          severity="danger"
+        ></p-button>
+      </div>
 
-  </div>
+      <!-- JSON Cookie Testing -->
+      <h3 class="text-2xl font-bold text-center mb-6 text-purple-500">
+        <i class="pi pi-code"></i> Fancy JSON Cookies 🎀
+      </h3>
+      <div class="flex flex-wrap justify-center gap-4 mb-6">
+        <p-button
+          class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+          (click)="saveJsonCookie()"
+          label="Bake JSON Cookie 🧁"
+          severity="success"
+        ></p-button>
+        <p-button
+          class="bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+          (click)="getJsonCookie()"
+          label="Peek at Cookie 👀"
+          severity="info"
+        ></p-button>
+        <p-button
+          class="bg-gradient-to-r from-red-400 to-red-500 text-white rounded-full shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+          (click)="deleteJsonCookie()"
+          label="Nom Nom Cookie 🐭"
+          severity="danger"
+        ></p-button>
+      </div>
 
-  <div class="container mx-auto mt-12 p-6 bg-gray-100 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-indigo-600">Cookie Testing</h2>
-  
-    <!-- Input Fields -->
-    <div class="form-group text-center mb-6">
-      <label for="inputKey" class="block text-lg font-medium text-gray-700 mb-2">Enter Cookie Key:</label>
-      <input
-        id="inputKey"
-        [(ngModel)]="inputKey"
-        type="text"
-        class="form-control w-full md:w-1/2 mx-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        placeholder="Enter a unique key for the cookie"
-      />
-    </div>
-    <div class="form-group text-center mb-6">
-      <label for="inputValue" class="block text-lg font-medium text-gray-700 mb-2">Enter Cookie Value:</label>
-      <input
-        id="inputValue"
-        [(ngModel)]="inputValue"
-        type="text"
-        class="form-control w-full md:w-1/2 mx-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        placeholder="Enter a value to save in the cookie"
-      />
-    </div>
-  
-    <!-- Buttons -->
-    <div class="flex flex-wrap justify-center gap-4 mb-6">
-      <p-button
-        class="px-6 py-2 rounded-lg"
-        (click)="saveCookie()"
-        label="Save Cookie"
-        severity="success"
-      ></p-button>
-      <p-button
-        class="px-6 py-2 rounded-lg"
-        (click)="clearAllCookies()"
-        label="Clear All Cookies"
-        severity="danger"
-      ></p-button>
-    </div>
-  
-    <!-- Display All Cookies -->
-    <div class="text-center">
-      <h3 class="text-lg font-medium text-gray-700 mb-4">Saved Cookies:</h3>
-      <table class="table-auto w-full md:w-1/2 mx-auto border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            <th class="border border-gray-300 px-4 py-2">Key</th>
-            <th class="border border-gray-300 px-4 py-2">Value</th>
-            <th class="border border-gray-300 px-4 py-2">Status</th>
-            <th class="border border-gray-300 px-4 py-2">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let cookie of cookies">
-            <td class="border border-gray-300 px-4 py-2">{{ cookie.key }}</td>
-            <td class="border border-gray-300 px-4 py-2">{{ cookie.value }}</td>
-            <td class="border border-gray-300 px-4 py-2">
-              {{ cookie.value === 'Expired' ? 'Expired' : 'Valid' }}
-            </td>
-            <td class="border border-gray-300 px-4 py-2">
-              <p-button
-                class="px-4 py-2 rounded-lg"
-                (click)="deleteCookie(cookie.key)"
-                label="Delete"
-                severity="danger"
-              ></p-button>
-            </td>
-          </tr>
-          <tr *ngIf="cookies.length === 0">
-            <td colspan="3" class="border border-gray-300 px-4 py-2 text-center">No cookies saved.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
-
-  <div class="container">
-    <h2>JSON Cookie Testing</h2>
-  
-    <div class="flex flex-wrap justify-center gap-4 mb-6">
-      <p-button
-        class="px-6 py-2 rounded-lg"
-        (click)="saveJsonCookie()"
-        label="Save JSON Cookie"
-        severity="success"
-      ></p-button>
-      <p-button
-        class="px-6 py-2 rounded-lg"
-        (click)="getJsonCookie()"
-        label="Get JSON Cookie"
-        severity="info"
-      ></p-button>
-      <p-button
-        class="px-6 py-2 rounded-lg"
-        (click)="deleteJsonCookie()"
-        label="Delete JSON Cookie"
-        severity="danger"
-      ></p-button>
+      <!-- Display All Cookies in a cute table -->
+      <div class="text-center">
+        <h3 class="text-lg font-medium text-blue-500 mb-4">
+          <i class="pi pi-table"></i> Cookie Jar Contents:
+        </h3>
+        <table class="table-auto w-full md:w-3/4 mx-auto border-collapse">
+          <thead>
+            <tr class="bg-gradient-to-r from-pink-200 to-blue-200">
+              <th class="px-4 py-3 rounded-tl-xl">Key</th>
+              <th class="px-4 py-3">Value</th>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3 rounded-tr-xl">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cookie of cookies" class="border-b border-pink-100 hover:bg-pink-50">
+              <td class="px-4 py-3 text-pink-600 font-medium">{{ cookie.key }}</td>
+              <td class="px-4 py-3 text-blue-600">{{ cookie.value }}</td>
+              <td class="px-4 py-3">
+                <span [class]="cookie.value === 'Expired' ? 'bg-red-100 text-red-600 px-2 py-1 rounded-full text-xs' : 'text-green-600 px-2 py-1 rounded-full text-xs'">
+                  {{ cookie.value === 'Expired' ? 'Yucky 😖' : 'Yummy! 😋' }}
+                </span>
+              </td>
+              <td class="px-4 py-3">
+                <p-button
+                  class="bg-gradient-to-r from-red-300 to-red-400 text-white rounded-full shadow hover:shadow-md transition-all"
+                  (click)="deleteCookie(cookie.key)"
+                  label="Nom Nom"
+                  icon="pi pi-trash"
+                  severity="danger"
+                ></p-button>
+              </td>
+            </tr>
+            <tr *ngIf="cookies.length === 0">
+              <td colspan="4" class="px-4 py-6 text-center text-gray-500">
+                <i class="pi pi-inbox text-3xl block mb-2"></i>
+                The cookie jar is empty! Bake some cookies! 🍪
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
